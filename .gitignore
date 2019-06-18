@@ -1,0 +1,25 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Maven template
+target/
+v1/
+gen/
+*.swift
+*.class
+/app/
+*.iml
+
+# Log file
+*.log
+.idea/
+logs/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### vscode ###
+.vscode/
