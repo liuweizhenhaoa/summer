@@ -1,4 +1,4 @@
-package com.jintdev.bus.smartboard.grpc;
+package com.summer.grpc.grpc;
 
 import static org.junit.Assert.assertTrue;
 
@@ -14,7 +14,7 @@ import com.google.protobuf.Empty;
 import com.jintdev.bus.proto.GreeterGrpc;
 import com.jintdev.bus.proto.GreeterOuterClass;
 import com.jintdev.bus.proto.GreeterOuterClass.HelloReply;
-import com.jintdev.bus.smartboard.SmartBoardApplication;
+import com.summer.grpc.GrpcApplication;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
  * GreeterServiceTests
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {SmartBoardApplication.class}, webEnvironment = WebEnvironment.NONE)
+@SpringBootTest(classes = {GrpcApplication.class}, webEnvironment = WebEnvironment.NONE)
 @Slf4j
 public class GreeterServiceTests {
     ManagedChannel channel;

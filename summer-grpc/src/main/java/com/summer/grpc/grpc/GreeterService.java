@@ -1,4 +1,4 @@
-package com.jintdev.bus.smartboard.grpc;
+package com.summer.grpc.grpc;
 
 import org.lognet.springboot.grpc.GRpcService;
 
