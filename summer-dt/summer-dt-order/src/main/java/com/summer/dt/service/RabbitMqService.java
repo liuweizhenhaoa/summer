@@ -22,6 +22,9 @@ public class RabbitMqService {
     @Autowired
     TransactionLogService transactionLogService;
 
+    private static final String RABBITMQ_EXCHANGE_ORDER = "order-exchange";
+
+
     @PostConstruct
     public void setUp(){
         rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
@@ -43,7 +46,7 @@ public class RabbitMqService {
 
     public void sendMsg(Order order){
 
-        rabbitTemplate.convertAndSend("","","",
+        rabbitTemplate.convertAndSend(RABBITMQ_EXCHANGE_ORDER,"order.stock",order,
                 new CorrelationData(String.valueOf(order.getId())+"_"+OrderConstant.TRANSACTION_TYPE_ORDER));
     }
 
