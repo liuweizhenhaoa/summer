@@ -1,0 +1,15 @@
+server:
+  undertow:
+    direct-buffers: true
+
+grpc:
+  enable-reflection: true
+  port: 6565
+
+spring:
+  datasource:
+    url: jdbc:mysql://percona-xtradb-cluster-pxc.operation.svc.cluster.local:3306/board?allowMultiQueries=true&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: board
+    password: board@6789
+  jmx:
+    enabled: false
