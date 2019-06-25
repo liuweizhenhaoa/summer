@@ -1,6 +1,6 @@
 package com.summer.dt.config;
 
-import com.summer.dt.common.IdGenerate.SnowflakeIdWorker;
+import com.summer.common.IdGenerate.SnowflakeIdWorker;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

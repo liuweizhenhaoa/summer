@@ -1,7 +1,6 @@
 package com.summer.dt.mq.rabbitmq.sender;
 
 import com.summer.dt.common.constant.OrderConstant;
-import com.summer.dt.common.exception.BussinessException;
 import com.summer.dt.entity.Order;
 import com.summer.dt.mq.MessageSender;
 import com.summer.dt.service.TransactionLogService;
@@ -11,8 +10,6 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import java.util.Date;
 
 @Component
 @Slf4j

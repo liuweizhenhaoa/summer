@@ -1,4 +1,4 @@
-package com.summer.dt.common.utils;
+package com.summer.common.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

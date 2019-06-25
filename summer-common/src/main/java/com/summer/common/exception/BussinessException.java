@@ -1,4 +1,4 @@
-package com.summer.dt.common.exception;
+package com.summer.common.exception;
 
 /**
  * 自定义异常

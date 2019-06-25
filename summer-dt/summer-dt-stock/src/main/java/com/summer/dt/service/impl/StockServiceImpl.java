@@ -1,6 +1,6 @@
 package com.summer.dt.service.impl;
 
-import com.summer.dt.common.exception.BussinessException;
+import com.summer.common.exception.BussinessException;
 import com.summer.dt.dao.StockMapper;
 import com.summer.dt.entity.Stock;
 import com.summer.dt.service.StockService;

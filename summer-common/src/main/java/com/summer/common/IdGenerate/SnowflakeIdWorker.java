@@ -1,4 +1,4 @@
-package com.summer.dt.common.IdGenerate;
+package com.summer.common.IdGenerate;
 
 /**
  * Twitter_Snowflake<br>
