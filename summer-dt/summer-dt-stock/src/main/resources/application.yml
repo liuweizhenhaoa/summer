@@ -4,7 +4,7 @@ server:
 
 grpc:
   enable-reflection: true
-  port: 6565
+  port: 6566
 
 spring:
   datasource:

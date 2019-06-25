@@ -11,4 +11,6 @@ public interface TransactionLogService {
 
     void updateTransactionStatus(long primaryKey, String type, String status, Date updateTime);
 
+
+    void processInitTransaction();
 }
