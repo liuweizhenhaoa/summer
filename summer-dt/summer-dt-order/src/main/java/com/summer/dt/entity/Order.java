@@ -9,7 +9,8 @@ import java.util.Date;
 public class Order {
 
     private long id;
-    private Date createTime;
     private double price;
     private String detail;
+    private Date createTime;
+
 }

@@ -1,5 +1,6 @@
 package com.summer.dt.service;
 
+import com.summer.dt.common.constant.OrderConstant;
 import com.summer.dt.common.exception.BussinessException;
 import com.summer.dt.entity.Order;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.Date;
 
 @Component
 @Slf4j
@@ -32,17 +34,17 @@ public class RabbitMqService {
                     throw new BussinessException("send error " + s);
                 }
                 //发送成功，则更新事务表的状态为已发送
-                transactionLogService.updateTransactionStatus(Long.valueOf(correlationData.getId()));
+                String[] arrays = correlationData.getId().split("_");//primaryKey_type
+                transactionLogService.updateTransactionStatus(Long.valueOf(arrays[0]), arrays[1],
+                        OrderConstant.TRANSACTION_SUCCESS, new Date());
             }
         });
     }
 
-
     public void sendMsg(Order order){
 
-
         rabbitTemplate.convertAndSend("","","",
-                new CorrelationData(String.valueOf(order.getId())));
+                new CorrelationData(String.valueOf(order.getId())+"_"+OrderConstant.TRANSACTION_TYPE_ORDER));
     }
 
 }

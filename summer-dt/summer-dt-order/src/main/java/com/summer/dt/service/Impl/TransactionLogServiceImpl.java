@@ -5,6 +5,8 @@ import com.summer.dt.entity.TransactionLog;
 import com.summer.dt.service.TransactionLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
+
 public class TransactionLogServiceImpl implements TransactionLogService {
 
     @Autowired
@@ -16,7 +18,7 @@ public class TransactionLogServiceImpl implements TransactionLogService {
     }
 
     @Override
-    public void updateTransactionStatus(long primaryKey) {
-
+    public void updateTransactionStatus(long primaryKey, String type, String status, Date updateTime) {
+        transactionLogMapper.updateTransactionStatus(primaryKey, type, status, updateTime);
     }
 }

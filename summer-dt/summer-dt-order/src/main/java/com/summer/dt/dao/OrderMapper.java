@@ -7,9 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface OrderMapper {
 
-    @Insert("insert into `area` (`cityId`, `cityName`, `areaName`, `onOffTime`, `standbyTime`, " +
-            "`refreshTime`, `order`, `status`, `createTime`, `updateTime`) " +
-            "values(#{cityId},#{cityName},#{areaName},#{onOffTime},#{standbyTime},#{refreshTime},#{order},#{status}," +
-            "#{createTime},#{updateTime});")
+    @Insert("insert into `order` (`id`, `price`, `detail`, `createTime`) " +
+            "values(#{id},#{price},#{detail},#{createTime})")
     void save(Order order);
 }
