@@ -2,10 +2,11 @@ package com.summer.dt.model.order;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class Order {
+public class Order implements Serializable {
 
     private long id;
     private double price;

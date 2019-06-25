@@ -3,10 +3,12 @@ package com.summer.dt.mq.rabbitmq.sender;
 import com.summer.dt.common.constant.OrderConstant;
 import com.summer.dt.common.exception.BussinessException;
 import com.summer.dt.entity.Order;
+import com.summer.dt.mq.MessageSender;
 import com.summer.dt.service.TransactionLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +17,7 @@ import java.util.Date;
 
 @Component
 @Slf4j
-public class RabbitMqService {
+public class RabbitMqService implements MessageSender {
 
     @Autowired
     RabbitTemplate rabbitTemplate ;
@@ -28,9 +30,13 @@ public class RabbitMqService {
 
     @PostConstruct
     public void setUp(){
+        rabbitTemplate.setMandatory(true);
+        rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
         rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
             @Override
             public void confirm(CorrelationData correlationData, boolean b, String s) {
+
+                log.info("-------------------------------------");
 
                 //如果没有发送成功
                 if (!b) {
@@ -45,9 +51,26 @@ public class RabbitMqService {
         });
     }
 
-    public void sendMsg(Order order){
-        rabbitTemplate.convertAndSend(RABBITMQ_EXCHANGE_ORDER,"order.stock",order,
-                new CorrelationData(String.valueOf(order.getId())+"_"+OrderConstant.TRANSACTION_TYPE_ORDER));
+    @Override
+    public void sendMsg(Object object){
+
+        rabbitTemplate.convertAndSend(RABBITMQ_EXCHANGE_ORDER,"order.stock",object,
+                objectToCorrelationData(object));
+    }
+
+
+    public CorrelationData objectToCorrelationData(Object object){
+        CorrelationData correlationData = new CorrelationData();
+
+        if(object instanceof Order){
+            Order order = (Order) object;
+            correlationData.setId(String.valueOf(order.getId())+"_"+OrderConstant.TRANSACTION_TYPE_ORDER);
+        }else{
+            log.error("-----------------消息类型未定义--------------------");
+        }
+
+        return correlationData;
+
     }
 
 }
