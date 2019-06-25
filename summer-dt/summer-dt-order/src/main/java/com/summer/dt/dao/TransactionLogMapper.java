@@ -18,7 +18,7 @@ public interface TransactionLogMapper {
     void save(TransactionLog transactionLog);
 
 
-    @Update("update transactionLog set status=#{status},updateTime={updateTime} where primaryKey=#{primaryKey} and type={type}")
+    @Update("update transactionLog set status=#{status},updateTime=#{updateTime} where primaryKey=#{primaryKey} and type=#{type}")
     void updateTransactionStatus(@Param("primaryKey") long primaryKey, @Param("type") String type,
                                  @Param("status")String status,@Param("updateTime") Date updateTime);
 }
