@@ -1,15 +1,20 @@
 package com.summer.dt.dao;
 
 import com.summer.dt.entity.Stock;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.*;
+
+import java.util.Date;
 
 @Mapper
 public interface StockMapper {
 
-    @Insert("insert into `area` (`cityId`, `cityName`, `areaName`, `onOffTime`, `standbyTime`, " +
-            "`refreshTime`, `order`, `status`, `createTime`, `updateTime`) " +
-            "values(#{cityId},#{cityName},#{areaName},#{onOffTime},#{standbyTime},#{refreshTime},#{order},#{status}," +
-            "#{createTime},#{updateTime});")
-    void save(Stock stock);
+    @Update("update stock  set num = #{num},version = #{version+1},updateTime = #{updateTime} where " +
+            "goodId= #{goodId} and " +
+            "version= #{version}")
+    void update(int num, long goodId, Date updateTime, int version);
+
+
+    @Select("select * from stock a where a.goodId = #{goodId}")
+    Stock findStockByGoodId(@Param("goodId")long goodId);
+
 }

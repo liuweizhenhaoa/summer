@@ -2,9 +2,11 @@ package com.summer.dt.mq.rabbit.listener;
 
 import com.rabbitmq.client.Channel;
 import com.summer.dt.model.order.Order;
+import com.summer.dt.service.StockService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.*;
 import org.springframework.amqp.support.AmqpHeaders;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
@@ -16,6 +18,9 @@ import java.util.Map;
 public class OrderListener {
 
     private static final String RABBITMQ_EXCHANGE_ORDER = "order-exchange";
+
+    @Autowired
+    StockService stockService;
 
 
     // 绑定监听，可以在未配置的情况下，在平台自动生成
@@ -29,8 +34,11 @@ public class OrderListener {
                                Channel channel) throws Exception {
         // 消费者操作
         log.info("订单ID：" + order.getId());
-
         Long deliveryTag = (Long) headers.get(AmqpHeaders.DELIVERY_TAG);
+
+        stockService.reduceStock(1,1);
+
+
         // ACK-手工签收
         channel.basicAck(deliveryTag, false);
     }

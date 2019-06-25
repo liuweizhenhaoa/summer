@@ -8,7 +8,9 @@ import java.util.Date;
 public class Stock {
 
     private int id;
+    private long goodId;
+    private int num;
     private Date createTime;
-    private double price;
-    private String detail;
+    private Date updateTime;
+    private int version;
 }
