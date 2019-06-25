@@ -4,9 +4,11 @@ import com.summer.dt.dao.TransactionLogMapper;
 import com.summer.dt.entity.TransactionLog;
 import com.summer.dt.service.TransactionLogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+@Service
 public class TransactionLogServiceImpl implements TransactionLogService {
 
     @Autowired
