@@ -1,8 +1,9 @@
-package com.summer.dt.service;
+package com.summer.dt.mq.rabbitmq.sender;
 
 import com.summer.dt.common.constant.OrderConstant;
 import com.summer.dt.common.exception.BussinessException;
 import com.summer.dt.entity.Order;
+import com.summer.dt.service.TransactionLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -45,7 +46,6 @@ public class RabbitMqService {
     }
 
     public void sendMsg(Order order){
-
         rabbitTemplate.convertAndSend(RABBITMQ_EXCHANGE_ORDER,"order.stock",order,
                 new CorrelationData(String.valueOf(order.getId())+"_"+OrderConstant.TRANSACTION_TYPE_ORDER));
     }

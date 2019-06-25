@@ -4,7 +4,7 @@ import com.summer.dt.entity.Order;
 import com.summer.dt.proto.OrderGrpc;
 import com.summer.dt.proto.OrderOuterClass;
 import com.summer.dt.service.OrderService;
-import com.summer.dt.service.RabbitMqService;
+import com.summer.dt.mq.rabbitmq.sender.RabbitMqService;
 import io.grpc.stub.StreamObserver;
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.beans.factory.annotation.Autowired;

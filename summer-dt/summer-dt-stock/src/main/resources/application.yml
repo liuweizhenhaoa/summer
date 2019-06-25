@@ -13,3 +13,11 @@ spring:
     password: board@6789
   jmx:
     enabled: false
+  rabbitmq:
+    addresses: 127.0.0.1:5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        acknowledge-mode: manual # 签收模式 AUTO：自动签收；manual：手工签收
+        max-concurrency: 10 # 最大并发数

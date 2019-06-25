@@ -21,7 +21,7 @@ public class OrderListener {
     // 绑定监听，可以在未配置的情况下，在平台自动生成
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "order-queue", durable = "true"),
-            exchange = @Exchange(value = RABBITMQ_EXCHANGE_ORDER, durable = "true", type = "topic", ignoreDeclarationExceptions = "true"), key = "order.*"))
+            exchange = @Exchange(value = RABBITMQ_EXCHANGE_ORDER, durable = "true", type = "topic", ignoreDeclarationExceptions = "true"), key = "order.stock"))
     // 手动签收必须依赖channel
     @RabbitHandler // 标识该方法，如果有消息过来，消费者调用该方法
     public void onOrderMessage(@Payload Order order,
