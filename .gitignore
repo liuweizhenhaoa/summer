@@ -23,3 +23,8 @@ logs/
 
 ### vscode ###
 .vscode/
+.idea/*
+.gitignore
+test.java
+*vcs.xml
+*test.java

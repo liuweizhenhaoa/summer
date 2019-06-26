@@ -12,9 +12,10 @@
 		<version>2.1.5.RELEASE</version>
 	</parent>
 	<modules>
+		<module>summer-common</module>
 		<module>summer-grpc</module>
 		<module>summer-dt</module>
-		<module>summer-common</module>
+		<module>summer-sharding-Sphere</module>
 	</modules>
 	<dependencies>
 		<dependency>

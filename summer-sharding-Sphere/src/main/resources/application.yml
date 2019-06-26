@@ -1,0 +1,68 @@
+#spring:
+#  datasource:
+#    db0:
+#      hikari:
+#        jdbc-url: jdbc:mysql://localhost:3306/db0
+#        driver-class-name: com.mysql.jdbc.Driver
+#        username: root
+#        password: 123456
+#        minimum-idle: 10
+#        maximum-pool-size: 200
+#        pool-name: DB0HikariCP
+#        connection-timeout: 30000
+#        connection-test-query: select 1
+#        max-lifetime: 600000
+#        idle-timeout: 120000
+#        data-source-properties: {cachePrepStmts: true, prepStmtCacheSize: 250, prepStmtCacheSqlLimit: 2048, useServerPrepStmts: true}
+#    db1:
+#      hikari:
+#        jdbc-url: jdbc:mysql://localhost:3306/db1
+#        driver-class-name: com.mysql.jdbc.Driver
+#        username: root
+#        password: 123456
+#        minimum-idle: 10
+#        maximum-pool-size: 200
+#        pool-name: DB1HikariCP
+#        connection-timeout: 30000
+#        connection-test-query: select 1
+#        max-lifetime: 600000
+#        idle-timeout: 120000
+#        data-source-properties: {cachePrepStmts: true, prepStmtCacheSize: 250, prepStmtCacheSqlLimit: 2048, useServerPrepStmts: true}
+
+sharding:
+  jdbc:
+    datasource:
+      names: db0,db1
+      db0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/db0?allowMultiQueries=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+        username: root
+        password: 123456
+      db1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/db1?allowMultiQueries=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+        username: root
+        password: 123456
+    config:
+      sharding:
+        binding-tables[0]: order
+        default-data-source-name: db1
+        props:
+          sql:
+            show: true
+        tables:
+          order:
+            logicTable: order
+            actual-data-nodes: db$->{0..1}.order$->{0..1}
+            key-generator-column-name: order_id
+            database-strategy:
+              standard:
+                sharding-column: user_id
+                precise-algorithm-class-name: com.summer.sharding.shardingAlgorithm.OrderDataBaseShardingAlgorithm
+            table-strategy:
+              standard:
+                sharding-column: order_id
+                precise-algorithm-class-name: com.summer.sharding.shardingAlgorithm.OrderShardingAlgorithm
+
