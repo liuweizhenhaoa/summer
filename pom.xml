@@ -15,7 +15,7 @@
 		<module>summer-common</module>
 		<module>summer-grpc</module>
 		<module>summer-dt</module>
-		<module>summer-sharding-Sphere</module>
+		<module>summer-sharding-sphere</module>
 	</modules>
 	<dependencies>
 		<dependency>
