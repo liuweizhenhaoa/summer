@@ -1,0 +1,31 @@
+server:
+  undertow:
+    direct-buffers: true
+
+grpc:
+  enable-reflection: true
+  port: 6566
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/stock?allowMultiQueries=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+  jmx:
+    enabled: false
+  rabbitmq:
+#    addresses: 127.0.0.1:5672
+#    username: guest
+#    password: guest
+    addresses: 118.178.104.9
+    port: 5672
+    username: admin
+    password: Hzjthl@
+    publisher-confirms: true #消息发送到交换机确认机制,是否确认回调 #如果没有本条配置信息，当消费者收到生产者发送的消息后，生产者无法收到确认成功的回调信息
+    publisher-returns: true #开启returnedMessage回调函数
+    template:
+      mandatory: true #必须为true,否则无法触发returnedMessage回调，消息丢失
+    listener:
+      simple:
+        acknowledge-mode: manual # 签收模式 AUTO：自动签收；manual：手工签收
+        max-concurrency: 10 # 最大并发数
