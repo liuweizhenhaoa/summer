@@ -1,8 +1,8 @@
 package com.summer.dt.service.Impl;
 
+import com.summer.common.mq.MessageSender;
 import com.summer.dt.dao.TransactionLogMapper;
 import com.summer.dt.entity.TransactionLog;
-import com.summer.dt.mq.MessageSender;
 import com.summer.dt.service.TransactionLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
