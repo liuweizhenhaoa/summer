@@ -1,4 +1,4 @@
-package com.summer.sharding.Controller;
+package com.summer.sharding.controller;
 
 
 import com.summer.sharding.entity.Order;
@@ -6,10 +6,7 @@ import com.summer.sharding.entity.OrderInfo;
 import com.summer.sharding.entity.OrderRequest;
 import com.summer.sharding.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,29 +16,29 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @RequestMapping(value = "/order", method = RequestMethod.POST)
+    @PostMapping(value = "/order")
     public List<Order> getOrder(@RequestBody OrderRequest orderRequest) {
         return orderService.getOrder(orderRequest);
     }
 
 
-    @RequestMapping(value = "/getOrderByOrderId", method = RequestMethod.POST)
+    @PostMapping(value = "/getOrderByOrderId")
     public List<Order> getOrderByOrderId(@RequestBody OrderRequest orderRequest) {
         return orderService.getOrderById(orderRequest);
     }
 
 
-    @RequestMapping(value = "/orders", method = RequestMethod.GET)
+    @GetMapping(value = "/orders")
     public List<Order> getOrders() {
         return orderService.getOrders();
     }
 
-    @RequestMapping(value = "/addOrder", method = RequestMethod.POST)
+    @PostMapping(value = "/addOrder")
     public void addOrder(@RequestBody Order order) {
         orderService.addOrder(order);
     }
 
-    @RequestMapping(value = "/orderInfo", method = RequestMethod.POST)
+    @PostMapping(value = "/orderInfo")
     public List<OrderInfo> getOrderInfo(@RequestBody OrderRequest orderRequest) {
         return orderService.getOrderInfo(orderRequest);
     }

@@ -17,6 +17,7 @@
 		<module>summer-dt</module>
 		<module>summer-mq</module>
 		<module>summer-sharding-sphere</module>
+		<module>summer-springboot</module>
 	</modules>
 	<dependencies>
 		<dependency>

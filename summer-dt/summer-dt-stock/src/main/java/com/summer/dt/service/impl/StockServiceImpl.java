@@ -19,7 +19,6 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public void save(Stock stock) {
-//        stockMapper.save(stock);
     }
 
     @Override
@@ -35,9 +34,7 @@ public class StockServiceImpl implements StockService {
 
     public void checkStock(Stock stock, long goodId, int reduceNum){
 
-        if(!Optional.of(stock).isPresent()){
-            throw new BussinessException("商品id为"+goodId+"不存在");
-        }
+        Optional.ofNullable(stock).orElseThrow(()-> new BussinessException("商品id为"+goodId+"不存在"));
 
         if(!(stock.getNum()>0 && stock.getNum()-reduceNum>=0)){
             throw new BussinessException("商品id为"+goodId+"库存不足");

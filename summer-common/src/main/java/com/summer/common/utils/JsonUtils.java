@@ -8,6 +8,8 @@ import java.util.Map;
 
 public class JsonUtils {
 
+	private JsonUtils() {throw new IllegalStateException("Utility class");}
+
 	private static Gson gson = new GsonBuilder()
 //	.excludeFieldsWithoutExposeAnnotation() //不导出实体中没有用@Expose注解的属性
     .enableComplexMapKeySerialization() //支持Map的key为复杂对象的形式

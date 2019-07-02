@@ -1,6 +1,7 @@
 package com.summer.dt.mq.rabbit.listener;
 
 import com.rabbitmq.client.Channel;
+import com.summer.common.exception.BussinessException;
 import com.summer.dt.model.order.Order;
 import com.summer.dt.service.StockService;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.Map;
 
 @Component
@@ -31,7 +33,7 @@ public class OrderListener {
     @RabbitHandler // 标识该方法，如果有消息过来，消费者调用该方法
     public void onOrderMessage(@Payload Order order,
                                @Headers Map<String, Object> headers,
-                               Channel channel) throws Exception {
+                               Channel channel) {
         // 消费者操作
         log.info("订单ID：" + order.getId());
         Long deliveryTag = (Long) headers.get(AmqpHeaders.DELIVERY_TAG);
@@ -40,6 +42,10 @@ public class OrderListener {
 
 
         // ACK-手工签收
-        channel.basicAck(deliveryTag, false);
+        try {
+            channel.basicAck(deliveryTag, false);
+        } catch (IOException e) {
+            throw new BussinessException("",-1);
+        }
     }
 }

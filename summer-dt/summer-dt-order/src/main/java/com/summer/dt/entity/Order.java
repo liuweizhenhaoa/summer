@@ -3,7 +3,6 @@ package com.summer.dt.entity;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.Date;
 
 @Data

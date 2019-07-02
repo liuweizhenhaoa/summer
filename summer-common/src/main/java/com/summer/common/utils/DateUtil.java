@@ -9,6 +9,9 @@ import java.util.GregorianCalendar;
 
 public class DateUtil {
 
+
+    private DateUtil() {throw new IllegalStateException("Utility class");}
+
     /**
      * 2016年11月1日
      */
@@ -87,8 +90,7 @@ public class DateUtil {
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(date);
         calendar.add(Calendar.DATE, num);
-        Date result = calendar.getTime();
-        return result;
+        return calendar.getTime();
     }
 
     /**
@@ -100,8 +102,7 @@ public class DateUtil {
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(date);
         calendar.add(Calendar.MONTH, num);
-        Date result = calendar.getTime();
-        return result;
+        return calendar.getTime();
     }
 
     /**

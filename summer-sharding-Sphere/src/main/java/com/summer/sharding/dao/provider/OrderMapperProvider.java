@@ -6,8 +6,8 @@ import com.summer.sharding.entity.OrderRequest;
 import org.apache.ibatis.jdbc.SQL;
 
 public class OrderMapperProvider {
-    private final String TBL_ORDER = "order";
-    private final String TBL_ORDER_ITEM = "order_item";
+    private static final String TBL_ORDER = "order";
+//    private final String TBL_ORDER_ITEM = "order_item";
 
     public String getOrder(OrderRequest orderRequest) {
         SQL sql = new SQL().SELECT("*").FROM(TBL_ORDER);

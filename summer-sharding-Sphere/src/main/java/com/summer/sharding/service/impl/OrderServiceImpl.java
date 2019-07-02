@@ -39,12 +39,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void addOrder(Order order) {
-//        Order order = ordervo.getOrder();
-//        List<OrderItem> orderItems = ordervo.getOrderItems();
         addSnowId(order, null);
 
         orderMapper.addOrder(order);
-//        orderItemMapper.addOrderItems(null);
 
     }
 
@@ -64,8 +61,6 @@ public class OrderServiceImpl implements OrderService {
     private void addSnowId(Order order, List<OrderItem> orderItems) {
         Long snowId = IdGenerateUtil.getSnowId();
         order.setOrderId(snowId + new Random().nextInt(2));
-//        for (OrderItem item : orderItems) {
-//            item.setOrderId(snowId);
-//        }
+
     }
 }

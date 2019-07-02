@@ -1,8 +1,8 @@
 //package com.summer.sharding.config;
 //
-//import com.summer.sharding.shardingAlgorithm.OrderDataBaseShardingAlgorithm;
-//import com.summer.sharding.shardingAlgorithm.OrderRangeShardingAlgorithm;
-//import com.summer.sharding.shardingAlgorithm.OrderShardingAlgorithm;
+//import com.summer.sharding.shardingalgorithm.OrderDataBaseShardingAlgorithm;
+//import com.summer.sharding.shardingalgorithm.OrderRangeShardingAlgorithm;
+//import com.summer.sharding.shardingalgorithm.OrderShardingAlgorithm;
 //import com.zaxxer.hikari.HikariDataSource;
 //import io.shardingsphere.core.api.ShardingDataSourceFactory;
 //import io.shardingsphere.core.api.config.ShardingRuleConfiguration;

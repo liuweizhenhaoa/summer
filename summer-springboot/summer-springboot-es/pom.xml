@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.summer</groupId>
-	<artifactId>summer-dt-stock</artifactId>
+	<artifactId>summer-springboot-es</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<name>demo</name>
-	<description>Demo project for summer-dt-stock</description>
+	<description>Demo project for summer-springboot-es</description>
 	<parent>
 		<groupId>com.summer</groupId>
-		<artifactId>summer-dt</artifactId>
+		<artifactId>summer-springboot</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<properties>

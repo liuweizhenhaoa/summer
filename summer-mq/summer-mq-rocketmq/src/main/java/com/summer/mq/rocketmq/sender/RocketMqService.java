@@ -4,7 +4,6 @@ import com.summer.common.mq.MessageSender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
@@ -33,7 +32,7 @@ public class RocketMqService implements MessageSender {
 
     @Data
     @AllArgsConstructor
-    public class OrderPaidEvent implements Serializable {
+    public static class OrderPaidEvent implements Serializable {
         private String orderId;
 
         private BigDecimal paidMoney;

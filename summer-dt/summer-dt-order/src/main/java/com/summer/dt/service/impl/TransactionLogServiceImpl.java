@@ -1,4 +1,4 @@
-package com.summer.dt.service.Impl;
+package com.summer.dt.service.impl;
 
 import com.summer.common.mq.MessageSender;
 import com.summer.dt.dao.TransactionLogMapper;
@@ -33,10 +33,10 @@ public class TransactionLogServiceImpl implements TransactionLogService {
     public void processInitTransaction() {
         List<TransactionLog> transactionLogList = transactionLogMapper.findInitTransactionLogs();
 
-        if(transactionLogList!=null && transactionLogList.size()>0){
-            transactionLogList.stream().forEach((transactionLog)->{
-                messageSender.sendMsg(transactionLog);
-            });
+        if(transactionLogList!=null && transactionLogList.isEmpty()){
+            transactionLogList.stream().forEach(transactionLog ->
+                messageSender.sendMsg(transactionLog)
+            );
         }
     }
 }

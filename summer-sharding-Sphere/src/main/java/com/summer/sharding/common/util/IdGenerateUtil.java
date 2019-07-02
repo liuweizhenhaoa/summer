@@ -11,8 +11,10 @@ import io.shardingsphere.core.keygen.DefaultKeyGenerator;
  * @copyright(c) gome inc Gome Co.,LTD
  */
 public class IdGenerateUtil {
-//    public static SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(1, 1);
-    public static DefaultKeyGenerator keyGenerator = new DefaultKeyGenerator();
+
+    private IdGenerateUtil() {throw new IllegalStateException("Utility class");}
+
+    private static final DefaultKeyGenerator KEYGENERATOR = new DefaultKeyGenerator();
     private static Integer id = 0;
     public static synchronized Integer getUserId() {
         id++;
@@ -20,7 +22,7 @@ public class IdGenerateUtil {
     }
 
     public static long getSnowId() {
-        return keyGenerator.generateKey().longValue();
+        return KEYGENERATOR.generateKey().longValue();
     }
 
 }

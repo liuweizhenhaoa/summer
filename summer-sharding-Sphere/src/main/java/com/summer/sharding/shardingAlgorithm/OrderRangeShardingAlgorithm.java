@@ -1,4 +1,4 @@
-package com.summer.sharding.shardingAlgorithm;
+package com.summer.sharding.shardingalgorithm;
 
 import com.google.common.collect.Range;
 import com.summer.common.utils.DateUtil;

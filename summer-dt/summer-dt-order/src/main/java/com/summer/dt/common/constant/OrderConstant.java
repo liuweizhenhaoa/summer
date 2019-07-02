@@ -2,10 +2,12 @@ package com.summer.dt.common.constant;
 
 public class OrderConstant {
 
-    public final static String TRANSACTION_INIT = "0";
-    public final static String TRANSACTION_SUCCESS = "1";
+    private OrderConstant() {throw new IllegalStateException("Utility class");}
 
-    public final static String TRANSACTION_TYPE_ORDER = "1";
+    public static final String TRANSACTION_INIT = "0";
+    public static final String TRANSACTION_SUCCESS = "1";
+
+    public static final String TRANSACTION_TYPE_ORDER = "1";
 
 
 

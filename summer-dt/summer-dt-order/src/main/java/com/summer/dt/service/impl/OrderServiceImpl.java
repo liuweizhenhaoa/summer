@@ -1,6 +1,6 @@
-package com.summer.dt.service.Impl;
+package com.summer.dt.service.impl;
 
-import com.summer.common.IdGenerate.SnowflakeIdWorker;
+import com.summer.common.idgenerate.SnowflakeIdWorker;
 import com.summer.common.utils.JsonUtils;
 import com.summer.dt.common.constant.OrderConstant;
 import com.summer.dt.dao.OrderMapper;

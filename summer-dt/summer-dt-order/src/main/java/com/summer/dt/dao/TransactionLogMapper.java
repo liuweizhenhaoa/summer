@@ -3,7 +3,6 @@ package com.summer.dt.dao;
 import com.summer.dt.entity.TransactionLog;
 import org.apache.ibatis.annotations.*;
 
-import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.List;
 
