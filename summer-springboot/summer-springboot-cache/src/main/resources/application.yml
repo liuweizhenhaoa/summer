@@ -1,27 +1,31 @@
 server:
-  undertow:
-    direct-buffers: true
-
-grpc:
-  enable-reflection: true
-  port: 6567
-
+  port: 8080
 spring:
+  cache:
+    type: redis
   datasource:
     url: jdbc:mysql://localhost:3306/order?allowMultiQueries=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
     username: root
     password: 123456
   jmx:
     enabled: false
-  rabbitmq:
-    addresses: 118.178.104.9
-    port: 5672
-    username: admin
-    password: Hzjthl@
-    publisher-confirms: true #消息发送到交换机确认机制,是否确认回调 #如果没有本条配置信息，当消费者收到生产者发送的消息后，生产者无法收到确认成功的回调信息
-    publisher-returns: true #开启returnedMessage回调函数
-    template:
-      mandatory: true #必须为true,否则无法触发returnedMessage回调，消息丢失
+  redis:
+    host: 127.0.0.1
+    password:
+    port: 6379
+    lettuce:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-wait: -1ms
+        max-active: 8
+      shutdown-timeout: 100ms
+  #jedis客户端
+#  spring.redis.jedis.pool.max-active=8
+#  spring.redis.jedis.pool.max-wait=-1ms
+#  spring.redis.jedis.pool.min-idle=0
+#  spring.redis.jedis.pool.max-idle=8
+
 order:
   id:
     workerId: 0
