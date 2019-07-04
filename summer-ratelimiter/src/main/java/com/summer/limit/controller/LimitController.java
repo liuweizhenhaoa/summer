@@ -1,6 +1,6 @@
 package com.summer.limit.controller;
 
-import com.summer.common.limit.RateLimiter;
+import com.summer.limit.annotation.RateLimiterAnnotation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +13,20 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Slf4j
 public class LimitController {
 
-    AtomicInteger atomicInteger = new AtomicInteger(0);
+    AtomicInteger satomicInteger = new AtomicInteger(0);
+    AtomicInteger datomicInteger = new AtomicInteger(0);
 
-    @RateLimiter
-    @GetMapping("/test")
-    public void limitTest(){
-        log.info("---------------"+atomicInteger.incrementAndGet());
+
+    @RateLimiterAnnotation(limit = 10,expire = 10,isSingle = false)
+    @GetMapping("/single")
+    public void singleLimitTest(){
+        log.info("single---------------"+satomicInteger.incrementAndGet());
+    }
+
+
+    @RateLimiterAnnotation(isSingle = true)
+    @GetMapping("/distributed")
+    public void distributedLimitTest(){
+        log.info("distributed---------------"+datomicInteger.incrementAndGet());
     }
 }
