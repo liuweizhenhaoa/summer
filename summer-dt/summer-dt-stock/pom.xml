@@ -5,7 +5,6 @@
 	<groupId>com.summer</groupId>
 	<artifactId>summer-dt-stock</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<name>demo</name>
 	<description>Demo project for summer-dt-stock</description>
 	<parent>
 		<groupId>com.summer</groupId>

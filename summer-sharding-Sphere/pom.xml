@@ -7,11 +7,10 @@
 	<artifactId>summer-sharding-sphere</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>shardingjdbcdemo</name>
 	<description>Demo project for sharding-sphere</description>
 	<parent>
 		<groupId>com.summer</groupId>
-		<artifactId>summer-partent</artifactId>
+		<artifactId>summer-parent</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 

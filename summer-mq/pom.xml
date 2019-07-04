@@ -8,7 +8,7 @@
 	<packaging>pom</packaging>
 	<parent>
 		<groupId>com.summer</groupId>
-		<artifactId>summer-partent</artifactId>
+		<artifactId>summer-parent</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<modules>
