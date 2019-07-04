@@ -17,11 +17,11 @@ public @interface RateLimiter {
      * 过期时间，单位秒
      * @return
      */
-    long limit() default 10;
+    long limit() default 3;
 
     /**
      * 过期时间，单位秒
      * @return
      */
-    long expire() default 1;
+    long expire() default 30;
 }

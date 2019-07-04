@@ -33,7 +33,7 @@ public class RateLimterHandler {
     public void init(){
         defaultRedisScript = new DefaultRedisScript<>();
         defaultRedisScript.setResultType(Long.class);
-        defaultRedisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("rateLimter.lua")));
+        defaultRedisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("luascript/rateLimter.lua")));
         log.info("RateLimterHandler[分布式限流处理器]脚本加载完成");
     }
 
@@ -80,9 +80,12 @@ public class RateLimterHandler {
         long result = (long) redisTemplate.execute(defaultRedisScript,keyList, expireTime, limitTimes);
         if(result == 0){
             String msg="由于超过单位时间="+expireTime+"-允许的请求次数="+limitTimes+"[触发限流]";
-            log.debug(msg);
+            log.info(msg);
             return "false";
         }
+
+
+        log.info("RateLimterHandler[分布式限流处理器]限流执行结果-result={},请求[正常]响应", result);
 
         if(log.isDebugEnabled()){
             log.debug("RateLimterHandler[分布式限流处理器]限流执行结果-result={},请求[正常]响应", result);

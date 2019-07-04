@@ -8,8 +8,8 @@ local ttl = redis.call('ttl', key1)
 local expire = ARGV[1]
 local times = ARGV[2]
 
-redis.log(redis.LOG_DEBUG, tostring(times))
-redis.log(redis.LOG_DEBUG, tostring(expire))
+redis.log(redis.LOG_NOTICE, tostring(times))
+redis.log(redis.LOG_NOTICE, tostring(expire))
 
 redis.log(redis.LOG_NOTICE, "incr "..key1.." "..val);
 
