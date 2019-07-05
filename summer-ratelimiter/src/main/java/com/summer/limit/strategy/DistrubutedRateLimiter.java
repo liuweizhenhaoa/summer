@@ -1,6 +1,7 @@
 package com.summer.limit.strategy;
 
 import com.summer.limit.interfaces.RateLimiterInterface;
+import com.summer.limit.strategy.factory.RateLimiterStrategyFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -13,7 +14,7 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component(RateLimiterInterface.RATE_LIMITER_PRE+DistrubutedRateLimiter.RATE_LIMITER_SUF)
+@Component(RateLimiterStrategyFactory.RATE_LIMITER_PRE+DistrubutedRateLimiter.RATE_LIMITER_SUF)
 @Slf4j
 public class DistrubutedRateLimiter implements RateLimiterInterface {
 
@@ -57,10 +58,9 @@ public class DistrubutedRateLimiter implements RateLimiterInterface {
             return false;
         }
 
-        log.info("RateLimterHandler[分布式限流处理器]限流执行结果-result={},请求[正常]响应", result);
-//        if(log.isDebugEnabled()){
-//            log.debug("RateLimterHandler[分布式限流处理器]限流执行结果-result={},请求[正常]响应", result);
-//        }
+        if(log.isDebugEnabled()){
+            log.debug("RateLimterHandler[分布式限流处理器]限流执行结果-result={},请求[正常]响应", result);
+        }
         return true;
     }
 }

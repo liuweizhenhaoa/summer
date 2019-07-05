@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class RateLimiterStrategyFactory {
 
-//    public static final String  STRATEGY_PRE = "cocahStrategy_";
+    public static final String RATE_LIMITER_PRE="RateLimiter";
 
     @Autowired
     Map<String, RateLimiterInterface> strategys = new ConcurrentHashMap<>();
