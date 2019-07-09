@@ -4,6 +4,7 @@ import com.summer.common.exception.BussinessException;
 import com.summer.dt.xa.dao.stock.StockMapper;
 import com.summer.dt.xa.entity.Stock;
 import com.summer.dt.xa.service.StockService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class StockServiceImpl implements StockService {
 
 
@@ -19,6 +21,7 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public void save(Stock stock) {
+        log.info("--------------");
     }
 
     @Override

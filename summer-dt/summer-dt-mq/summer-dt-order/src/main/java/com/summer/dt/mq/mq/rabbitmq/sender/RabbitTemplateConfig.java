@@ -41,8 +41,11 @@ public class RabbitTemplateConfig implements RabbitTemplate.ConfirmCallback, Rab
         }
         //发送成功，则更新事务表的状态为已发送
         String[] arrays = correlationData.getId().split("_");//primaryKey_type
-        transactionLogService.updateTransactionStatus(Long.valueOf(arrays[0]), arrays[1],
-                OrderConstant.TRANSACTION_SUCCESS, new Date());
+        if(arrays.length>0){
+            transactionLogService.updateTransactionStatus(Long.valueOf(arrays[0]), arrays[1],
+                    OrderConstant.TRANSACTION_SUCCESS, new Date());
+        }
+
     }
 
     @Override

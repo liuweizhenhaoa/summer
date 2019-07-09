@@ -1,4 +1,4 @@
-package com.summer.dt.xa.service.impl;
+package com.summer.dt.mq.service.impl;
 
 import com.summer.common.mq.MessageSender;
 import com.summer.dt.mq.dao.TransactionLogMapper;

@@ -14,6 +14,7 @@
 	<modules>
 		<module>summer-common</module>
 		<module>summer-grpc</module>
+		<module>summer-dlock</module>
 		<module>summer-dt</module>
 		<module>summer-mq</module>
 		<module>summer-ratelimiter</module>

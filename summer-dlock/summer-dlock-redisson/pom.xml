@@ -3,15 +3,30 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.summer</groupId>
-	<artifactId>summer-leetcode</artifactId>
+	<artifactId>summer-dlock-redisson</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<description>Demo project for leetcode</description>
-
+	<description>Demo project for summer-dlock-redisson</description>
+	<parent>
+		<groupId>com.summer</groupId>
+		<artifactId>summer-dlock</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
 	<properties>
 		<java.version>1.8</java.version>
+		<netty.version>4.1.36.Final</netty.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.redisson</groupId>
+			<artifactId>redisson-spring-boot-starter</artifactId>
+			<version>3.11.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

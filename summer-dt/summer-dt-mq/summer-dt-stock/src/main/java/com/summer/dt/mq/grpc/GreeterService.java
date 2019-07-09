@@ -1,4 +1,4 @@
-package com.summer.dt.xa.grpc;
+package com.summer.dt.mq.grpc;
 
 import org.lognet.springboot.grpc.GRpcService;
 
