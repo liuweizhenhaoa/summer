@@ -28,3 +28,4 @@ logs/
 test.java
 *vcs.xml
 *test.java
+transaction-logs/*
