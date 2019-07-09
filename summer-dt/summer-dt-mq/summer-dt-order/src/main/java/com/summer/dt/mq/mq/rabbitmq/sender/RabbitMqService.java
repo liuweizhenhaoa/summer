@@ -3,7 +3,7 @@ package com.summer.dt.mq.mq.rabbitmq.sender;
 import com.summer.common.mq.MessageSender;
 import com.summer.dt.mq.common.constant.OrderConstant;
 import com.summer.dt.mq.entity.Order;
-import com.summer.dt.xa.service.TransactionLogService;
+import com.summer.dt.mq.service.TransactionLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

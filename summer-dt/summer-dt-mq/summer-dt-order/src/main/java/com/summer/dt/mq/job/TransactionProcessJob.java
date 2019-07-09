@@ -1,6 +1,6 @@
 package com.summer.dt.mq.job;
 
-import com.summer.dt.xa.service.TransactionLogService;
+import com.summer.dt.mq.service.TransactionLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
