@@ -6,11 +6,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@EnableDistributionLock(DLockType.REDISSON)
-public class DlockApplication {
+@EnableDistributionLock(DLockType.ZOOKEEPER)
+public class RedissonApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DlockApplication.class, args);
+        SpringApplication.run(RedissonApplication.class, args);
     }
 
 }
