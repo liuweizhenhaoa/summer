@@ -19,9 +19,9 @@ public interface DistributionLocker {
 
     Lock lock(String lockKey, TimeUnit unit, int timeout);
 
-    boolean tryLock(String lockKey, TimeUnit unit, int waitTime, int leaseTime);
+    boolean tryLock(String lockKey, TimeUnit unit, int waitTime, int leaseTime) throws Exception;
 
-    void unlock(String lockKey);
+    void unlock(String lockKey) throws Exception;
 
     void unlock(Lock lock);
 }
