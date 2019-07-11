@@ -2,7 +2,6 @@ package com.summer.dlock.annotation;
 
 import com.summer.common.exception.BussinessException;
 import com.summer.dlock.lock.redisson.RedissonDLock;
-import com.summer.dlock.lock.zk.ZookeeperDLock;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
 
@@ -17,18 +16,15 @@ public class DLockImportSelector implements ImportSelector {
             if(attrs.containsKey("value")){
                 if (attrs.get("value") == DLockType.REDISSON) {
                     return new String[] {RedissonDLock.class.getName() };
-                }else if(attrs.get("value") == DLockType.ZOOKEEPER){
-                    return new String[] {ZookeeperDLock.class.getName() };
                 }else {
                     throw new BussinessException("EnableDistributionLock type not defined");
                 }
             }
 
-            return new String[] {RedissonDLock.class.getName() };
         }
 
         // 将指定的类
-        return new String[] { RedissonDLock.class.getName(), ZookeeperDLock.class.getName() };
+        return new String[] {RedissonDLock.class.getName() };
 
     }
 }

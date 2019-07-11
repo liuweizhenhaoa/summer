@@ -4,9 +4,9 @@ public enum DLockType {
     /**
      * 基于redisson的分布式锁
      */
-    REDISSON,
+    REDISSON
     /**
      * 基于zk的分布式锁
      */
-    ZOOKEEPER
+//    ZOOKEEPER
 }
