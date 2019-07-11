@@ -1,6 +1,6 @@
 package com.summer.dlock.zk.lock;
 
-import com.summer.mq.rocketmq.ZkApplication;
+import com.summer.dlock.zk.ZkApplication;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
 import org.junit.Test;
