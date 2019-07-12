@@ -1,0 +1,25 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 300
+spring:
+  jmx:
+    enabled: false
+  session:
+    store-type: redis
+    redis:
+      flush-mode: on-save # Sessions flush mode.
+      namespace: spring:session # Namespace for keys used to store sessions.
+  redis:
+    host: 127.0.0.1
+    password:
+    port: 6379
+    lettuce:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-wait: -1ms
+        max-active: 8
+      shutdown-timeout: 100ms
+
