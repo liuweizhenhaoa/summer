@@ -1,5 +1,6 @@
 package com.summer.springboot.session.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,11 +11,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@Slf4j
 public class TestController {
 
 
     @RequestMapping(value = "/sessionInfo", method = RequestMethod.GET)
     public Map<String, String> addSession (HttpServletRequest request){
+
+        if(log.isDebugEnabled()){
+            log.debug("-------------- --- debug info -------------------");
+        }
+
         String sessionId = request.getSession().getId();
         String requestURI = request.getRequestURI();
         Map<String, String> sessionInfoMap = new HashMap<>(2);
