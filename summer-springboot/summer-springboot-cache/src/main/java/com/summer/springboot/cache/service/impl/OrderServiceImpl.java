@@ -49,8 +49,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order queryOrder(long id) {
         log.info("-----------------");
-        Order order = orderMapper.findOrderById(id);
-        return order;
+        return orderMapper.findOrderById(id);
     }
 
 

@@ -50,6 +50,7 @@ public class RabbitTemplateConfig implements RabbitTemplate.ConfirmCallback, Rab
 
     @Override
     public void returnedMessage(Message message, int i, String s, String s1, String s2) {
+        log.info("returnedMessage: " + s);
 
     }
 }

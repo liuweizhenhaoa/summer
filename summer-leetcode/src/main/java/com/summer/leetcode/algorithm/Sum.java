@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 public class Sum {
 
+    private static final String ERROR_MSG="No two sum solution";
+
     /**
      * 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
      *
@@ -28,7 +30,7 @@ public class Sum {
                 }
             }
         }
-        throw new IllegalArgumentException("No two sum solution");
+        throw new IllegalArgumentException(ERROR_MSG);
     }
 
 
@@ -43,7 +45,7 @@ public class Sum {
             }
         }
 
-        throw new IllegalArgumentException("No two sum solution");
+        throw new IllegalArgumentException(ERROR_MSG);
     }
 
     public int[] twoSum3(int[] nums, int target) {
@@ -56,7 +58,7 @@ public class Sum {
             map.put(nums[i],i);
         }
 
-        throw new IllegalArgumentException("No two sum solution");
+        throw new IllegalArgumentException(ERROR_MSG);
     }
 
 

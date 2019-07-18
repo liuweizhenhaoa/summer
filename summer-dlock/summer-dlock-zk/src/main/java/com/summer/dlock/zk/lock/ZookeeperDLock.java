@@ -1,6 +1,6 @@
 package com.summer.dlock.zk.lock;
 
-import com.summer.common.dLock.DistributionLocker;
+import com.summer.common.lock.DistributionLocker;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
@@ -52,7 +52,6 @@ public class ZookeeperDLock implements DistributionLocker {
     }
 
     public boolean tryLock(String lockKey, TimeUnit unit, int waitTime, InterProcessMutex lock) throws Exception {
-//        InterProcessMutex lock = new InterProcessMutex(zkClient, lockKey);
 
         return lock.acquire(waitTime, unit);
     }

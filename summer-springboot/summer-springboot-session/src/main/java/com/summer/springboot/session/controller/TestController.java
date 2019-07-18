@@ -2,8 +2,8 @@ package com.summer.springboot.session.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +15,7 @@ import java.util.Map;
 public class TestController {
 
 
-    @RequestMapping(value = "/sessionInfo", method = RequestMethod.GET)
+    @GetMapping(value = "/sessionInfo")
     public Map<String, String> addSession (HttpServletRequest request){
 
         if(log.isDebugEnabled()){
@@ -38,7 +38,7 @@ public class TestController {
 
     @RequestMapping("/getFromSession")
     public String getFromSession(HttpServletRequest request, Model model){
-        String name = (String) request.getSession().getAttribute("name");
-        return name;
+
+        return  (String) request.getSession().getAttribute("name");
     }
 }

@@ -1,4 +1,4 @@
-package com.summer.common.dLock;
+package com.summer.common.lock;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;

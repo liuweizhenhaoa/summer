@@ -1,6 +1,7 @@
 package com.summer.dt.xa.controller;
 
 
+import com.summer.common.exception.BussinessException;
 import com.summer.dt.xa.entity.Order;
 import com.summer.dt.xa.service.OrderService;
 import com.summer.dt.xa.service.StockService;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
@@ -74,11 +74,10 @@ public class OrderController {
             //异常需要throw出来
             log.error("error:",e);
             throw e;
-//             return RESULT_FAILED + ":" + e.getMessage();
         }
     }
 
     public void throwRuntimeException() {
-        throw new RuntimeException("User defined exceptions");
+        throw new BussinessException("User defined exceptions");
     }
 }

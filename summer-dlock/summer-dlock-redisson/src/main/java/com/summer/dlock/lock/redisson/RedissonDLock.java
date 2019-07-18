@@ -1,6 +1,6 @@
 package com.summer.dlock.lock.redisson;
 
-import com.summer.common.dLock.DistributionLocker;
+import com.summer.common.lock.DistributionLocker;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
