@@ -3,6 +3,8 @@ package com.summer.springboot.cache.dao;
 import com.summer.springboot.cache.entity.Order;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 @Mapper
 public interface OrderMapper {
 
@@ -20,4 +22,8 @@ public interface OrderMapper {
 
     @Delete("delete from orders where id=#{id}")
     void delete(@Param("id")long id);
+
+
+    @Select("select * from orders a ")
+    List<Order> queryAll();
 }

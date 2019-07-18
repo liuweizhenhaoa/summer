@@ -1,5 +1,7 @@
 package com.summer.springboot.cache.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.summer.common.idgenerate.SnowflakeIdWorker;
 import com.summer.springboot.cache.dao.OrderMapper;
 import com.summer.springboot.cache.entity.Order;
@@ -11,6 +13,8 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @CacheConfig(cacheNames = "summer:springboot:cache:order")
 @Service
@@ -50,6 +54,12 @@ public class OrderServiceImpl implements OrderService {
     public Order queryOrder(long id) {
         log.info("-----------------");
         return orderMapper.findOrderById(id);
+    }
+
+    @Override
+    public List<Order> queryAll(int pageNum,int pageSize) {
+        Page<Order> page  = PageHelper.startPage(pageNum, pageSize);
+        return orderMapper.queryAll();
     }
 
 
