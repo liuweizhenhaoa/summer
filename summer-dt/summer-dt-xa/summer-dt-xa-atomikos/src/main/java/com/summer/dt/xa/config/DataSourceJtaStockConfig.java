@@ -19,27 +19,27 @@ import javax.sql.DataSource;
 @Configuration
 @EnableConfigurationProperties
 @EnableAutoConfiguration
-@MapperScan(basePackages = "com.summer.dt.xa.dao.order", sqlSessionTemplateRef = "jtaOrderSqlSessionTemplate")
-public class DataSourceJTAOrderConfig {
+@MapperScan(basePackages = "com.summer.dt.xa.dao.stock", sqlSessionTemplateRef = "jtaStockSqlSessionTemplate")
+public class DataSourceJtaStockConfig {
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.jta.atomikos.datasource.jta-order")
-    public DataSource dataSourceJTAOrder(){
+    @ConfigurationProperties(prefix = "spring.jta.atomikos.datasource.jta-stock")
+    public DataSource dataSourceJTAStock(){
         return new AtomikosDataSourceBean();
     }
 
     @Bean
-    public SqlSessionFactory jtaOrderSqlSessionFactory(@Qualifier("dataSourceJTAOrder") DataSource dataSource) throws Exception {
+    public SqlSessionFactory jtaStockSqlSessionFactory(@Qualifier("dataSourceJTAStock") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
-        bean.setTypeAliasesPackage("com.summer.dt.xa.dao.order");
+        bean.setTypeAliasesPackage("com.summer.dt.xa.dao.stock");
         return bean.getObject();
     }
 
     @Bean
-    public SqlSessionTemplate jtaOrderSqlSessionTemplate(
-            @Qualifier("jtaOrderSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
+    public SqlSessionTemplate jtaStockSqlSessionTemplate(
+            @Qualifier("jtaStockSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 }

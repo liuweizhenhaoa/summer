@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 
 @Component
 @Slf4j
-public class ZookeeperDLock implements DistributionLocker {
+public class ZookeeperDlock implements DistributionLocker {
 
 
     @Autowired

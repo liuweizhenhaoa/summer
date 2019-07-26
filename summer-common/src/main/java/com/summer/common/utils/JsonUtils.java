@@ -12,8 +12,10 @@ public class JsonUtils {
 
 	private static Gson gson = new GsonBuilder()
 //	.excludeFieldsWithoutExposeAnnotation() //不导出实体中没有用@Expose注解的属性
-    .enableComplexMapKeySerialization() //支持Map的key为复杂对象的形式
-    .serializeNulls().setDateFormat("yyyy-MM-dd HH:mm:ss:SSS")//时间转化为特定格式  
+	//支持Map的key为复杂对象的形式
+    .enableComplexMapKeySerialization()
+	//时间转化为特定格式
+    .serializeNulls().setDateFormat("yyyy-MM-dd HH:mm:ss:SSS")
 //    .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)//会把字段首字母大写,注:对于实体上使用了@SerializedName注解的不会生效.
     .setPrettyPrinting() //对json结果格式化.
     .setVersion(1.0).create() ;

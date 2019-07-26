@@ -7,7 +7,6 @@ import org.apache.ibatis.jdbc.SQL;
 
 public class OrderMapperProvider {
     private static final String TBL_ORDER = "order";
-//    private final String TBL_ORDER_ITEM = "order_item";
 
     public String getOrder(OrderRequest orderRequest) {
         SQL sql = new SQL().SELECT("*").FROM(TBL_ORDER);
@@ -32,23 +31,6 @@ public class OrderMapperProvider {
     }
 
 
-//    public String getOrderById(OrderRequest orderRequest) {
-//        SQL sql = new SQL().SELECT("*").FROM(TBL_ORDER);
-//        Integer userId = orderRequest.getUserId();
-//        if (userId != null) {
-//            sql.WHERE("user_id = #{userId}");
-//        }
-//        String startTime = orderRequest.getStartTime();
-//        String endTime = orderRequest.getEndTime();
-//        if (startTime != null && endTime != null) {
-//            orderRequest.setStart(DateUtil.dateToShardingJdbcKey(DateUtil.parseDate(startTime)));
-//            orderRequest.setEnd(DateUtil.dateToShardingJdbcKey(DateUtil.addDay(DateUtil.parseDate(endTime), 1)));
-//        }
-//        if (orderRequest.getStart() != null && orderRequest.getEnd() != null) {
-//            sql.WHERE("order_id between #{start} and #{end}");
-//        }
-//        return sql.toString();
-//    }
 
     public String getOrderInfo(OrderRequest orderRequest) {
         StringBuilder sb = new StringBuilder();

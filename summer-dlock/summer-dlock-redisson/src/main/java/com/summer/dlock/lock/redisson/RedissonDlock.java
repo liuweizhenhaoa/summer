@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.function.Consumer;
 
-public class RedissonDLock implements DistributionLocker {
+public class RedissonDlock implements DistributionLocker {
 
     @Autowired
     RedissonClient redissonClient;

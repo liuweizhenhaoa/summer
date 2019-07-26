@@ -14,7 +14,7 @@ public class BussinessException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
     private final String msg;
-    private final Integer code=500;
+    private Integer code=500;
 
     public BussinessException(String msg) {
 		super(msg);
