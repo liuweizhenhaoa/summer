@@ -7,7 +7,7 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Import({DLockImportSelector.class})
+@Import({DlockImportSelector.class})
 public @interface EnableDistributionLock {
     DLockType value() default DLockType.REDISSON;
 }

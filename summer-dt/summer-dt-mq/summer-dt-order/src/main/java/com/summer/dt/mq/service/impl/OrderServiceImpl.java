@@ -3,7 +3,7 @@ package com.summer.dt.mq.service.impl;
 import com.summer.common.idgenerate.SnowflakeIdWorker;
 import com.summer.common.utils.JsonUtils;
 import com.summer.dt.mq.common.constant.OrderConstant;
-import com.summer.dt.mq.dao.OrderMapper;
+//import com.summer.dt.mq.dao.OrderMapper;
 import com.summer.dt.mq.dao.TransactionLogMapper;
 import com.summer.dt.mq.entity.Order;
 import com.summer.dt.mq.entity.TransactionLog;
@@ -18,8 +18,8 @@ import java.util.Date;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    @Autowired
-    OrderMapper orderMapper;
+//    @Autowired
+//    OrderMapper orderMapper;
 
     @Autowired
     TransactionLogMapper transactionLogMapper;
@@ -32,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order saveOrder(Order order) {
         order.setId(snowflakeIdWorker.nextId());
-        orderMapper.save(order);
+//        orderMapper.save(order);
 
         TransactionLog transactionLog = new TransactionLog();
         transactionLog.setCreateTime(new Date());

@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class ZookeeperDLockTest {
 
     @Autowired
-    ZookeeperDLock distributionLocker;
+    ZookeeperDlock distributionLocker;
 
     @Autowired
     CuratorFramework zkClient;
