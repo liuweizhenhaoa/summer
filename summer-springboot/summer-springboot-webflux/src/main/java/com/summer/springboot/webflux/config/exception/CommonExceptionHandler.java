@@ -1,6 +1,5 @@
 package com.summer.springboot.webflux.config.exception;
 
-import com.summer.common.exception.BussinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -87,18 +86,5 @@ public class CommonExceptionHandler {
     }
 
 
-    /**
-     * 拦截 CommonException 的异常
-     * @param ex
-     * @return
-     */
-    @ExceptionHandler(BussinessException.class)
-    @ResponseBody
-    public Map<String,Object> exceptionHandler(BussinessException ex){
-        log.info("CommonException：{}({})",ex.getMsg(), ex.getCode());
-        Map<String,Object> result = new HashMap<String,Object>();
-        result.put("respCode", ex.getCode());
-        result.put("respMsg", ex.getMsg());
-        return result;
-    }
+
 }
