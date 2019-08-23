@@ -1,0 +1,32 @@
+server:
+  port: 8080
+spring:
+  cache:
+    type: redis
+  datasource:
+    url: jdbc:mysql://localhost:3306/order?allowMultiQueries=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+  jmx:
+    enabled: false
+  redis:
+    host: 127.0.0.1
+    password:
+    port: 6379
+    lettuce:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-wait: -1ms
+        max-active: 8
+      shutdown-timeout: 100ms
+  #jedis客户端
+#  spring.redis.jedis.pool.max-active=8
+#  spring.redis.jedis.pool.max-wait=-1ms
+#  spring.redis.jedis.pool.min-idle=0
+#  spring.redis.jedis.pool.max-idle=8
+
+order:
+  id:
+    workerId: 0
+    datacenterId: 0

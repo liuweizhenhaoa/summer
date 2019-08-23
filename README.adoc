@@ -1,0 +1,45 @@
+= summer
+
+$ *`mvn clean package -Dmaven.test.skip=true` `jdk8+`*
+
+Java生态研究(Spring Boot2.x + Redis + Grpc + MQ + Sharding + distributed )
+
+summer is a cat
+
+
+http://[https://github.com/liuweizhenhaoa/summer]
+
+== Modules intro
+
+|===
+|Module |Intro
+|summer-common |公共模块(HttpUtils,AES,DES加解密)
+|summer-dlock | 分布式锁(redis、zk)
+|summer-dt | 分布式事务(基于mq最终一致性、XA)
+|summer-grpc | GRPC
+|summer-leetcode | Leetcode
+|summer-mq | 消息模块
+|summer-ratelimiter | 限流模块(基于Guava的单体项目限流和基于redis的分布式限流)
+|summer-sharding-sphere | 分表分库
+|summer-springboot | springboot相关
+|===
+
+== GRPC
+**相关资料：**
+- [*grpc-spring-boot-starter*](https://github.com/LogNet/grpc-spring-boot-starter)<br>
+- [*awesome-grpc*](https://github.com/grpc-ecosystem/awesome-grpc)<br>
+- [*grpc官网*](https://grpc.io/)<br>
+
+== sharding-sphere
+**相关资料：**
+- [*shardingsphere*](https://github.com/apache/incubator-shardingsphere)<br>
+
+== leetcode
+**相关资料：**
+- [*leetcode*](https://leetcode-cn.com/problemset/all/)
+
+== ratelimiter
+**相关资料：**
+
+== springboot
+**相关资料：**
