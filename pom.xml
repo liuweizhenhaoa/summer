@@ -18,6 +18,7 @@
 	</properties>
 	<modules>
 		<module>summer-common</module>
+		<module>summer-common-core</module>
 		<module>summer-grpc</module>
 		<module>summer-dlock</module>
 		<module>summer-dt</module>

@@ -40,4 +40,10 @@ public class OrderController {
 
     }
 
+    @GetMapping("/test2")
+    public void testVal1(int pageNum,int pageSize){
+
+
+    }
+
 }
