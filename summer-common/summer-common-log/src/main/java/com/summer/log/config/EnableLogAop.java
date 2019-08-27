@@ -8,6 +8,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Import(FilterConfig.class)
-public @interface EnableRequestLog {
+public @interface EnableLogAop {
     boolean flag() default true;
 }
