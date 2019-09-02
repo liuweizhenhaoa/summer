@@ -1,4 +1,4 @@
-package com.summer.java.design.jdk.aop;
+package com.summer.java.aop.jdk;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

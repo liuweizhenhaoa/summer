@@ -1,14 +1,14 @@
-package com.summer.java.design.jdk.aop;
+package com.summer.java.aop.jdk;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
-public class AopClient {
+public class JdkAop {
 
 
     public static void main(String[] args) {
 
-//        System.getProperties().put("sun.misc.ProxyGenerator.saveGenerateFiles", "true");
+        System.getProperties().put("sun.misc.ProxyGenerator.saveGenerateFiles", "true");
         UserMgr mgr = new UserMgrImpl();
 
         //为用户管理添加事务处理
