@@ -17,6 +17,7 @@
 		<module>summer-springboot-session</module>
 		<module>summer-springboot-valid</module>
 		<module>summer-springboot-webflux</module>
+		<module>summer-springboot-jwt</module>
 	</modules>
 	<dependencies>
 		<dependency>

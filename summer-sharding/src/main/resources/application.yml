@@ -5,7 +5,7 @@
 #        jdbc-url: jdbc:mysql://localhost:3306/db0
 #        driver-class-name: com.mysql.jdbc.Driver
 #        username: root
-#        password: 123456
+#        password: 12345678
 #        minimum-idle: 10
 #        maximum-pool-size: 200
 #        pool-name: DB0HikariCP
@@ -19,7 +19,7 @@
 #        jdbc-url: jdbc:mysql://localhost:3306/db1
 #        driver-class-name: com.mysql.jdbc.Driver
 #        username: root
-#        password: 123456
+#        password: 12345678
 #        minimum-idle: 10
 #        maximum-pool-size: 200
 #        pool-name: DB1HikariCP
@@ -38,13 +38,13 @@ sharding:
         driver-class-name: com.mysql.jdbc.Driver
         jdbc-url: jdbc:mysql://localhost:3306/db0?allowMultiQueries=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
         username: root
-        password: 123456
+        password: 12345678
       db1:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.jdbc.Driver
         jdbc-url: jdbc:mysql://localhost:3306/db1?allowMultiQueries=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
         username: root
-        password: 123456
+        password: 12345678
     config:
       sharding:
         binding-tables[0]: order

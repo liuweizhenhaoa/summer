@@ -10,7 +10,7 @@ spring:
         jta-order:
           xa-properties.url: jdbc:mysql://localhost:3306/order?allowMultiQueries=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
           xa-properties.user: root
-          xa-properties.password: 123456
+          xa-properties.password: 12345678
           xa-data-source-class-name: com.mysql.cj.jdbc.MysqlXADataSource
           unique-resource-name: jta-order
           max-pool-size: 25
@@ -20,7 +20,7 @@ spring:
         jta-stock:
           xa-properties.url: jdbc:mysql://localhost:3306/stock?allowMultiQueries=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
           xa-properties.user: root
-          xa-properties.password: 123456
+          xa-properties.password: 12345678
           xa-data-source-class-name: com.mysql.cj.jdbc.MysqlXADataSource
           unique-resource-name: jta-stock
           max-pool-size: 25
