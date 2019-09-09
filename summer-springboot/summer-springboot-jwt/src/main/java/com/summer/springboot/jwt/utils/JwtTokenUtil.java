@@ -1,6 +1,6 @@
 package com.summer.springboot.jwt.utils;
+import	java.util.HashMap;
 import	java.time.Instant;
-import	java.util.Collections;
 import java.util.Date;
 import	java.util.Map;
 
@@ -31,7 +31,7 @@ public class JwtTokenUtil implements Serializable {
      * 签发JWT
      */
     public String generateToken(UserDetails userDetails){
-        Map<String, Object> claims = Collections.emptyMap();
+        Map<String, Object> claims = new HashMap<String, Object> ();
         claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
         return Jwts.builder()
                 .setClaims(claims)

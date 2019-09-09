@@ -21,6 +21,11 @@ import java.util.Map;
 @Component
 public class CommonExceptionHandler {
 
+    private static final String CODE = "code";
+
+    private static final String MSG = "msg";
+
+
     /**
      *  拦截Exception类的异常
      * @param e
@@ -29,10 +34,10 @@ public class CommonExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public Map<String,Object> exceptionHandler(Exception e){
-        log.error("2e eeeee");
+        log.error("error:{}",e);
         Map<String,Object> result = new HashMap<String,Object>();
-        result.put("respCode", "9999");
-        result.put("respMsg", e.getMessage());
+        result.put(CODE, "-1");
+        result.put(MSG, "error");
         //正常开发中，可创建一个统一响应实体，如CommonResp
         return result; 
     }
@@ -56,8 +61,8 @@ public class CommonExceptionHandler {
         }
         Map<String,Object> map = new HashMap<String,Object>();
 
-        map.put("respCode", "-1");
-        map.put("respMsg", builder.toString());
+        map.put(CODE, "-1");
+        map.put(MSG, builder.toString());
         return map;
     }
 
@@ -80,8 +85,8 @@ public class CommonExceptionHandler {
         }
         Map<String,Object> map = new HashMap<String,Object>();
 
-        map.put("respCode", "-1");
-        map.put("respMsg", builder.toString());
+        map.put(CODE, "-1");
+        map.put(MSG , builder.toString());
         return map;
     }
 
