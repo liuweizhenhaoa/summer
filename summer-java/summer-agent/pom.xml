@@ -3,14 +3,17 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.summer</groupId>
-	<artifactId>summer-java</artifactId>
+	<artifactId>summer-agent</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-
+<!--	<parent>-->
+<!--		<groupId>com.summer</groupId>-->
+<!--		<artifactId>summer-parent</artifactId>-->
+<!--		<version>1.0-SNAPSHOT</version>-->
+<!--	</parent>-->
 	<modules>
-		<module>summer-java-demo</module>
-		<module>summer-spi</module>
-        <module>summer-agent</module>
+		<module>summer-agent-client</module>
+		<module>summer-agent-server</module>
 	</modules>
 	<dependencies>
 		<dependency>
