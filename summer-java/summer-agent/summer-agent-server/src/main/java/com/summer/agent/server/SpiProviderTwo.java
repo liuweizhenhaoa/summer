@@ -1,4 +1,4 @@
-package com.summer.spi.provider;
+package com.summer.agent.server;
 
 import com.summer.common.spi.SpiDemo;
 
