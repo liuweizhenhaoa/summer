@@ -1,12 +1,18 @@
 package com.summer.spi.consumer;
+import	java.util.concurrent.ArrayBlockingQueue;
+import	java.util.TreeMap;
+import	java.util.HashMap;
+import	java.util.concurrent.locks.ReentrantLock;
 
 import com.summer.common.spi.SpiDemo;
 import com.summer.spi.provider.SpiProviderOne;
 
 import java.sql.Driver;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.ServiceLoader;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.StreamSupport;
 
 public class SpiConsumer {
@@ -14,6 +20,14 @@ public class SpiConsumer {
     public static void main(String[] args) {
        SpiConsumer spiConsumer = new SpiConsumer();
        spiConsumer.getSpiDemo().getSpi();
+
+//        ArrayList
+//        ThreadLocal
+////        AtomicInteger
+//        HashMap < String,
+//                TreeMap < String,
+//        ReentrantLock lock = new ReentrantLock();
+        ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<String> (0);
     }
 
 

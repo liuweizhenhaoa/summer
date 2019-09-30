@@ -107,9 +107,9 @@ public class Paixu {
         return array;
     }
 
-    public static  int[] c(int [] array){
-
-    }
+//    public static  int[] c(int [] array){
+//
+//    }
 
     /**
      * 希尔排序（Shell Sort）
