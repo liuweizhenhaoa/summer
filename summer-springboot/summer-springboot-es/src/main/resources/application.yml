@@ -1,7 +1,5 @@
 server:
   port: 8080
-  servlet:
-    context-path: /es
 tomcat:
   remote-ip-header: x-forward-for
   uri-encoding: UTF-8
@@ -16,7 +14,8 @@ spring:
     name: spring-cloud-study-security-elasticsearch
   data:
     elasticsearch:
-      cluster-nodes: 168.13.0.241:9300
-#      cluster-name: elasticsearch_liuwei  docker-cluster
-      cluster-name: docker-cluster
+      cluster-nodes: 127.0.0.1:9300
+      cluster-name: elasticsearch_liuwei
+#      cluster-nodes: 168.13.0.241:9300
+#      cluster-name: docker-cluster
 
