@@ -25,22 +25,22 @@ public class RateLimterHandler {
 
     @Pointcut("@annotation(com.summer.limit.annotation.RateLimiterAnnotation)")
     public void limitPointCut() {
-        if(log.isDebugEnabled()){
+        if (log.isDebugEnabled()) {
             log.debug("----------------------------------------------");
         }
     }
 
     @Around("@annotation(rateLimiterAnnotation)")
     public Object around(ProceedingJoinPoint point, RateLimiterAnnotation rateLimiterAnnotation) throws Throwable {
-        if(log.isDebugEnabled()){
+        if (log.isDebugEnabled()) {
             log.debug("RateLimterHandler[分布式限流处理器]开始执行限流操作");
         }
 
         Signature signature = point.getSignature();
-        if(!(signature instanceof MethodSignature)){
+        if (!(signature instanceof MethodSignature)) {
             throw new IllegalArgumentException("the Annotation @RateLimiterAnnotation must used on method!");
         }
-        if (!limitStrategy(rateLimiterAnnotation)){
+        if (!limitStrategy(rateLimiterAnnotation)) {
             return "false";
         }
         return point.proceed();
@@ -49,6 +49,7 @@ public class RateLimterHandler {
 
     /**
      * 限流策略
+     *
      * @param rateLimiter
      * @return
      * @throws Throwable
@@ -56,11 +57,11 @@ public class RateLimterHandler {
     private boolean limitStrategy(RateLimiterAnnotation rateLimiter) {
         RateLimiterInterface rateLimiterInterface;
         if (rateLimiter.isSingle()) {
-            rateLimiterInterface = rateLimiterStrategyFactory.getStrategy(RateLimiterStrategyFactory.RATE_LIMITER_PRE+ DistrubutedRateLimiter.RATE_LIMITER_SUF);
-        }else {
-            rateLimiterInterface = rateLimiterStrategyFactory.getStrategy(RateLimiterStrategyFactory.RATE_LIMITER_PRE+ SingleRateLimiter.RATE_LIMITER_SUF);
+            rateLimiterInterface = rateLimiterStrategyFactory.getStrategy(RateLimiterStrategyFactory.RATE_LIMITER_PRE + DistrubutedRateLimiter.RATE_LIMITER_SUF);
+        } else {
+            rateLimiterInterface = rateLimiterStrategyFactory.getStrategy(RateLimiterStrategyFactory.RATE_LIMITER_PRE + SingleRateLimiter.RATE_LIMITER_SUF);
         }
-        return rateLimiterInterface.limit(rateLimiter.key(),rateLimiter.limit(),rateLimiter.expire());
+        return rateLimiterInterface.limit(rateLimiter.key(), rateLimiter.limit(), rateLimiter.expire());
 
     }
 

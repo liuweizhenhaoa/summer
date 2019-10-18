@@ -29,9 +29,9 @@ public class ZookeeperDLockTest {
         InterProcessMutex lock = new InterProcessMutex(zkClient, "/my/path");
 
         System.out.println("----------"+distributionLocker.toString());
-        System.out.println("-------"+String.valueOf(distributionLocker.tryLock("/my/path", TimeUnit.SECONDS, 5000, lock)));
+        System.out.println("-------"+ distributionLocker.tryLock("/my/path", TimeUnit.SECONDS, 5000, lock));
         distributionLocker.unlock(lock);
-        System.out.println("-------"+String.valueOf(distributionLocker.tryLock("/my/path", TimeUnit.SECONDS, 5000, lock)));
+        System.out.println("-------"+ distributionLocker.tryLock("/my/path", TimeUnit.SECONDS, 5000, lock));
 
     }
 

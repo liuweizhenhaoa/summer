@@ -31,15 +31,15 @@ public class OrderController extends OrderGrpc.OrderImplBase {
         order.setDetail(request.getDetail());
         order.setCreateTime(new Date());
 
-        //1、保存订单并插入事务日志表
+        //1 save order and insert transaction log
         orderService.saveOrder(order);
-        //2、发送MQ
+        //2 send MQ
         rabbitMqService.sendMsg(order);
 
         replyBuilder.setCreateTime(order.getCreateTime().getTime())
-        .setDetail(order.getDetail())
-        .setId(order.getId())
-        .setPrice(order.getPrice());
+                .setDetail(order.getDetail())
+                .setId(order.getId())
+                .setPrice(order.getPrice());
 
         respoObserver.onNext(replyBuilder.build());
         respoObserver.onCompleted();

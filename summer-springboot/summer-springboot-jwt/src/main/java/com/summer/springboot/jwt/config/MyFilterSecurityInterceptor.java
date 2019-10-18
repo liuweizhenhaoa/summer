@@ -24,7 +24,7 @@ public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor {
     FilterInvocationSecurityMetadataSource securityMetadataSource;
 
     @Autowired
-    public void setMyAccessDecisionManager(MyAccessDecisionManager myAccessDecisionManager){
+    public void setMyAccessDecisionManager(MyAccessDecisionManager myAccessDecisionManager) {
         super.setAccessDecisionManager(myAccessDecisionManager);
     }
 
@@ -46,7 +46,7 @@ public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor {
     }
 
 
-        @Override
+    @Override
     public Class<?> getSecureObjectClass() {
         return FilterInvocation.class;
     }

@@ -24,7 +24,7 @@ public class DataSourceJtaOrderConfig {
 
     @Bean
     @ConfigurationProperties(prefix = "spring.jta.atomikos.datasource.jta-order")
-    public DataSource dataSourceJTAOrder(){
+    public DataSource dataSourceJTAOrder() {
         return new AtomikosDataSourceBean();
     }
 

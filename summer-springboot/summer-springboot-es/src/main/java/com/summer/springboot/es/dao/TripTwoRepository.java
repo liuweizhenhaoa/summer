@@ -1,6 +1,5 @@
 package com.summer.springboot.es.dao;
 
-import com.summer.springboot.es.model.Trip;
 import com.summer.springboot.es.model.TripTwo;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;

@@ -3,6 +3,9 @@ package com.summer.java.aop.jdk;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
+/**
+ * 基于接口的动态代理(Dynamic Proxy)
+ */
 public class JdkAop {
 
 

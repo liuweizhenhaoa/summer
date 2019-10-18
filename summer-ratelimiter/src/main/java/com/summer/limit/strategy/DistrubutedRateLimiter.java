@@ -14,11 +14,11 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component(RateLimiterStrategyFactory.RATE_LIMITER_PRE+DistrubutedRateLimiter.RATE_LIMITER_SUF)
+@Component(RateLimiterStrategyFactory.RATE_LIMITER_PRE + DistrubutedRateLimiter.RATE_LIMITER_SUF)
 @Slf4j
 public class DistrubutedRateLimiter implements RateLimiterInterface {
 
-    public static final String RATE_LIMITER_SUF="Distrubuted";
+    public static final String RATE_LIMITER_SUF = "Distrubuted";
 
 
     @Autowired
@@ -27,7 +27,7 @@ public class DistrubutedRateLimiter implements RateLimiterInterface {
     DefaultRedisScript<Long> defaultRedisScript;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         defaultRedisScript = new DefaultRedisScript<>();
         defaultRedisScript.setResultType(Long.class);
         defaultRedisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("luascript/rateLimter.lua")));
@@ -38,8 +38,8 @@ public class DistrubutedRateLimiter implements RateLimiterInterface {
     @Override
     public boolean limit(String key, long limit, long expire) {
 
-        if(log.isDebugEnabled()){
-            log.debug("RateLimterHandler[分布式限流处理器]参数值为-limitTimes={},limitTimeout={}",limit,expire);
+        if (log.isDebugEnabled()) {
+            log.debug("RateLimterHandler[分布式限流处理器]参数值为-limitTimes={},limitTimeout={}", limit, expire);
         }
 
         /**
@@ -51,14 +51,14 @@ public class DistrubutedRateLimiter implements RateLimiterInterface {
         /**
          * 调用脚本并执行
          */
-        long result = (long) redisTemplate.execute(defaultRedisScript,keyList, expire, limit);
-        if(result == 0){
-            String msg="由于超过单位时间="+expire+"-允许的请求次数="+limit+"[触发限流]";
+        long result = (long) redisTemplate.execute(defaultRedisScript, keyList, expire, limit);
+        if (result == 0) {
+            String msg = "由于超过单位时间=" + expire + "-允许的请求次数=" + limit + "[触发限流]";
             log.info(msg);
             return false;
         }
 
-        if(log.isDebugEnabled()){
+        if (log.isDebugEnabled()) {
             log.debug("RateLimterHandler[分布式限流处理器]限流执行结果-result={},请求[正常]响应", result);
         }
         return true;

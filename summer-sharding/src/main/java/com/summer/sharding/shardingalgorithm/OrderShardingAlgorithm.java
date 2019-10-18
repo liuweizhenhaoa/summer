@@ -26,7 +26,7 @@ public class OrderShardingAlgorithm implements PreciseShardingAlgorithm<Long> {
             // =与IN中分片键对应的值
             // 分库的后缀
 //            int i = 0; // 求分库后缀名的递归算法
-            if (name.endsWith( countDatabaseNum(value))) {
+            if (name.endsWith(countDatabaseNum(value))) {
                 return name;
             }
         }
@@ -53,7 +53,7 @@ public class OrderShardingAlgorithm implements PreciseShardingAlgorithm<Long> {
      */
     private String countDatabaseNum(Long columnValue) {
         // ShardingSphereConstants每个库中定义的数据量
-        return String.valueOf(columnValue%2);
+        return String.valueOf(columnValue % 2);
     }
 
 }

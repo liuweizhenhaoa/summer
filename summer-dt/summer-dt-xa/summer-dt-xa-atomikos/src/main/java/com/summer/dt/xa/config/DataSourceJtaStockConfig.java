@@ -24,7 +24,7 @@ public class DataSourceJtaStockConfig {
 
     @Bean
     @ConfigurationProperties(prefix = "spring.jta.atomikos.datasource.jta-stock")
-    public DataSource dataSourceJTAStock(){
+    public DataSource dataSourceJTAStock() {
         return new AtomikosDataSourceBean();
     }
 

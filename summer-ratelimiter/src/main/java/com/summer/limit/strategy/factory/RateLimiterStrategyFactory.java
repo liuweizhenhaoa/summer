@@ -11,15 +11,15 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class RateLimiterStrategyFactory {
 
-    public static final String RATE_LIMITER_PRE="RateLimiter";
+    public static final String RATE_LIMITER_PRE = "RateLimiter";
 
     @Autowired
     Map<String, RateLimiterInterface> strategys = new ConcurrentHashMap<>();
 
 
-    public RateLimiterInterface getStrategy(String component){
+    public RateLimiterInterface getStrategy(String component) {
         RateLimiterInterface strategy = strategys.get(component);
-        if(strategy == null) {
+        if (strategy == null) {
             throw new BussinessException("no RateLimiterStrategy is defined");
         }
         return strategy;

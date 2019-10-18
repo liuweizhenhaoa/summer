@@ -10,21 +10,18 @@ import java.util.Map;
 public class DlockImportSelector implements ImportSelector {
     @Override
     public String[] selectImports(AnnotationMetadata annotationMetadata) {
-        //获取自定的@EnableLogInfo 信息 如果包含 onlySale 则只注入Sales class 否则 注入 Sales 和 Market 两个类
+        //get the cyustom  @EnableDistributionLock information
         if (annotationMetadata.getAnnotationAttributes(EnableDistributionLock.class.getName()) != null) {
             Map<String, Object> attrs = annotationMetadata.getAnnotationAttributes(EnableDistributionLock.class.getName());
-            if(attrs.containsKey("value")){
-                if (attrs.get("value") == DLockType.REDISSON){
-                    return new String[] {RedissonDlock.class.getName() };
-                }else {
+            if (attrs.containsKey("value")) {
+                if (attrs.get("value") == DLockType.REDISSON) {
+                    return new String[]{RedissonDlock.class.getName()};
+                } else {
                     throw new BussinessException("EnableDistributionLock type not defined");
                 }
             }
 
         }
-
-        // 将指定的类
-        return new String[] {RedissonDlock.class.getName() };
-
+        return new String[]{RedissonDlock.class.getName()};
     }
 }

@@ -2,11 +2,11 @@ package com.summer.dlock.annotation;
 
 public enum DLockType {
     /**
-     * 基于redisson的分布式锁
+     * Distributed Locks based on redisson
      */
     REDISSON
     /**
-     * 基于zk的分布式锁
+     * Distributed locks based on zookeeper
      */
 //    ZOOKEEPER
 }

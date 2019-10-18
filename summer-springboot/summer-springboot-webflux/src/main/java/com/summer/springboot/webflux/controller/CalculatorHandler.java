@@ -11,20 +11,20 @@ import java.util.function.BiFunction;
 
 @Component
 public class CalculatorHandler {
-    public Mono<ServerResponse> add(final ServerRequest request){
-        return calculate(request, (v1, v2) -> v1+v2);
+    public Mono<ServerResponse> add(final ServerRequest request) {
+        return calculate(request, (v1, v2) -> v1 + v2);
     }
 
-    public Mono<ServerResponse> subtract(final ServerRequest request){
-        return calculate(request, (v1, v2)-> v1 - v2);
+    public Mono<ServerResponse> subtract(final ServerRequest request) {
+        return calculate(request, (v1, v2) -> v1 - v2);
     }
 
     public Mono<ServerResponse> multiply(final ServerRequest request) {
-        return calculate(request, (v1, v2) -> v1* v2);
+        return calculate(request, (v1, v2) -> v1 * v2);
     }
 
     public Mono<ServerResponse> divide(final ServerRequest request) {
-        return calculate(request, (v1,v2)-> v1/v2);
+        return calculate(request, (v1, v2) -> v1 / v2);
     }
 
     private Mono<ServerResponse> calculate(final ServerRequest request,
@@ -34,11 +34,11 @@ public class CalculatorHandler {
 
     }
 
-    private Tuple2<Integer, Integer> extractOperands(final ServerRequest request){
-        return Tuples.of(parseOperand(request,"v1"), parseOperand(request,"v2"));
+    private Tuple2<Integer, Integer> extractOperands(final ServerRequest request) {
+        return Tuples.of(parseOperand(request, "v1"), parseOperand(request, "v2"));
     }
 
-    private int parseOperand(final ServerRequest request,final String param){
+    private int parseOperand(final ServerRequest request, final String param) {
         try {
             return Integer.parseInt(request.queryParam(param).orElse("0"));
         } catch (final NumberFormatException e) {

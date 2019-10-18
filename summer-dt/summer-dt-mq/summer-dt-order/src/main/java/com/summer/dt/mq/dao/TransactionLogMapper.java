@@ -1,7 +1,11 @@
 package com.summer.dt.mq.dao;
 
 import com.summer.dt.mq.entity.TransactionLog;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.Date;
 import java.util.List;
@@ -17,7 +21,7 @@ public interface TransactionLogMapper {
 
     @Update("update transactionLog set status=#{status},updateTime=#{updateTime} where primaryKey=#{primaryKey} and type=#{type}")
     void updateTransactionStatus(@Param("primaryKey") long primaryKey, @Param("type") String type,
-                                 @Param("status")String status,@Param("updateTime") Date updateTime);
+                                 @Param("status")String status, @Param("updateTime") Date updateTime);
 
     @Select("select * from transactionLog a where a.status='0'")
     List<TransactionLog> findInitTransactionLogs();

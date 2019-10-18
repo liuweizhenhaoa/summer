@@ -1,8 +1,13 @@
 package com.summer.springboot.cache.dao;
 
 import com.summer.springboot.cache.entity.Order;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
+import org.apache.ibatis.annotations.Update;
 import java.util.List;
 
 @Mapper
@@ -13,7 +18,7 @@ public interface OrderMapper {
     void save(Order order);
 
     @Select("select * from orders a where a.id = #{id}")
-    Order findOrderById(@Param("id")Long id);
+    Order findOrderById(@Param("id") Long id);
 
 
     @Update("update orders  set price = #{price}, detail = #{detail},createTime=#{createTime} " +
@@ -21,7 +26,7 @@ public interface OrderMapper {
     void update(Order order);
 
     @Delete("delete from orders where id=#{id}")
-    void delete(@Param("id")long id);
+    void delete(@Param("id") long id);
 
 
     @Select("select * from orders a ")

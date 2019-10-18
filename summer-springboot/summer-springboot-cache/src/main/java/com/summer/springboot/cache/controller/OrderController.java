@@ -15,7 +15,7 @@ public class OrderController {
     OrderService orderService;
 
     @GetMapping("/queryOrder")
-    public void queryOrder(@PathVariable(value="pageNum")int pageNum, @PathVariable(value="pageSize")int pageSize){
+    public void queryOrder(@PathVariable(value = "pageNum") int pageNum, @PathVariable(value = "pageSize") int pageSize) {
         orderService.queryAll(pageNum, pageSize);
     }
 }

@@ -1,6 +1,10 @@
 package com.summer.springboot.jwt.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.hibernate.validator.constraints.Length;
 
@@ -18,16 +22,16 @@ import java.util.Date;
 public class Order implements Serializable {
 
 
-    @NotNull(message ="不为空")
+    @NotNull(message = "不为空")
     private long id;
-    @NotNull(message ="不为空")
+    @NotNull(message = "不为空")
     private double price;
 
-    @NotNull(message ="不为空")
-    @Length(max=10,message="name长度不能超过10")
+    @NotNull(message = "不为空")
+    @Length(max = 10, message = "name长度不能超过10")
     private String detail;
 
-    @Email(message ="email 不为空")
+    @Email(message = "email 不为空")
     private String email;
 
     private Date createTime;

@@ -19,17 +19,17 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
      * 通过传递的参数来决定用户是否有访问对应受保护对象的权限
      *
      * @param authentication 包含了当前的用户信息，包括拥有的权限。这里的权限来源就是前面登录时UserDetailsService中设置的authorities。
-     * @param o  就是FilterInvocation对象，可以得到request等web资源
-     * @param collection configAttributes是本次访问需要的权限
+     * @param o              就是FilterInvocation对象，可以得到request等web资源
+     * @param collection     configAttributes是本次访问需要的权限
      */
     @Override
     public void decide(Authentication authentication, Object o, Collection<ConfigAttribute> collection) throws AccessDeniedException, InsufficientAuthenticationException {
-        if (collection == null || 0>= collection.size()) {
+        if (collection == null || 0 >= collection.size()) {
             return;
-        }else {
+        } else {
             collection.forEach(configAttribute -> {
-                String  needRole = configAttribute.getAttribute();
-                authentication.getAuthorities().forEach(entiy->{
+                String needRole = configAttribute.getAttribute();
+                authentication.getAuthorities().forEach(entiy -> {
                     if (needRole.trim().equals(entiy.getAuthority().trim())) {
                         return;
                     }

@@ -6,9 +6,6 @@ import org.apache.curator.retry.RetryNTimes;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * @author codeliu
- */
 @Configuration
 public class ZkConfiguration {
 

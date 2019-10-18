@@ -7,7 +7,7 @@ import org.springframework.messaging.Message;
 
 
 // Define transaction listener with the annotation @RocketMQTransactionListener
-@RocketMQTransactionListener(txProducerGroup="test")
+@RocketMQTransactionListener(txProducerGroup = "test")
 public class TransactionListenerImpl implements RocketMQLocalTransactionListener {
     @Override
     public RocketMQLocalTransactionState executeLocalTransaction(Message message, Object o) {

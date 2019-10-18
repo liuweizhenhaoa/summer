@@ -5,7 +5,6 @@ import com.summer.sharding.dao.OrderItemMapper;
 import com.summer.sharding.dao.OrderMapper;
 import com.summer.sharding.entity.Order;
 import com.summer.sharding.entity.OrderInfo;
-import com.summer.sharding.entity.OrderItem;
 import com.summer.sharding.entity.OrderRequest;
 import com.summer.sharding.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -16,9 +16,9 @@ public class TestController {
 
 
     @GetMapping(value = "/sessionInfo")
-    public Map<String, String> addSession (HttpServletRequest request){
+    public Map<String, String> addSession(HttpServletRequest request) {
 
-        if(log.isDebugEnabled()){
+        if (log.isDebugEnabled()) {
             log.debug("-------------- --- debug info -------------------");
         }
 
@@ -32,13 +32,13 @@ public class TestController {
 
     @RequestMapping("/putIntoSession")
     public String putIntoSession(HttpServletRequest request, String username) {
-        request.getSession().setAttribute("name",  "leo");
+        request.getSession().setAttribute("name", "leo");
         return "ok";
     }
 
     @RequestMapping("/getFromSession")
-    public String getFromSession(HttpServletRequest request, Model model){
+    public String getFromSession(HttpServletRequest request, Model model) {
 
-        return  (String) request.getSession().getAttribute("name");
+        return (String) request.getSession().getAttribute("name");
     }
 }

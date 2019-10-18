@@ -1,6 +1,12 @@
 package com.summer.mqtt.moquette.client;
 
-import org.fusesource.mqtt.client.*;
+import lombok.extern.slf4j.Slf4j;
+import org.fusesource.mqtt.client.BlockingConnection;
+import org.fusesource.mqtt.client.MQTT;
+import org.fusesource.mqtt.client.Message;
+import org.fusesource.mqtt.client.QoS;
+import org.fusesource.mqtt.client.Topic;
+
 
 import java.net.URISyntaxException;
 
@@ -8,18 +14,18 @@ import java.net.URISyntaxException;
  * MQTT moquette 的Client 段用于订阅主题，并接收主题信息
  * 采用阻塞式 订阅主题
  */
+@Slf4j
 public class MQTTClient {
     private final static String CONNECTION_STRING = "tcp://localhost:1883";
     private final static boolean CLEAN_START = true;
     private final static short KEEP_ALIVE = 30;// 低耗网络，但是又需要及时获取数据，心跳30s
-    public  static Topic[] topics = {
-            new Topic("china/beijing", QoS.EXACTLY_ONCE)};
+    public static Topic[] topics = {new Topic("china/beijing", QoS.EXACTLY_ONCE)};
 
-    public final  static long RECONNECTION_ATTEMPT_MAX=6;
-    public final  static long RECONNECTION_DELAY=2000;
-    public final static int SEND_BUFFER_SIZE=2*1024*1024;//发送最大缓冲为2M
+    public final static long RECONNECTION_ATTEMPT_MAX = 6;
+    public final static long RECONNECTION_DELAY = 2000;
+    public final static int SEND_BUFFER_SIZE = 2 * 1024 * 1024;//发送最大缓冲为2M
 
-    public static void main(String[] args)   {
+    public static void main(String[] args) {
         //创建MQTT对象
         MQTT mqtt = new MQTT();
         BlockingConnection connection = null;
@@ -41,7 +47,6 @@ public class MQTTClient {
 
             //获取mqtt的连接对象BlockingConnection
             connection = mqtt.blockingConnection();
-            mqtt.
             //MQTT连接的创建
             connection.connect();
             //创建相关的MQTT 的主题列表
@@ -49,13 +54,13 @@ public class MQTTClient {
             //订阅相关的主题信息
             byte[] qoses = connection.subscribe(topics);
             //
-            while(true){
+            while (true) {
                 //接收订阅的消息内容
                 Message message = connection.receive();
                 //获取订阅的消息内容
                 byte[] payload = message.getPayload();
                 // process the message then:
-                System.out.println("MQTTClient Message  Topic="+message.getTopic()+" Content :"+new String(payload));
+                log.info("MQTTClient Message  Topic=" + message.getTopic() + " Content :" + new String(payload));
                 //签收消息的回执
                 message.ack();
 //                Thread.sleep(2000);
@@ -64,7 +69,7 @@ public class MQTTClient {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             try {
                 connection.disconnect();
             } catch (Exception e) {

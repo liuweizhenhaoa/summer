@@ -33,9 +33,9 @@ public class TransactionLogServiceImpl implements TransactionLogService {
     public void processInitTransaction() {
         List<TransactionLog> transactionLogList = transactionLogMapper.findInitTransactionLogs();
 
-        if(transactionLogList!=null && transactionLogList.isEmpty()){
+        if (transactionLogList != null && transactionLogList.isEmpty()) {
             transactionLogList.stream().forEach(transactionLog ->
-                messageSender.sendMsg(transactionLog)
+                    messageSender.sendMsg(transactionLog)
             );
         }
     }

@@ -1,5 +1,5 @@
 package com.summer.springboot.jwt.config;
-import	java.beans.Beans;
+
 
 import com.summer.springboot.jwt.config.filter.JwtTokenFilter;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 log.info(charSequence.toString());
                 return DigestUtils.md5DigestAsHex(charSequence.toString().getBytes());
             }
+
             //对密码进行判断匹配
             @Override
             public boolean matches(CharSequence charSequence, String s) {
@@ -68,7 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public JwtTokenFilter authenticationTokenFilterBean(){
+    public JwtTokenFilter authenticationTokenFilterBean() {
         return new JwtTokenFilter();
     }
 

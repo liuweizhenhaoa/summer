@@ -14,12 +14,11 @@ import com.jintdev.bus.proto.GreeterOuterClass.HelloReply;
  */
 @GRpcService
 public class GreeterService extends GreeterGrpc.GreeterImplBase {
-
-	@Override
+    @Override
     public void sayHello(GreeterOuterClass.HelloRequest request, StreamObserver<GreeterOuterClass.HelloReply> respoObserver) {
         final GreeterOuterClass.HelloReply.Builder replyBuilder = GreeterOuterClass.HelloReply.newBuilder()
                 .setMessage("Hello: " + request.getName());
-        
+
         respoObserver.onNext(replyBuilder.build());
         respoObserver.onCompleted();
     }

@@ -1,6 +1,7 @@
 package com.summer.mqtt.moquette.server;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.fusesource.mqtt.client.BlockingConnection;
 import org.fusesource.mqtt.client.MQTT;
 import org.fusesource.mqtt.client.QoS;
@@ -12,17 +13,18 @@ import java.util.Date;
  * MQTT moquette 的Server  段用于发布主题，并发布主题信息
  * 采用阻塞式 发布主题
  */
+@Slf4j
 public class MQTTServer {
     private final static String CONNECTION_STRING = "tcp://localhost:1883";
     private final static boolean CLEAN_START = true;
     private final static short KEEP_ALIVE = 30;// 低耗网络，但是又需要及时获取数据，心跳30s
 
-    public final  static long RECONNECTION_ATTEMPT_MAX=6;
-    public final  static long RECONNECTION_DELAY=2000;
+    public final static long RECONNECTION_ATTEMPT_MAX = 6;
+    public final static long RECONNECTION_DELAY = 2000;
 
-    public final static int SEND_BUFFER_SIZE=2*1024*1024;//发送最大缓冲为2M
+    public final static int SEND_BUFFER_SIZE = 2 * 1024 * 1024;//发送最大缓冲为2M
 
-    public static void main(String[] args)   {
+    public static void main(String[] args) {
         MQTT mqtt = new MQTT();
         try {
             //设置服务端的ip
@@ -45,15 +47,15 @@ public class MQTTServer {
             //开始连接
             connection.connect();
             try {
-                int count=0;
-                while(true){
+                int count = 0;
+                while (true) {
                     count++;
                     //订阅的主题
-                    String topic="mqtt/test";
+                    String topic = "mqtt/test";
                     //主题的内容
-                    String message="hello "+count+" mqtt!";
+                    String message = "hello " + count + " mqtt!";
                     connection.publish(topic, message.getBytes(), QoS.AT_LEAST_ONCE, false);
-                    System.out.println(new Date() +"MQTTServer Message  Topic="+topic+"  Content :"+message);
+                    log.info(new Date() + "MQTTServer Message  Topic=" + topic + "  Content :" + message);
 //                    Thread.sleep(2000);
                 }
             } catch (InterruptedException e) {

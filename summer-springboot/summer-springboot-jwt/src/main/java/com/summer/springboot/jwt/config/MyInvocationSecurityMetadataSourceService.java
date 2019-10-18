@@ -1,5 +1,5 @@
 package com.summer.springboot.jwt.config;
-import java.util.*;
+
 
 import com.summer.springboot.jwt.entity.RolePermisson;
 import com.summer.springboot.jwt.mapper.PermissionMapper;
@@ -12,6 +12,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 @Component
 public class MyInvocationSecurityMetadataSourceService implements FilterInvocationSecurityMetadataSource {
@@ -22,7 +27,7 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
     /**
      * 每一个资源所需要的角色 Collection<ConfigAttribute>决策器会用到
      */
-    private static HashMap<String, Collection<ConfigAttribute>>  map = null;
+    private static HashMap<String, Collection<ConfigAttribute>> map = null;
 
     /**
      * 返回请求的资源需要的角色
@@ -30,12 +35,12 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
     @Override
     public Collection<ConfigAttribute> getAttributes(Object o) throws IllegalArgumentException {
         //object 中包含用户请求的request 信息
-        HttpServletRequest request = ((FilterInvocation)o).getRequest();
+        HttpServletRequest request = ((FilterInvocation) o).getRequest();
 
-        for (Iterator<String> it = map.keySet().iterator(); it.hasNext();) {
+        for (Iterator<String> it = map.keySet().iterator(); it.hasNext(); ) {
             String url = it.next();
-            if (new AntPathRequestMatcher( url ).matches( request )) {
-                return map.get( url );
+            if (new AntPathRequestMatcher(url).matches(request)) {
+                return map.get(url);
             }
         }
 //        map.keySet().forEach(key->{
@@ -75,7 +80,7 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
 
             if (map.containsKey(url)) {
                 map.get(url).add(role);
-            }else {
+            } else {
                 List<ConfigAttribute> list = new ArrayList<>();
                 list.add(role);
                 map.put(url, list);

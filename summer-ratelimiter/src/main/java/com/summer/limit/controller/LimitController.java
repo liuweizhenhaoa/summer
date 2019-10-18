@@ -17,16 +17,16 @@ public class LimitController {
     AtomicInteger datomicInteger = new AtomicInteger(0);
 
 
-    @RateLimiterAnnotation(limit = 10,expire = 10,isSingle = false)
+    @RateLimiterAnnotation(limit = 10, expire = 10, isSingle = false)
     @GetMapping("/single")
-    public void singleLimitTest(){
-        log.info("single---------------"+satomicInteger.incrementAndGet());
+    public void singleLimitTest() {
+        log.info("single---------------" + satomicInteger.incrementAndGet());
     }
 
 
     @RateLimiterAnnotation(isSingle = true)
     @GetMapping("/distributed")
-    public void distributedLimitTest(){
-        log.info("distributed---------------"+datomicInteger.incrementAndGet());
+    public void distributedLimitTest() {
+        log.info("distributed---------------" + datomicInteger.incrementAndGet());
     }
 }

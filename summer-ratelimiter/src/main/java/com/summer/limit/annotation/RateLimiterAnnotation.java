@@ -1,6 +1,11 @@
 package com.summer.limit.annotation;
 
-import java.lang.annotation.*;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
@@ -8,25 +13,30 @@ import java.lang.annotation.*;
 public @interface RateLimiterAnnotation {
 
     /**
-     * 限流key
+     * limit key
+     *
      * @return
      */
     String key() default "rate:limiter";
 
     /**
-     * 限流阈值
+     *
+     *
      * @return
      */
     long limit() default 3;
 
     /**
-     * 过期时间，单位秒
+     * expire， sencond
+     *
      * @return
      */
     long expire() default 30;
 
     /**
-     * 限流策略 true:分布式限流（采用redis）  false:单体限流（采用guava）
+     * Current limiting strategy
+     * true:distributed limit（redis）
+     * false:single limit（guava）
      *
      * @return
      */

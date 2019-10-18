@@ -5,7 +5,13 @@ import com.summer.common.exception.BussinessException;
 import com.summer.dt.mq.model.order.Order;
 import com.summer.dt.mq.service.StockService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.annotation.*;
+
+
+import org.springframework.amqp.rabbit.annotation.Exchange;
+import org.springframework.amqp.rabbit.annotation.Queue;
+import org.springframework.amqp.rabbit.annotation.QueueBinding;
+import org.springframework.amqp.rabbit.annotation.RabbitHandler;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Headers;
@@ -25,27 +31,26 @@ public class OrderListener {
     StockService stockService;
 
 
-    // 绑定监听，可以在未配置的情况下，在平台自动生成
+    // Binding listening, which can be generated automatically on the platform without configuration
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "order-queue", durable = "true"),
             exchange = @Exchange(value = RABBITMQ_EXCHANGE_ORDER, durable = "true", type = "topic", ignoreDeclarationExceptions = "true"), key = "order.stock"))
-    // 手动签收必须依赖channel
-    @RabbitHandler // 标识该方法，如果有消息过来，消费者调用该方法
+    // Manually signed must be dependy channel
+    @RabbitHandler
     public void onOrderMessage(@Payload Order order,
                                @Headers Map<String, Object> headers,
                                Channel channel) {
-        // 消费者操作
-        log.info("订单ID：" + order.getId());
+        log.info("order ID:" + order.getId());
         Long deliveryTag = (Long) headers.get(AmqpHeaders.DELIVERY_TAG);
 
-        stockService.reduceStock(1,1);
+        stockService.reduceStock(1, 1);
 
 
-        // ACK-手工签收
+        // ACK-Manually signed
         try {
             channel.basicAck(deliveryTag, false);
         } catch (IOException e) {
-            throw new BussinessException("",-1);
+            throw new BussinessException("", -1);
         }
     }
 }

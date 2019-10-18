@@ -10,8 +10,8 @@ public class TransactionLog {
     private long primaryKey;
     private String type;//
     private String msgBody;
-    private String status;//0-初始化 1-发送成功
-    private int sendTimes;//发送次数
+    private String status;//0-init 1-send success
+    private int sendTimes;//send times
     private Date createTime;
     private Date updateTime;
 

@@ -3,6 +3,10 @@ package com.summer.java.aop.cglib;
 import com.summer.java.aop.jdk.UserMgr;
 import com.summer.java.aop.jdk.UserMgrImpl;
 
+
+/**
+ * 基于子类化的CGLIB代理
+ */
 public class CglibAop {
 
 

@@ -1,7 +1,11 @@
 package com.summer.dt.mq.dao;
 
 import com.summer.dt.mq.entity.Stock;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
 
 import java.util.Date;
 

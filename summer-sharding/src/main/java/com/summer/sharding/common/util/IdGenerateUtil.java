@@ -7,15 +7,17 @@ import io.shardingsphere.core.keygen.DefaultKeyGenerator;
  *
  * @author cluo
  * @date 2018/08/02
- * @version
  * @copyright(c) gome inc Gome Co.,LTD
  */
 public class IdGenerateUtil {
 
-    private IdGenerateUtil() {throw new IllegalStateException("Utility class");}
+    private IdGenerateUtil() {
+        throw new IllegalStateException("Utility class");
+    }
 
     private static final DefaultKeyGenerator KEYGENERATOR = new DefaultKeyGenerator();
     private static Integer id = 0;
+
     public static synchronized Integer getUserId() {
         id++;
         return id;

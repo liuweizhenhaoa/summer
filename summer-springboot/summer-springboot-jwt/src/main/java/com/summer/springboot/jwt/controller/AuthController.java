@@ -17,18 +17,18 @@ public class AuthController {
      * 登录
      */
     @PostMapping(value = "/auth/login")
-    public String login( String username,String password ) throws AuthenticationException {
+    public String login(String username, String password) throws AuthenticationException {
         // 登录成功会返回Token给用户
-        return authService.login( username, password );
+        return authService.login(username, password);
     }
 
     @PostMapping(value = "/user/hi")
-    public String userHi( String name ) throws AuthenticationException {
+    public String userHi(String name) throws AuthenticationException {
         return "hi " + name + " , you have 'user' role";
     }
 
     @PostMapping(value = "/admin/hi")
-    public String adminHi( String name ) throws AuthenticationException {
+    public String adminHi(String name) throws AuthenticationException {
         return "hi " + name + " , you have 'admin' role";
     }
 

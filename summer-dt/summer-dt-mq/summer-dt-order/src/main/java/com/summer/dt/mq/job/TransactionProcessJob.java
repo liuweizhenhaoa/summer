@@ -12,8 +12,8 @@ public class TransactionProcessJob {
     TransactionLogService transactionLogService;
 
 
-    @Scheduled(fixedRate=5000)
-    public void transactionProcess(){
+    @Scheduled(fixedRate = 5000)
+    public void transactionProcess() {
         transactionLogService.processInitTransaction();
     }
 

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 public class RabbitMqService implements MessageSender {
 
     @Autowired
-    RabbitTemplate rabbitTemplate ;
+    RabbitTemplate rabbitTemplate;
 
     @Autowired
     TransactionLogService transactionLogService;
@@ -25,20 +25,20 @@ public class RabbitMqService implements MessageSender {
 
 
     @Override
-    public void sendMsg(Object object){
-        rabbitTemplate.convertAndSend(RABBITMQ_EXCHANGE_ORDER,"order.stock",object.toString(),
+    public void sendMsg(Object object) {
+        rabbitTemplate.convertAndSend(RABBITMQ_EXCHANGE_ORDER, "order.stock", object.toString(),
                 objectToCorrelationData(object));
     }
 
 
-    public CorrelationData objectToCorrelationData(Object object){
+    public CorrelationData objectToCorrelationData(Object object) {
         CorrelationData correlationData = new CorrelationData();
 
-        if(object instanceof Order){
+        if (object instanceof Order) {
             Order order = (Order) object;
-            correlationData.setId(String.valueOf(order.getId())+"_"+ OrderConstant.TRANSACTION_TYPE_ORDER);
-        }else{
-            log.error("-----------------消息类型未定义--------------------");
+            correlationData.setId(order.getId() + "_" + OrderConstant.TRANSACTION_TYPE_ORDER);
+        } else {
+            log.error("-----------------the type of message is undefined--------------------");
         }
 
         return correlationData;

@@ -21,27 +21,27 @@ public class RabbitTemplateConfig implements RabbitTemplate.ConfirmCallback, Rab
     TransactionLogService transactionLogService;
 
     @Autowired
-    RabbitTemplate rabbitTemplate ;
+    RabbitTemplate rabbitTemplate;
 
 
     @PostConstruct
     public void init() {
         rabbitTemplate.setMandatory(true);
-        rabbitTemplate.setConfirmCallback(this);// 指定 ConfirmCallback
-        rabbitTemplate.setReturnCallback(this);// 指定 ReturnCallback
+        rabbitTemplate.setConfirmCallback(this);//  ConfirmCallback
+        rabbitTemplate.setReturnCallback(this);//  ReturnCallback
     }
 
 
     @Override
     public void confirm(CorrelationData correlationData, boolean b, String s) {
-        //如果没有发送成功
+        //if send fialed
         if (!b) {
             log.info("send message failed: " + s);
             throw new BussinessException("send error " + s);
         }
-        //发送成功，则更新事务表的状态为已发送
+        //send success and update status of the table  Transaction
         String[] arrays = correlationData.getId().split("_");//primaryKey_type
-        if(arrays.length>0){
+        if (arrays.length > 0) {
             transactionLogService.updateTransactionStatus(Long.valueOf(arrays[0]), arrays[1],
                     OrderConstant.TRANSACTION_SUCCESS, new Date());
         }

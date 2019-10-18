@@ -28,19 +28,19 @@ public class StockServiceImpl implements StockService {
     public void reduceStock(long goodId, int reduceNum) {
         Stock stock = stockMapper.findStockByGoodId(goodId);
 
-        checkStock(stock, goodId,reduceNum);
+        checkStock(stock, goodId, reduceNum);
 
-        //扣减库存
-        stockMapper.update(stock.getNum()-reduceNum, goodId, new Date(), stock.getVersion(), stock.getVersion()+1);
+        //reduce stock
+        stockMapper.update(stock.getNum() - reduceNum, goodId, new Date(), stock.getVersion(), stock.getVersion() + 1);
 
     }
 
-    public void checkStock(Stock stock, long goodId, int reduceNum){
+    public void checkStock(Stock stock, long goodId, int reduceNum) {
 
-        Optional.ofNullable(stock).orElseThrow(()-> new BussinessException("商品id为"+goodId+"不存在"));
+        Optional.ofNullable(stock).orElseThrow(() -> new BussinessException(" good id is" + goodId + "not found"));
 
-        if(!(stock.getNum()>0 && stock.getNum()-reduceNum>=0)){
-            throw new BussinessException("商品id为"+goodId+"库存不足");
+        if (!(stock.getNum() > 0 && stock.getNum() - reduceNum >= 0)) {
+            throw new BussinessException("good id is" + goodId + "stock is not enough");
         }
     }
 }

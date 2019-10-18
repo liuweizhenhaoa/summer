@@ -38,8 +38,8 @@ public class OrderServiceImpl implements OrderService {
         transactionLog.setCreateTime(new Date());
         transactionLog.setMsgBody(JsonUtils.toJson(order));
         transactionLog.setPrimaryKey(order.getId());
-        transactionLog.setType(OrderConstant.TRANSACTION_TYPE_ORDER); //1:订单
-        transactionLog.setStatus(OrderConstant.TRANSACTION_INIT);//初始化
+        transactionLog.setType(OrderConstant.TRANSACTION_TYPE_ORDER); //1:order
+        transactionLog.setStatus(OrderConstant.TRANSACTION_INIT);//init
 
         transactionLogMapper.save(transactionLog);
 

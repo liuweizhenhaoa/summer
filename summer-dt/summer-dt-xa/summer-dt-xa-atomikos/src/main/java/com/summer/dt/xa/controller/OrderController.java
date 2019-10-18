@@ -16,7 +16,6 @@ import java.util.Date;
 
 
 /**
- * @author Freud
  */
 @RestController
 @RequestMapping("/api/order")
@@ -46,12 +45,12 @@ public class OrderController {
             orderService.saveOrder(order);
             this.throwRuntimeException();
 
-            stockService.reduceStock(1,1);
+            stockService.reduceStock(1, 1);
 
 
             return RESULT_SUCCESS;
         } catch (Exception e) {
-            log.error("error:",e);
+            log.error("error:", e);
             throw e;
         }
     }
@@ -67,12 +66,11 @@ public class OrderController {
 
             orderService.saveOrder(order);
 
-            stockService.reduceStock(1,1);
+            stockService.reduceStock(1, 1);
 
             return RESULT_SUCCESS;
         } catch (Exception e) {
-            //异常需要throw出来
-            log.error("error:",e);
+            log.error("error:", e);
             throw e;
         }
     }

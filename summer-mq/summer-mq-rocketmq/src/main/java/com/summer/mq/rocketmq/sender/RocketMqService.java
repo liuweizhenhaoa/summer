@@ -23,7 +23,7 @@ public class RocketMqService implements MessageSender {
     private RocketMQTemplate rocketMQTemplate;
 
     @PostConstruct
-    public void init(){
+    public void init() {
 
 //        rocketMQTemplate.destroy(); // notes:  once rocketMQTemplate be destroyed, you can not send any message again with this rocketMQTemplate
 
@@ -40,23 +40,20 @@ public class RocketMqService implements MessageSender {
 
 
     @Override
-    public void sendMsg(Object object){
+    public void sendMsg(Object object) {
         rocketMQTemplate.convertAndSend("test-topic-1", "Hello, World!");
         rocketMQTemplate.send("test-topic-1", MessageBuilder.withPayload("Hello, World! I'm from spring message").build());
         rocketMQTemplate.convertAndSend("test-topic-2", new OrderPaidEvent("T_001", new BigDecimal("88.00")));
 
 
         // Build a SpringMessage for sending in transaction
-        Message msg =  MessageBuilder.withPayload("hello world!").build();
+        Message msg = MessageBuilder.withPayload("hello world!").build();
         // In sendMessageInTransaction(), the first parameter transaction name ("test")
         // must be same with the @RocketMQTransactionListener's member field 'transName'
         rocketMQTemplate.sendMessageInTransaction("test", "test-topic", msg, null);
 
 
-
     }
-
-
 
 
 }

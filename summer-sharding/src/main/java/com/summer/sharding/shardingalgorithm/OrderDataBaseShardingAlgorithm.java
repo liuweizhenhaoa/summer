@@ -53,10 +53,10 @@ public class OrderDataBaseShardingAlgorithm implements PreciseShardingAlgorithm<
      */
     private String countDatabaseNum(String columnValue) {
         // ShardingSphereConstants每个库中定义的数据量
-        long id= Long.parseLong(columnValue.substring(1));
+        long id = Long.parseLong(columnValue.substring(1));
 
 
-        return String.valueOf(id%2);
+        return String.valueOf(id % 2);
     }
 
 }
