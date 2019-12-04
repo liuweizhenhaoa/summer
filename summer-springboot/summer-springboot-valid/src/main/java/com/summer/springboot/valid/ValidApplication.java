@@ -1,8 +1,13 @@
 package com.summer.springboot.valid;
 
 import com.summer.log.config.EnableLogAop;
+import org.apache.commons.lang3.SerializationUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * @see EnableLogAop
+ */
 
 @SpringBootApplication
 @EnableLogAop
