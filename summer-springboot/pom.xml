@@ -18,6 +18,7 @@
 		<module>summer-springboot-valid</module>
 		<module>summer-springboot-webflux</module>
 		<module>summer-springboot-jwt</module>
+        <module>summer-springboot-influxdb</module>
 	</modules>
 	<dependencies>
 		<dependency>

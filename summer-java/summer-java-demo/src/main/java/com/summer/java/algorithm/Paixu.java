@@ -25,12 +25,15 @@ public class Paixu {
 
     public int [] b(int[] array){
 
-        for(int i=0;i<array.length; i++){
+        if (array.length == 0 ){
+            return array;
+        }
+        for(int i=0;i<array.length;i++){
             for(int j=0;j<array.length-1-i;j++){
                 if(array[j]>array[j+1]){
-                    int temp = array[j+1];
-                    array[j+1]=array[j];
-                    array [j] = temp;
+                    int temp = array[j];
+                    array[j]  =array[j+1];
+                    array[j+1] = temp;
                 }
             }
         }
@@ -69,20 +72,18 @@ public class Paixu {
 
     public int[] a(int [] array){
 
-        for(int i=0;i<array.length;i++){
-
-            int minIndex = i;
-            for(int j=i;j<array.length; j++){
-                if (array[j]<array [minIndex]){
-                    minIndex = j;
+        for (int i = 0; i < array.length; i++) {
+            int minIndex = i ;
+            for (int j = i; j < array.length; j++) {
+                if (array[j]< array [minIndex]){
+                    minIndex=j;
                 }
             }
-            int temp = array [minIndex];
-            array [minIndex] = array [i];
+            int temp = array[minIndex];
+            array[minIndex] = array[i];
             array [i] = temp;
+
         }
-
-
         return array;
     }
 
@@ -107,9 +108,12 @@ public class Paixu {
         return array;
     }
 
-//    public static  int[] c(int [] array){
-//
-//    }
+    public static  int[] c(int [] array){
+
+
+        return array;
+
+    }
 
     /**
      * 希尔排序（Shell Sort）

@@ -1,6 +1,12 @@
 server:
   port: 8080
 spring:
+  # spring 自动配置influxdb
+  influx:
+    url: http://localhost:8086/
+    user: admin
+    password: admin
+    database: test
   cache:
     type: redis
   datasource:
@@ -31,21 +37,13 @@ order:
     workerId: 0
     datacenterId: 0
 
-management:
-  metrics:
-    export:
-      influx:
-        enabled: true
-        db: test
-        uri: http://localhost:8086
-        #        user-name:
-        #        password:
-        connect-timeout: 1s
-        read-timeout: 10s
-        auto-create-db: true
-        step: 1m
-        num-threads: 2
-        consistency: one
-        compressed: true
-        batch-size: 10000
 
+# 生产成功消息配置
+listener:
+  visibleLog: true
+  listenerQueueSize: 100000
+  corePoolSize: 1
+  maxPoolSize: 50
+  poolQueueCapacity: 500
+  threadNamePrefix: data-report-kafka-send
+  visiblePool: false
