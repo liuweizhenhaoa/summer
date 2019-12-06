@@ -38,8 +38,8 @@ management:
         enabled: true
         db: test
         uri: http://localhost:8086
-        #        user-name:
-        #        password:
+        user-name: admin
+        password: admin
         connect-timeout: 1s
         read-timeout: 10s
         auto-create-db: true

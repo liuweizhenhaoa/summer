@@ -63,14 +63,16 @@ public class InfluxServiceTest {
     public void insertCpu() {
 
         Random random = new Random();
+        for (int i = 0; i < 100; i++) {
+            Cpu cpu = new Cpu().setHappydevop(random.nextBoolean())
+                    .setHostname("server"+random.nextInt(10))
+                    .setIdle(random.nextDouble())
+                    .setRegion("china")
+                    .setTime(Instant.now())
+                    .setUptimeSecs(System.currentTimeMillis());
 
-        Cpu cpu = new Cpu().setHappydevop(random.nextBoolean())
-                .setHostname("server"+random.nextInt(10))
-                .setIdle(random.nextDouble())
-                .setRegion("china")
-                .setTime(Instant.now())
-                .setUptimeSecs(System.currentTimeMillis());
+            influxService.insertCpu(cpu);
+        }
 
-        influxService.insertCpu(cpu);
     }
 }
