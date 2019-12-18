@@ -13,11 +13,11 @@ public class HelloBoyService {
     String name = "world";
 
     @PostConstruct
-    public void init(){
-       log.info("----------init method-----------");
+    public void init() {
+        log.info("----------init method-----------");
     }
 
     public void sayHello() {
-        System.out.println("hello, " + name);
+        log.info("hello, " + name);
     }
 }

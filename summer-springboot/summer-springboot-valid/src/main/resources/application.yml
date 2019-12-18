@@ -1,5 +1,28 @@
 server:
   port: 8080
+  # 默认只压缩超过2048字节的数据，修改server.compression.min-response-size的值可以设置该大小
+    #默认情况下，只有在响应内容类型为以下内容时才会压缩响应：
+    #
+    #text/html
+    #text/xml
+    #text/plain
+    #text/css
+    #我们的接口返回的是json数据，所以修改下面的配置：
+  #1
+  #server.compression.mime-types=application/json
+  compression:
+    enabled: true
+    min-response-size: 1
+    mime-types: application/json
+
+logging:
+  level:
+    web: trace
+    root: info
+    org.mybatis: debug
+    java.sql: debug
+    org.springframework.web: trace
+
 spring:
   cache:
     type: redis

@@ -88,9 +88,9 @@ public class Test {
 //                System.out.println("foo");
 //            }
 //        };
-
-        Thread t = new Thread(r);
-        r.run();
+//
+//        Thread t = new Thread(r);
+//        r.run();
         System.out.println("bar");
 
     }
