@@ -19,6 +19,7 @@
 		<module>summer-springboot-webflux</module>
 		<module>summer-springboot-jwt</module>
         <module>summer-springboot-influxdb</module>
+		<module>summer-springboot-jaxrs</module>
 	</modules>
 	<dependencies>
 		<dependency>

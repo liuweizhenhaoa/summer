@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--    <typeHandlers>-->
+<!--        <typeHandler handler="com.summer.dt.mq.config.mybatis.CodeEnumTypeHandler"-->
+<!--                     javaType="com.summer.dt.mq.entity.User.Sex" jdbcType="INTEGER"/>-->
+<!--    </typeHandlers>-->
+    <!-- mapping 文件路径配置 -->
+<!--    <mappers>-->
+<!--        <mapper resource="mapper/OrderMapper.xml" />-->
+<!--    </mappers>-->
+</configuration>

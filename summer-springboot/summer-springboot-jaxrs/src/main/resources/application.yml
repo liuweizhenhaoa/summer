@@ -1,0 +1,93 @@
+server:
+  port: 8090
+  # 默认只压缩超过2048字节的数据，修改server.compression.min-response-size的值可以设置该大小
+    #默认情况下，只有在响应内容类型为以下内容时才会压缩响应：
+    #
+    #text/html
+    #text/xml
+    #text/plain
+    #text/css
+    #我们的接口返回的是json数据，所以修改下面的配置：
+  #1
+  #server.compression.mime-types: application/json
+  compression:
+    enabled: true
+    min-response-size: 1
+    mime-types: application/json
+
+logging:
+  level:
+    web: trace
+    root: info
+    org.mybatis: debug
+    java.sql: debug
+    org.springframework.web: trace
+
+spring:
+  cache:
+    type: redis
+  datasource:
+    url: jdbc:mysql://localhost:3306/order?allowMultiQueries=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 12345678
+  jmx:
+    enabled: false
+  redis:
+    host: 127.0.0.1
+    password:
+    port: 6379
+    lettuce:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-wait: -1ms
+        max-active: 8
+      shutdown-timeout: 100ms
+  #jedis客户端
+#  spring.redis.jedis.pool.max-active: 8
+#  spring.redis.jedis.pool.max-wait: -1ms
+#  spring.redis.jedis.pool.min-idle: 0
+#  spring.redis.jedis.pool.max-idle: 8
+
+order:
+  id:
+    workerId: 0
+    datacenterId: 0
+
+management:
+  metrics:
+    export:
+      influx:
+        enabled: true
+        db: test
+        uri: http://localhost:8086
+        user-name: admin
+        password: admin
+        connect-timeout: 1s
+        read-timeout: 10s
+        auto-create-db: true
+        step: 1m
+        num-threads: 2
+        consistency: one
+        compressed: true
+        batch-size: 10000
+cxf:
+  path: /studentservice
+  jaxrs:
+    classes-scan: true
+    classes-scan-packages: com.summer.springboot.jaxrs,org.codehaus.jackson.jaxrs
+message:
+  studentNotfound: '{"error":"500","message":"Student does not exist"}'
+  
+swagger:
+  title: spring-boot-starter-swagger
+  description: Starter for swagger 2.x
+  version: 1.9.0.RELEASE
+  license: Apache License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfServiceUrl: https://github.com/dyc87112/spring-boot-starter-swagger
+  contact.name: liuw
+  contact.url: http://blog.didispace.com
+  contact.email: dyc87112@qq.com
+  base-package: com.didispace
+  base-path: /**

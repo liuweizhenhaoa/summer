@@ -6,6 +6,9 @@ option java_package = "com.jintdev.bus.proto";
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 
+/**
+ * Service for handling vehicle Greeter.
+ */
 service Greeter {
     rpc SayHello (HelloRequest) returns (HelloReply) {
         option (google.api.http) = {
@@ -21,10 +24,17 @@ service Greeter {
     }
 }
 
+/**
+ * hello request
+*/
 message HelloRequest {
-    string name = 1;
+    string id = 1; // the id of this message.
+    string name = 2; // the name of this message.
 }
 
+/**
+ * hello reply
+*/
 message HelloReply {
     string message = 1;
 }
