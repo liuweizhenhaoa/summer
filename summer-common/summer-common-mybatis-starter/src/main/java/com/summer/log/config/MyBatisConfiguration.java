@@ -1,8 +1,9 @@
-package com.summer.dt.mq.config.mybatis;
+package com.summer.log.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,8 +14,8 @@ import javax.sql.DataSource;
 
 @Configuration
 @ConfigurationProperties(prefix = "mybatis")
-public class MyBatisConfig {
-
+@ConditionalOnClass(DataSource.class)
+public class MyBatisConfiguration {
 
     private String configLocation;
     private String mapperLocations;

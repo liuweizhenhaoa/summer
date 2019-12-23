@@ -1,6 +1,5 @@
-package com.summer.dt.mq.config.mybatis;
+package com.summer.log.config;
 
-import com.summer.common.enums.BaseCodeEnum;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 
