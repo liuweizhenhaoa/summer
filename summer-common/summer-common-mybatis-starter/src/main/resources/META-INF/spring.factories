@@ -1,2 +1,2 @@
 #配置自定义Starter的自动化配置
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.summer.log.config.MyBatisConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.summer.mybatis.config.MyBatisConfiguration

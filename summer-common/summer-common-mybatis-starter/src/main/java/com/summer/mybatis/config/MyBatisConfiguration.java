@@ -1,5 +1,6 @@
-package com.summer.log.config;
+package com.summer.mybatis.config;
 
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -25,9 +26,10 @@ public class MyBatisConfiguration {
             DataSource dataSource) throws Exception {
         SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
         factory.setDataSource(dataSource);
+        factory.setPlugins(new Interceptor[]{new SqlCostInterceptor()});
 
         // 设置配置文件及mapper文件地址
-        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+//        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 //        factory.setConfigLocation(resolver.getResource(configLocation));
 //        factory.setMapperLocations(resolver.getResources(mapperLocations));
 

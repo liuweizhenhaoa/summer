@@ -1,4 +1,4 @@
-package com.summer.log.config;
+package com.summer.mybatis.config;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.EnumTypeHandler;

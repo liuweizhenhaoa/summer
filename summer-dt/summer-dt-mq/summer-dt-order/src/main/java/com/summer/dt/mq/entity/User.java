@@ -1,6 +1,6 @@
 package com.summer.dt.mq.entity;
 
-import com.summer.log.config.BaseCodeEnum;
+import com.summer.mybatis.config.BaseCodeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
