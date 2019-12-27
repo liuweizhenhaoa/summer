@@ -16,7 +16,7 @@ public class DubboConsumerApplication {
         new SpringApplicationBuilder(DubboConsumerApplication.class).run(args);
     }
 
-    @Reference(version = "1.0.0", url = "dubbo://127.0.0.1:12345")
+    @Reference(version = "1.0.0", url = "dubbo://127.0.0.1:12345",timeout = 3000,retries = 3)
     private DemoService demoService;
 
 

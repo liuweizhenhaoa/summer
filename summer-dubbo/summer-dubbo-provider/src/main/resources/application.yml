@@ -20,5 +20,7 @@ dubbo:
   protocol:
     name: dubbo
     port: 12345
+#    client: mina
+    server: mina
   registry:
     address: N/A
