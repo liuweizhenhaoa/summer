@@ -53,6 +53,7 @@
 		<module>summer-leetcode</module>
 		<module>summer-java</module>
 		<module>summer-mqtt</module>
+		<module>summer-dubbo</module>
 	</modules>
 	<dependencies>
 		<dependency>
