@@ -6,11 +6,11 @@
 	<artifactId>summer-spi</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-<!--	<parent>-->
-<!--		<groupId>com.summer</groupId>-->
-<!--		<artifactId>summer-parent</artifactId>-->
-<!--		<version>1.0-SNAPSHOT</version>-->
-<!--	</parent>-->
+	<parent>
+		<groupId>com.summer</groupId>
+		<artifactId>summer-java</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
 	<modules>
 		<module>summer-spi-provider</module>
 		<module>summer-spi-consumer</module>

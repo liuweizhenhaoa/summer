@@ -7,7 +7,11 @@
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<description>Demo project for summer-agent-server</description>
-	
+    <parent>
+        <groupId>com.summer</groupId>
+        <artifactId>summer-agent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 	<properties>
 		<java.version>1.8</java.version>
 		<netty.version>4.1.36.Final</netty.version>

@@ -6,7 +6,11 @@
 	<artifactId>summer-agent</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-
+	<parent>
+		<groupId>com.summer</groupId>
+		<artifactId>summer-java</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
 	<modules>
 		<module>summer-agent-client</module>
 		<module>summer-agent-server</module>
