@@ -1,5 +1,4 @@
 package com.summer.springboot.influxdb.entity;
-import io.micrometer.core.annotation.Timed;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.influxdb.annotation.Column;
