@@ -54,10 +54,7 @@ public class InfluxService {
         influxDB.query(query, queryResult -> {
             log.info(queryResult.toString());
 
-        }, throwable -> {
-            log.error("error:{}", throwable);
-
-        });
+        }, throwable -> log.error("error:{}", throwable));
 
     }
 

@@ -4,12 +4,8 @@ import com.summer.springboot.influxdb.entity.Cpu;
 import com.summer.springboot.influxdb.entity.Order;
 import com.summer.springboot.influxdb.service.InfluxService;
 import lombok.extern.slf4j.Slf4j;
-import org.influxdb.dto.QueryResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +26,8 @@ public class InfluxdbController {
 
     @GetMapping("/query/{id}")
     public List<Cpu> queryOrder(@PathVariable(value = "id") int id) {
-        List<Cpu> cpus = influxService.querySql("select * from order where id="+id);
-        log.info("--------------{}" , cpus);
+        List<Cpu> cpus = influxService.querySql("select * from order where id=" + id);
+        log.info("--------------{}", cpus);
         return null;
     }
 
