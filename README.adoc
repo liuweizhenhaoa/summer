@@ -2,7 +2,7 @@
 
 $ *`mvn clean package -Dmaven.test.skip=true` `jdk8+`*
 
-Java生态研究(Spring Boot2.x + Redis + Grpc + MQ + Sharding + distributed )
+Java生态研究(Spring Boot2.x + Redis + Rpc + MQ + Sharding + distributed )
 
 summer is a cat
 
