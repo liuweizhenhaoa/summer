@@ -1,5 +1,7 @@
 package com.summer.dt.mq.dao;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.summer.dt.mq.entity.Order;
 import com.summer.dt.mq.entity.TransactionLog;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -11,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @Mapper
-public interface TransactionLogMapper {
+public interface TransactionLogMapper extends BaseMapper<TransactionLog> {
 
     @Insert("insert into `transactionlog` ( `primaryKey`, `type`, `msgBody`, `status`, " +
             "`sendTimes`, `createTime`, `updateTime`) " +
