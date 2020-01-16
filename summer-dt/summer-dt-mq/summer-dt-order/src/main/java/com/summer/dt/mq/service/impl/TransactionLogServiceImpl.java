@@ -16,8 +16,6 @@ import java.util.List;
 @Service
 public class TransactionLogServiceImpl extends ServiceImpl<TransactionLogMapper, TransactionLog> implements TransactionLogService {
 
-//    @Autowired
-//    TransactionLogMapper transactionLogMapper;
 
     @Autowired
     MessageSender messageSender;
