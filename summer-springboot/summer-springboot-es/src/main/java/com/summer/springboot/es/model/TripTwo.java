@@ -48,3 +48,4 @@ public class TripTwo {
     private String coordRestore;
     private String supplyStatus;
 }
+

@@ -21,12 +21,18 @@ public class CglibProxy implements MethodInterceptor {
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
 //        PerformanceMonior
         System.out.println("----------------begin-----"+method.getName() );
-
+        set();
         Object result = methodProxy.invokeSuper(o, objects);
 //        Object result = method.invoke(o, objects);
         System.out.println("----------------end-----"+method.getName() );
 
         return result;
+
+    }
+
+    @Override
+    public void set() {
+        System.out.println("----------------set------------------------" );
 
     }
 }

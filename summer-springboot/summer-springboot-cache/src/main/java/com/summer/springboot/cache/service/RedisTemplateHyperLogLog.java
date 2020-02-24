@@ -40,7 +40,7 @@ public class RedisTemplateHyperLogLog {
         vo.add("bag", "a", "e", "d");
         vo.add("del", "f", "g", "h");
 
-        for (int i = 0; i < 10000*1000; i++) {
+        for (int i = 0; i < 10000 * 1000; i++) {
             vo.add("book", String.valueOf(i));
             vo.add("bag", String.valueOf(i));
         }

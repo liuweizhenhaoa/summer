@@ -20,12 +20,19 @@
 		<module>summer-springboot-jwt</module>
         <module>summer-springboot-influxdb</module>
 		<module>summer-springboot-jaxrs</module>
+		<module>summer-springboot-disruptor</module>
 	</modules>
 	<dependencies>
 		<dependency>
 			<groupId>com.summer</groupId>
 			<artifactId>summer-common-core</artifactId>
 			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.summer</groupId>
+			<artifactId>summer-common-log</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<scope>compile</scope>
 		</dependency>
 
 	</dependencies>
