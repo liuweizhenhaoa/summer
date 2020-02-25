@@ -9,6 +9,9 @@ import lombok.experimental.Accessors;
 
 import java.util.Date;
 
+/**
+ * 创建事件
+ */
 @Data
 @AllArgsConstructor
 @Builder

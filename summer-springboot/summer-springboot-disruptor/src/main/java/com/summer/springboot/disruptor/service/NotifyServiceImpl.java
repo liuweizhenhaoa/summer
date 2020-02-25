@@ -16,6 +16,9 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.concurrent.Executors;
 
+/**
+ * 整合Spring，对Disruptor进行初始化
+ */
 @Service
 @Slf4j
 public class NotifyServiceImpl implements INotifyService, DisposableBean, InitializingBean {
@@ -52,6 +55,8 @@ public class NotifyServiceImpl implements INotifyService, DisposableBean, Initia
     @Override
     public void consume() {
         log.info("---------------begin consume-------------------");
+
+//        while (true) {
         //可以把ringBuffer看作是一个事件队列，那么next就是得到下一个事件槽
         RingBuffer<NotifyEvent> ringBuffer = disruptor.getRingBuffer();
         long sequence = ringBuffer.next();
@@ -65,6 +70,6 @@ public class NotifyServiceImpl implements INotifyService, DisposableBean, Initia
         } finally {
 
         }
-
+//        }
     }
 }

@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+/**
+ * 创建消息工厂用于生产消息
+ */
 @Slf4j
 public class NotifyEventFactory implements EventFactory {
 

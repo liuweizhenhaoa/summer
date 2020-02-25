@@ -8,6 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import java.text.SimpleDateFormat;
 import java.util.UUID;
 
+/**
+ * 创建消费者，此处用于处理业务逻辑
+ */
 @Slf4j
 public class NotifyEventHandler implements EventHandler<NotifyEvent>, WorkHandler<NotifyEvent> {
 

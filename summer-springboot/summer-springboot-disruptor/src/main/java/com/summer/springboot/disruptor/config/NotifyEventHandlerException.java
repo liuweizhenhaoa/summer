@@ -3,6 +3,9 @@ package com.summer.springboot.disruptor.config;
 import com.lmax.disruptor.ExceptionHandler;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 自定义异常
+ */
 @Slf4j
 public class NotifyEventHandlerException implements ExceptionHandler {
     @Override
