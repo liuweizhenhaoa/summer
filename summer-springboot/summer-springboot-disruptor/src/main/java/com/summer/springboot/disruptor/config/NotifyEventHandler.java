@@ -4,7 +4,6 @@ import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.WorkHandler;
 import com.summer.springboot.disruptor.entity.NotifyEvent;
 import lombok.extern.slf4j.Slf4j;
-
 import java.text.SimpleDateFormat;
 import java.util.UUID;
 
