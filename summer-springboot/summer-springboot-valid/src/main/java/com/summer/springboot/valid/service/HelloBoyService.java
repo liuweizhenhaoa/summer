@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 @Service
 @Slf4j
@@ -19,5 +20,10 @@ public class HelloBoyService {
 
     public void sayHello() {
         log.info("hello, " + name);
+    }
+
+    @PreDestroy
+    public void destory(){
+        log.info("-----------HelloBoyService destory-------------");
     }
 }
