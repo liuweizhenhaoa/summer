@@ -23,7 +23,7 @@ public class HelloBoyService {
     }
 
     @PreDestroy
-    public void destory(){
+    public void destory() {
         log.info("-----------HelloBoyService destory-------------");
     }
 }

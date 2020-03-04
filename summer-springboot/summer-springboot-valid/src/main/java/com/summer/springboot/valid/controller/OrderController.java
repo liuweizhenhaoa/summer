@@ -40,10 +40,11 @@ public class OrderController {
         log.info("--------------" + order.toString());
         return null;
     }
+
     @GetMapping("/finishOrder")
     public Map finishOrder() {
         for (int i = 0; i < 100; i++) {
-            OrderEvent orderEvent = new OrderEvent(i,"msg"+i);
+            OrderEvent orderEvent = new OrderEvent(i, "msg" + i);
             context.publishEvent(orderEvent);
         }
         log.info("--------------");

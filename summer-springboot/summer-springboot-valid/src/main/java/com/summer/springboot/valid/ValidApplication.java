@@ -1,11 +1,8 @@
 package com.summer.springboot.valid;
 
 import com.summer.log.config.EnableLogAop;
-import com.summer.springboot.valid.service.HelloBoyService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.EnableAsync;
 

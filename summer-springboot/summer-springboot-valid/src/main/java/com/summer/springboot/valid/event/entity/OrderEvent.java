@@ -9,7 +9,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Data
 @ToString
-public class OrderEvent{
+public class OrderEvent {
     private long id;
     private String msg;
 
