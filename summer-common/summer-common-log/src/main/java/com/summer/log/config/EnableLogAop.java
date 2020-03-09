@@ -13,7 +13,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import(FilterConfig.class)
+@Import(LogFilterConfig.class)
 public @interface EnableLogAop {
     boolean flag() default true;
 }

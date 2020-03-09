@@ -1,17 +1,14 @@
 package com.summer.springboot.valid;
 
-import com.summer.log.config.EnableLogAop;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
- * @see EnableLogAop
  */
 
 @SpringBootApplication
-@EnableLogAop
 @EnableAsync
 public class ValidApplication {
 

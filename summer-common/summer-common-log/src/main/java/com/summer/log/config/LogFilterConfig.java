@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  *
  */
 @Configuration
-public class FilterConfig {
+public class LogFilterConfig {
 
     @Bean
     public FilterRegistrationBean loggerMDCFilter() {
