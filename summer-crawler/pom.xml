@@ -14,7 +14,6 @@
 	<modules>
 		<module>summer-mq-rocketmq</module>
 		<module>summer-mq-rabbitmq</module>
-		<module>summer-mq-kafka</module>
 	</modules>
 	<dependencies>
 		<dependency>
