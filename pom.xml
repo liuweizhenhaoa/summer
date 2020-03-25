@@ -53,6 +53,8 @@
 		<module>summer-java</module>
 		<module>summer-mqtt</module>
 		<module>summer-dubbo</module>
+		<module>summer-nlp</module>
+		<module>summer-crawler</module>
 	</modules>
 	<dependencies>
 		<dependency>
