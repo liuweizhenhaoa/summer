@@ -12,8 +12,10 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<modules>
-		<module>summer-mq-rocketmq</module>
-		<module>summer-mq-rabbitmq</module>
+		<module>summer-crawler-crawler4j</module>
+		<module>summer-crawler-heritrix3</module>
+		<module>summer-crawler-nutch</module>
+		<module>summer-crawler-webcollector</module>
 	</modules>
 	<dependencies>
 		<dependency>

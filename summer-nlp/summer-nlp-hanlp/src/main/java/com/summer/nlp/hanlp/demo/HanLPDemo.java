@@ -77,7 +77,7 @@ public class HanLPDemo {
 //《N最短路径的Java实现与分词应用》
 	}
 
-	public  void test6(){
+	public  void test6() throws IOException {
 //		6. CRF分词
 // 	说明
 //		CRF对新词有很好的识别能力，但是开销较大。
