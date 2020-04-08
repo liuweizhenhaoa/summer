@@ -1,4 +1,4 @@
-package com.summer.mq.kafka;
+package com.summer.stream.flink;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
@@ -8,10 +8,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 @Slf4j
-public class KafkaApplication {
+public class FlinkApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(KafkaApplication.class, args);
+		SpringApplication.run(FlinkApplication.class, args);
 	}
 
 
