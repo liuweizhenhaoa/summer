@@ -3,33 +3,43 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.summer</groupId>
-	<artifactId>summer-nlp-hanlp</artifactId>
+	<artifactId>summer-stream-flink</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<description>Demo project for summer-nlp-hanlp</description>
+	<description>Demo project for summer-stream-flink</description>
 	<parent>
 		<groupId>com.summer</groupId>
-		<artifactId>summer-nlp</artifactId>
+		<artifactId>summer-stream</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<properties>
 		<java.version>1.8</java.version>
 		<netty.version>4.1.36.Final</netty.version>
 		<RELEASE.VERSION>2.0.3</RELEASE.VERSION>
+		<flink.version>1.10.0</flink.version>
+		<scala.binary.version>2.11</scala.binary.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
+			<version>${flink.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-connector-kafka-0.11_${scala.binary.version}</artifactId>
+			<version>${flink.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.hankcs/hanlp -->
 		<dependency>
-			<groupId>com.hankcs</groupId>
-			<artifactId>hanlp</artifactId>
-			<version>portable-1.7.5</version>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

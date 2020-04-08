@@ -55,6 +55,7 @@
 		<module>summer-dubbo</module>
 		<module>summer-nlp</module>
 		<module>summer-crawler</module>
+		<module>summer-stream</module>
 	</modules>
 	<dependencies>
 		<dependency>
