@@ -22,6 +22,19 @@
 			<artifactId>cglib</artifactId>
 			<version>3.2.12</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.datasketches/datasketches-java -->
+		<dependency>
+			<groupId>org.apache.datasketches</groupId>
+			<artifactId>datasketches-java</artifactId>
+			<version>1.2.0-incubating</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/info.debatty/java-lsh -->
+		<dependency>
+			<groupId>info.debatty</groupId>
+			<artifactId>java-lsh</artifactId>
+			<version>0.12</version>
+		</dependency>
+
 
 	</dependencies>
 
