@@ -21,6 +21,7 @@
         <module>summer-springboot-influxdb</module>
 		<module>summer-springboot-jaxrs</module>
 		<module>summer-springboot-disruptor</module>
+		<module>summer-springboot-groovy</module>
 	</modules>
 	<dependencies>
 		<dependency>

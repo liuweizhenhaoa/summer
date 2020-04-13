@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd">
+<!--    <jee:jndi-lookup id="dataSource" jndi-name="jdbc/GroovierSpringDataSource"/>-->
+
+<!--    <bean id="scriptFactoryPostProcessor"-->
+<!--          class="com.summer.springboot.groovy.config.CustomScriptFactoryPostProcessor">-->
+<!--        <property name="dataSource" ref="dataSource"/>-->
+<!--    </bean>-->
+
+<!--    <lang:groovy id="pdfGenerator"-->
+<!--                 refresh-check-delay="60000"-->
+<!--                 script-source="database:groovierspring/GroovyPdfGenerator.groovy">-->
+<!--        <lang:property name="companyName" value="Database Groovy Bookstore"/>-->
+<!--    </lang:groovy>-->
+</beans>
