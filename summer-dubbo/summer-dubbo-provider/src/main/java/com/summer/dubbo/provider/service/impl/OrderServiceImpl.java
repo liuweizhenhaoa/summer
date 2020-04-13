@@ -1,7 +1,7 @@
 package com.summer.dubbo.provider.service.impl;
 
 import com.summer.common.idgenerate.SnowflakeIdWorker;
-import com.summer.common.utils.JsonUtils;
+import com.summer.common.utils.GsonUtils;
 import com.summer.dubbo.provider.constant.OrderConstant;
 //import com.summer.dt.mq.dao.OrderMapper;
 import com.summer.dubbo.provider.dao.TransactionLogMapper;
@@ -36,7 +36,7 @@ public class OrderServiceImpl implements OrderService {
 
         TransactionLog transactionLog = new TransactionLog();
         transactionLog.setCreateTime(new Date());
-        transactionLog.setMsgBody(JsonUtils.toJson(order));
+        transactionLog.setMsgBody(GsonUtils.toJson(order));
         transactionLog.setPrimaryKey(order.getId());
         transactionLog.setType(OrderConstant.TRANSACTION_TYPE_ORDER); //1:order
         transactionLog.setStatus(OrderConstant.TRANSACTION_INIT);//init

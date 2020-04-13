@@ -6,9 +6,9 @@ import com.google.gson.GsonBuilder;
 import java.lang.reflect.Type;
 import java.util.Map;
 
-public class JsonUtils {
+public class GsonUtils {
 
-	private JsonUtils() {throw new IllegalStateException("Utility class");}
+	private GsonUtils() {throw new IllegalStateException("Utility class");}
 
 	private static Gson gson = new GsonBuilder()
 //	.excludeFieldsWithoutExposeAnnotation() //不导出实体中没有用@Expose注解的属性
