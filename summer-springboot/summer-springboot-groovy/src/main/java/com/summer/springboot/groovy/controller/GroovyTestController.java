@@ -1,5 +1,6 @@
 package com.summer.springboot.groovy.controller;
 
+import com.summer.springboot.groovy.mapper.GroovyBeanMapper;
 import com.summer.springboot.groovy.mapper.UserMapper;
 import com.summer.springboot.groovy.service.BaseGroovySpot;
 import groovy.lang.GroovyClassLoader;
@@ -26,6 +27,8 @@ public class GroovyTestController {
 	private UserMapper userMapper;
 	@Autowired
 	private ApplicationContext applicationContext;
+	@Autowired
+	private GroovyBeanMapper groovyBeanMapper;
 
 //	@Autowired
 //	public GroovyTestController(UserMapper userMapper,
@@ -44,7 +47,7 @@ public class GroovyTestController {
 
 	@GetMapping(value = "/groovy/add/bean")
 	public void groovyAddBean() {
-		String content = userMapper.getGroovyContent(1);
+		String content = groovyBeanMapper.getGroovyContent(1);
 
 		Class clazz = new GroovyClassLoader().parseClass(content);
 		BeanDefinitionBuilder beanDefinitionBuilder

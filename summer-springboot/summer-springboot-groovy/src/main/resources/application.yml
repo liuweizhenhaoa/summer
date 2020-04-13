@@ -1,5 +1,13 @@
 server:
   port: 8080
+
+logging:
+  level:
+    com:
+      summer:
+        springboot:
+          groovy:
+            mapper: debug
 spring:
   cache:
     type: redis
