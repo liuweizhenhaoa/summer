@@ -1,3 +1,4 @@
+package com.summer.springboot.groovy.shell
 
 // 不带参数的groovy方法
 def sayHello() {

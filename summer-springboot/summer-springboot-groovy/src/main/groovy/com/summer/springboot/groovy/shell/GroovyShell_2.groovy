@@ -1,3 +1,4 @@
+package com.summer.springboot.groovy.shell
 
 class GroovyShell_2 {
     public String sayHello(String name, String sex, int age) {

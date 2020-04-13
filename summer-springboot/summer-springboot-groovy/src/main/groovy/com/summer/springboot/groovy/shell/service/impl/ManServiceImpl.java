@@ -1,7 +1,7 @@
 package com.summer.springboot.groovy.shell.service.impl;
 
-import com.summer.springboot.groovy.shell.model.Man;
 import org.springframework.stereotype.Service;
+import com.summer.springboot.groovy.shell.model.Man;
 
 @Service("manService")
 class ManServiceImpl implements ManService {

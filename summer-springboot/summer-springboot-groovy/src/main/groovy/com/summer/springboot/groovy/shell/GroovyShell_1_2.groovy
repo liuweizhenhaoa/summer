@@ -1,3 +1,4 @@
+package com.summer.springboot.groovy.shell
 
 // 带参数的groovy方法
 def sayHello(name) {

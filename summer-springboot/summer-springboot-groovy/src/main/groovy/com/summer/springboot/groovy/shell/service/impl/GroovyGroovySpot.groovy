@@ -15,7 +15,6 @@ class GroovyGroovySpot implements BaseGroovySpot {
     private UserMapper db0UserMapper;
 
     @Autowired
-//    @Qualifier("db0")
     private final DataSource dataSource0;
 
     @Override

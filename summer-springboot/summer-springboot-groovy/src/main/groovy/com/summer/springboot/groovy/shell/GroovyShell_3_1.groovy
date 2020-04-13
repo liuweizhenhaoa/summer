@@ -1,3 +1,5 @@
+package com.summer.springboot.groovy.shell
+
 def sayHello(String name) {
     println "hello， " + name
 
