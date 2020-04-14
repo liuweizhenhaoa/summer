@@ -1,0 +1,8 @@
+INSERT INTO `xdual`(`ID`, `X`) VALUES (1, '2020-04-03 10:33:31');
+INSERT INTO `xdual`(`ID`, `X`) VALUES (2, '2020-04-03 10:36:16');
+INSERT INTO `xdual`(`ID`, `X`) VALUES (3, '2020-04-03 10:36:21');
+INSERT INTO `xdual`(`ID`, `X`) VALUES (4, '2020-04-03 10:51:41');
+INSERT INTO `xdual`(`ID`, `X`) VALUES (5, '2020-04-03 10:51:43');
+INSERT INTO `xdual`(`ID`, `X`) VALUES (6, '2020-04-03 10:51:44');
+INSERT INTO `xdual`(`ID`, `X`) VALUES (7, '2020-04-03 10:51:44');
+INSERT INTO `xdual`(`ID`, `X`) VALUES (8, '2020-04-03 10:51:44');
