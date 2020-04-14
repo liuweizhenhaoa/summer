@@ -10,4 +10,14 @@ class Man {
         this.name = name
         this.phone = phone
     }
+    Man() {
+    }
+
+    static void main(String[] args) {
+        def m = new Man();
+        m.id = 1;
+        m.name = "111";
+        println(m.toString())
+    }
+
 }

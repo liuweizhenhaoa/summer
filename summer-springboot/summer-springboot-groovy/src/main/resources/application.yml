@@ -3,11 +3,7 @@ server:
 
 logging:
   level:
-    com:
-      summer:
-        springboot:
-          groovy:
-            mapper: debug
+    com.summer: debug
 spring:
   cache:
     type: redis
