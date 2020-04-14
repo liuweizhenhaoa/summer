@@ -22,6 +22,7 @@
 		<module>summer-springboot-jaxrs</module>
 		<module>summer-springboot-disruptor</module>
 		<module>summer-springboot-groovy</module>
+		<module>summer-springboot-hbase</module>
 	</modules>
 	<dependencies>
 		<dependency>

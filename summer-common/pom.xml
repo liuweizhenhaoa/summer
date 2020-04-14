@@ -15,6 +15,7 @@
 		<module>summer-common-log</module>
 		<module>summer-common-core</module>
 		<module>summer-common-mybatis-starter</module>
+		<module>summer-common-hbase-starter</module>
 	</modules>
 	<dependencies>
 
