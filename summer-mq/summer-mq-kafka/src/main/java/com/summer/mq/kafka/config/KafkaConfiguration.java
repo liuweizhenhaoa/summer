@@ -58,6 +58,11 @@ public class KafkaConfiguration {
 //        return new StringJsonMessageConverter();
 //    }
 
+    @KafkaListener(id = "aa", topics = "netease-opinion-data-import")
+    public void listen(String foo) {
+        log.info("Received-----------------: " + foo);
+    }
+
     @KafkaListener(id = "fooGroup", topics = "topic1")
     public void listen(Foo2 foo) {
         log.info("Received: " + foo);

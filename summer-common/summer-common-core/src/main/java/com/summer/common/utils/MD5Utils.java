@@ -1,13 +1,11 @@
 package com.summer.common.utils;
 
-import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-@Slf4j
 public class MD5Utils {
 
   private static final String TAG                = MD5Utils.class.getSimpleName();

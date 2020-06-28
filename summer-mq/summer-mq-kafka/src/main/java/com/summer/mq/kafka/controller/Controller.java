@@ -1,10 +1,10 @@
 package com.summer.mq.kafka.controller;
 
 import com.summer.mq.kafka.model.Bar1;
-import com.summer.mq.kafka.model.Foo1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,10 +21,9 @@ public class Controller {
 	@Value("${kafka.topic.bars}")
 	private String bars;
 
-	@PostMapping(path = "/send/foo/{what}")
-	public void sendFoo(@PathVariable String what) {
-		this.kafkaTemplate.send("topic1", new Foo1(what));
-		this.kafkaTemplate.send("foos", new Foo1(what));
+	@GetMapping(path = "/send/foo/")
+	public void sendFoo() {
+		this.kafkaTemplate.send("netease-opinion-data-import", "1111");
 	}
 //
 //	@PostMapping(path = "/send/foo/{what}")

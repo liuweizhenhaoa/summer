@@ -23,4 +23,4 @@ dubbo:
 #    client: mina
     server: mina
   registry:
-    address: N/A
+    address: zookeeper://localhost:2181

@@ -32,6 +32,11 @@
 			<artifactId>summer-common-mybatis-starter</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.summer</groupId>
+			<artifactId>summer-common-log-dubbo</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 		<!-- Dubbo Spring Boot Starter -->
 		<dependency>
 			<groupId>org.apache.dubbo</groupId>
@@ -42,6 +47,11 @@
 			<groupId>org.apache.mina</groupId>
 			<artifactId>mina-core</artifactId>
 			<version>1.1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.dubbo</groupId>
+			<artifactId>dubbo-registry-zookeeper</artifactId>
+			<version>2.7.4</version>
 		</dependency>
 
 	</dependencies>

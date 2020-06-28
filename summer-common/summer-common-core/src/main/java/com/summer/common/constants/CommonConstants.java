@@ -21,6 +21,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.regex.Pattern;
 
 public interface CommonConstants {
+
+    String TRACE_ID = "requestId";
     String DUBBO = "dubbo";
 
     String PROVIDER = "provider";

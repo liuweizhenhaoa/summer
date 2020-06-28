@@ -1,14 +1,17 @@
 package com.summer.log.config;
 
-import org.slf4j.MDC;
-import org.springframework.web.filter.OncePerRequestFilter;
+import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.UUID;
+
+import org.slf4j.MDC;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.summer.common.constants.CommonConstants;
 
 /**
  * 日志 MDC 过滤器，打印输入 x-request-id
@@ -24,7 +27,7 @@ public class LoggerMDCFilter extends OncePerRequestFilter {
                 requestId = UUID.randomUUID().toString();
             }
 
-            MDC.put("requestId", requestId);
+            MDC.put(CommonConstants.TRACE_ID, requestId);
             filterChain.doFilter(request, response);
         } finally {
             clearMDC();

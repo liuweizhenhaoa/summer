@@ -8,13 +8,17 @@ spring:
     enabled: false
   application:
     name: dubbo-auto-configuration-consumer-demo
-#dubbo:
-#  scan:
-#    base-packages: com.summer.dubbo.consumer.service
+dubbo:
+  scan:
+    base-packages: com.summer.dubbo.consumer.service
 #  protocol:
 #    name: dubbo
 #    port: 12345
-#  registry:
-#    address: N/A
+  registry:
+    address: zookeeper://localhost:2181
+  consumer:
+    timeout: 3000
+    retries: 3
+    version: 1.0.0
 server:
-  port: 8081
+  port: 8082

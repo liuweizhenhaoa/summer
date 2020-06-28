@@ -3,15 +3,15 @@ server:
 spring:
   kafka:
     consumer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: 10.200.128.26:9092,116.202.102.88:9092,10.200.130.201:9092
   #    group-id: group_test
   #    auto-offset-reset: earliest
 #      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 #      value-deserializer: org.springframework.kafka.support.serializer.JsonSerializer
     producer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: nisp5.dg.163.org:9092,nisp46.dg.163.org:9092,nisp47.dg.163.org:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
       properties:
         spring.json.type.mapping: foo:com.summer.mq.kafka.model.Foo1,bar:com.summer.mq.kafka.model.Bar1
 kafka:

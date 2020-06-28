@@ -14,10 +14,8 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.ApplicationContext;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +40,7 @@ public class GroovyBeanUpdate {
 	/**
 	 * 构造方法执行之后，调用此方法
 	 */
-	@PostConstruct
+//	@PostConstruct
 	public void init(){
 		lastLoadDate = new Date();
 		log.info("GroovyBean load init, Date:{}", lastLoadDate);
@@ -115,7 +113,7 @@ public class GroovyBeanUpdate {
 		beanRegistry.registerBeanDefinition(beanName, beanDefinition);
 	}
 
-	@Scheduled(cron = "0/10 * * * * ?")
+//	@Scheduled(cron = "0/10 * * * * ?")
 	public void update(){
 		log.info("GroovyBean update----------------------");
 		List<GroovyBean>  groovyBeans = groovyBeanMapper.getUpdateGroovyBeans(lastLoadDate);
