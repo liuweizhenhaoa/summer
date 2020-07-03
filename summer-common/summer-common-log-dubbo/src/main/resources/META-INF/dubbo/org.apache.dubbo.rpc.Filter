@@ -1,1 +1,2 @@
-Trace=com.summer.log.dubbo.config.TraceFilter
+providerRpcTraceFilter=com.summer.log.dubbo.config.ConsumerRpcTraceFilter
+consumerRpcTraceFilter=com.summer.log.dubbo.config.ProviderRpcTraceFilter

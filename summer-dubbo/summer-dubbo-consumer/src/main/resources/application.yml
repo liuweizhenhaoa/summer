@@ -10,7 +10,7 @@ spring:
     name: dubbo-auto-configuration-consumer-demo
 dubbo:
   scan:
-    base-packages: com.summer.dubbo.consumer.service
+    base-packages: com.summer.dubbo.service
 #  protocol:
 #    name: dubbo
 #    port: 12345
