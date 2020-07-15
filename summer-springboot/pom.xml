@@ -23,6 +23,7 @@
 		<module>summer-springboot-disruptor</module>
 		<module>summer-springboot-groovy</module>
 		<module>summer-springboot-hbase</module>
+		<module>summer-springboot-easyexcel</module>
 	</modules>
 	<dependencies>
 		<dependency>
