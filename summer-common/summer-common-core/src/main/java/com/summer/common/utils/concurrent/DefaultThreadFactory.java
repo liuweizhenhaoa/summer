@@ -4,9 +4,6 @@ import java.util.Locale;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * A {@link ThreadFactory} implementation with a simple naming rule.
- */
 public class DefaultThreadFactory implements ThreadFactory {
 
     private static final AtomicInteger poolId = new AtomicInteger();

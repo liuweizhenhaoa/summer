@@ -1,9 +1,3 @@
-/*
- * @(#) OrderThreadPoolExecutor.java 2020-07-07
- *
- * Copyright 2020 NetEase.com, Inc. All rights reserved.
- */
-
 package com.summer.common.utils.concurrent;
 
 import java.util.Collection;
@@ -24,13 +18,10 @@ import java.util.concurrent.TimeoutException;
 import org.apache.commons.lang3.StringUtils;
 
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 分片线程池（每个分片一个线程池,每个分片顺序消费）
- * 
- * @author liuwei08
- * @version 2020-07-07
+ *
  */
 @NoArgsConstructor
 public class ShardingThreadPoolExecutor implements ShardingExecutorService {
