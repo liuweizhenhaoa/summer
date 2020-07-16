@@ -4,9 +4,12 @@ import java.util.Locale;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * A {@link ThreadFactory} implementation with a simple naming rule.
+ */
 public class DefaultThreadFactory implements ThreadFactory {
 
-    private static final AtomicInteger poolId = new AtomicInteger();
+    private static final AtomicInteger POOLID = new AtomicInteger();
 
     private final AtomicInteger nextId = new AtomicInteger();
     private final String prefix;
@@ -73,7 +76,7 @@ public class DefaultThreadFactory implements ThreadFactory {
                     "priority: " + priority + " (expected: Thread.MIN_PRIORITY <= priority <= Thread.MAX_PRIORITY)");
         }
 
-        prefix = poolName + '-' + poolId.incrementAndGet() + '-';
+        prefix = poolName + '-' + POOLID.incrementAndGet() + '-';
         this.daemon = daemon;
         this.priority = priority;
         this.threadGroup = threadGroup;

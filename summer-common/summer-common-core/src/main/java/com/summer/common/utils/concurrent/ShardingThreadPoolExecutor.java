@@ -1,37 +1,54 @@
+
 package com.summer.common.utils.concurrent;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
 
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.hash.Hashing;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 分片线程池（每个分片一个线程池,每个分片顺序消费）
  *
  */
+@Slf4j
 @NoArgsConstructor
+@Getter
 public class ShardingThreadPoolExecutor implements ShardingExecutorService {
 
-    // 分片的数量
+    /**
+     * 分片的数量
+     */
     private int num;
-    // 默认的线程名称前缀
-    private static final String DEFAULT_THREAD_NAME_PRE = "ShardingThreadPool";
-    //
-    private Map<String, ExecutorService> shardingMap = new HashMap<>();
+    /**
+     * 每个work队列大小
+     */
+    private int size;
+    /**
+     * 线程池名称前缀
+     */
+    private String namePre;
+    private final ReentrantLock mainLock = new ReentrantLock();
+
+    /**
+     * 默认的线程名称前缀
+     */
+    private static final String DEFAULT_THREAD_NAME_PRE = "ShardingThreadPool-";
+    private Map<Integer, Worker> shardingMap = new ConcurrentHashMap<>();
+    private Map<Integer, Thread> shardingPoolMap = new ConcurrentHashMap<>();
+
+    private final AtomicInteger nextId = new AtomicInteger();
+
+    public String getNamePre() {
+        return namePre;
+    }
 
     /**
      * 通过routerKey获取对应的线程池ExecutorService
@@ -39,230 +56,124 @@ public class ShardingThreadPoolExecutor implements ShardingExecutorService {
      * @param routerKey
      * @return
      */
-    public ExecutorService getByKey(String routerKey) {
-        return shardingMap.get(routerKey);
+    public Worker getByKey(String routerKey) {
+        return shardingMap.get(getRouter(routerKey));
+    }
+
+    public Set<Integer> getPartitions() {
+        return shardingMap.keySet();
     }
 
     /**
-     * 通过routerValue获取对应的线程池ExecutorService
+     * 通过routerKey获取分区id
      * 
-     * @param routerValue
+     * @param routerKey
      * @return
      */
-    public ExecutorService getByRouterValue(String routerValue) {
-        return shardingMap.get(getRouter(routerValue));
+    public int getRouter(String routerKey) {
+        return Math.abs(Hashing.crc32().hashBytes(routerKey.getBytes()).hashCode()) % num;
     }
 
-    /**
-     * 通过routerValue获取routerKey
-     * 
-     * @param routerValue
-     * @return
-     */
-    public String getRouter(String routerValue) {
-        return String.valueOf(routerValue.hashCode() % num + 1);
-    }
-
-    /**
-     * 获取线程名称前缀
-     * 
-     * @param poolName
-     * @return
-     */
-    public String getPoolName(String poolName) {
-        return StringUtils.isEmpty(poolName) ? DEFAULT_THREAD_NAME_PRE : poolName;
-    }
-
-    public ShardingThreadPoolExecutor(int num) {
+    public ShardingThreadPoolExecutor(int num, int size) {
         this.num = num;
+        this.size = size;
+        this.namePre = DEFAULT_THREAD_NAME_PRE;
         for (int i = 0; i < num; i++) {
-            ExecutorService executorService = new ThreadPoolExecutor(1, 1,
-                    0L, TimeUnit.MILLISECONDS,
-                    new LinkedBlockingQueue<>(),
-                    new DefaultThreadFactory(DEFAULT_THREAD_NAME_PRE));
-            shardingMap.put(String.valueOf(i), executorService);
+            Worker worker = new Worker(size);
+            shardingMap.put(i, worker);
+            Thread thread = new Thread(worker, this.namePre + nextId.incrementAndGet());
+            shardingPoolMap.put(i, thread);
+            thread.start();
+
         }
     }
 
-    public ShardingThreadPoolExecutor(int num, String poolName) {
+    public ShardingThreadPoolExecutor(int num, int size, String namePre) {
         this.num = num;
+        this.size = size;
+        this.namePre = namePre;
         for (int i = 0; i < num; i++) {
-            ExecutorService executorService = new ThreadPoolExecutor(1, 1,
-                    0L, TimeUnit.MILLISECONDS,
-                    new LinkedBlockingQueue<>(),
-                    new DefaultThreadFactory(getPoolName(poolName)));
-            shardingMap.put(String.valueOf(i), executorService);
+            Worker worker = new Worker(size);
+            shardingMap.put(i, worker);
+            Thread thread = new Thread(worker, this.namePre + nextId.incrementAndGet());
+            shardingPoolMap.put(i, thread);
+            thread.start();
+
         }
     }
 
-    public ShardingThreadPoolExecutor(int num, int queueNum)
-            throws InstantiationException, IllegalAccessException {
-        for (int i = 0; i < num; i++) {
-            ExecutorService executorService = new ThreadPoolExecutor(1, 1,
-                    0L, TimeUnit.MILLISECONDS,
-                    new ArrayBlockingQueue<>(queueNum),
-                    new DefaultThreadFactory(DEFAULT_THREAD_NAME_PRE));
-            shardingMap.put(String.valueOf(i), executorService);
+    /**
+     * 添加任务到对应分区的queue
+     *
+     * @throws InterruptedException
+     */
+    @Override
+    public void submit(Runnable runnable, String key) {
+        Worker worker = getByKey(key);
+        if (worker != null) {
+            try {
+                worker.put(runnable);
+            } catch (InterruptedException e) {
+                log.error("error:", e);
+                Thread.currentThread().interrupt();
+            }
+        } else {
+            log.error("error: key[{}] not found", key);
         }
     }
 
-    public ShardingThreadPoolExecutor(int num, int queueNum, String poolName)
-            throws InstantiationException, IllegalAccessException {
-        for (int i = 0; i < num; i++) {
-            ExecutorService executorService = new ThreadPoolExecutor(1, 1,
-                    0L, TimeUnit.MILLISECONDS,
-                    new ArrayBlockingQueue<>(queueNum),
-                    new DefaultThreadFactory(getPoolName(poolName)));
-            shardingMap.put(String.valueOf(i), executorService);
+    /**
+     * 添加任务到对应分区的queue
+     *
+     * @throws InterruptedException
+     */
+    @Override
+    public void submit(Runnable runnable, Integer partition) throws InterruptedException {
+        Worker worker = shardingMap.get(partition);
+        if (worker != null) {
+            worker.put(runnable);
+        } else {
+            log.error("error: partition[{}] not found", partition);
         }
     }
 
     @Override
-    public void shutdown() {
-        shardingMap.values().forEach(t -> t.shutdown());
-    }
-
-    @Override
-    public List<Runnable> shutdownNow() {
-        return null;
-    }
-
-    @Override
-    public boolean isShutdown() {
-        for (ExecutorService executorService : shardingMap.values()) {
-            if (executorService.isShutdown()) {
-                continue;
-            } else {
+    public boolean isTermination() {
+        final ReentrantLock mainLock = this.mainLock;
+        mainLock.lock();
+        try {
+            for (Map.Entry<Integer, Thread> entry : shardingPoolMap.entrySet()) {
+                Integer sharding = entry.getKey();
+                Thread thread = entry.getValue();
+                if (log.isDebugEnabled()) {
+                    log.debug("thead:[{}] State:[{}]  doing[{}]  size:[{}]", thread.getName(), thread.getState(),
+                            shardingMap.get(sharding).isDoing(),
+                            shardingMap.get(sharding).size());
+                }
+                // 当前线程状态为WAITING 当前在执行的任务 并且 Work的queue为空
+                if (Thread.State.WAITING == thread.getState() && !shardingMap.get(sharding).isDoing()
+                        && shardingMap.get(sharding).isEmpty()) {
+                    continue;
+                }
                 return false;
             }
+            return true;
+        } finally {
+            mainLock.unlock();
         }
-        return true;
     }
 
-    @Override
-    public boolean isTerminated() {
-        for (ExecutorService executorService : shardingMap.values()) {
-            if (executorService.isTerminated()) {
-                continue;
-            } else {
-                return false;
-            }
-        }
-        return true;
-    }
+    public static void main(String[] args) throws InterruptedException {
 
-    @Override
-    public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
-        return false;
-    }
-
-    @Override
-    public <T> Future<T> submitByRouterValue(Callable<T> task, String routerValue) {
-        ExecutorService executorService = getByRouterValue(routerValue);
-        return executorService.submit(task);
-    }
-
-    @Override
-    public <T> Future<T> submitByRouterKey(Callable<T> task, String routerKey) {
-        ExecutorService executorService = getByKey(routerKey);
-        return executorService.submit(task);
-    }
-
-    @Override
-    public Future<?> submitByRouterValue(Runnable task, String routerValue) {
-        ExecutorService executorService = getByRouterValue(routerValue);
-        return executorService.submit(task);
-    }
-
-    @Override
-    public Future<?> submitByRouterKey(Runnable task, String routerKey) {
-        ExecutorService executorService = getByKey(routerKey);
-        return executorService.submit(task);
-    }
-
-    @Override
-    public <T> Future<T> submitByRouterValue(Runnable task, T result, String routerValue) {
-        ExecutorService executorService = getByRouterValue(routerValue);
-        return executorService.submit(task, result);
-    }
-
-    @Override
-    public <T> Future<T> submitByRouterKey(Runnable task, T result, String routerKey) {
-        ExecutorService executorService = getByKey(routerKey);
-        return executorService.submit(task, result);
-    }
-
-    @Override
-    public <T> List<Future<T>> invokeAll(Collection<? extends CallableEntry<T>> tasks) throws InterruptedException {
-
-        return null;
-    }
-
-    @Override
-    public <T> List<Future<T>> invokeAll(Collection<? extends CallableEntry<T>> tasks, long timeout, TimeUnit unit)
-            throws InterruptedException {
-        return null;
-    }
-
-    @Override
-    public <T> T invokeAny(Collection<? extends CallableEntry<T>> tasks)
-            throws InterruptedException, ExecutionException {
-        return null;
-    }
-
-    @Override
-    public <T> T invokeAny(Collection<? extends CallableEntry<T>> tasks, long timeout, TimeUnit unit)
-            throws InterruptedException, ExecutionException, TimeoutException {
-        return null;
-    }
-
-    public static void main(String[] args) throws IllegalAccessException, InstantiationException {
-        ShardingThreadPoolExecutor executor1 = new ShardingThreadPoolExecutor(4);
-
-        ShardingThreadPoolExecutor executor3 = new ShardingThreadPoolExecutor(4, "test");
-
-        ShardingThreadPoolExecutor executor2 = new ShardingThreadPoolExecutor(4, 100);
-
-        ShardingThreadPoolExecutor executor4 = new ShardingThreadPoolExecutor(4, 100, "executor4");
+        ShardingThreadPoolExecutor executor = new ShardingThreadPoolExecutor(4, 100);
+        Runtime.getRuntime().addShutdownHook(new ClearWork(executor));
 
         for (int i = 0; i < 4; i++) {
-            executor1.submitByRouterKey(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("executor1:---" + new Random(10).nextInt());
-                }
-            }, String.valueOf(i));
-        }
-        for (int i = 0; i < 4; i++) {
-            executor2.submitByRouterKey(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("executor2:---" + new Random(10).nextInt());
-                }
-            }, String.valueOf(i));
-        }
-        for (int i = 0; i < 4; i++) {
-            executor3.submitByRouterKey(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("executor2:---" + new Random(10).nextInt());
-                }
-            }, String.valueOf(i));
-        }
-        for (int i = 0; i < 4; i++) {
-            executor4.submitByRouterKey(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("executor2:---" + new Random(10).nextInt());
-                }
-            }, String.valueOf(i));
+            executor.submit(() -> log.info("executor1:---" + new Random(10).nextInt()), String.valueOf(i));
         }
 
-        System.out.println("--------------------");
-    }
-
-    @Override
-    public void execute(Runnable command) {
+        Thread.sleep(1000);
+        log.info("--------");
 
     }
 }

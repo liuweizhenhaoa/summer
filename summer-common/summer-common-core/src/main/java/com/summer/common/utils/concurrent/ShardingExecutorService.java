@@ -1,265 +1,35 @@
 
 package com.summer.common.utils.concurrent;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.RejectedExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
 /**
- * An {@link Executor} that provides methods to manage termination and methods that can produce a {@link Future} for
- * tracking progress of one or more asynchronous tasks.
- *
- * <p>
- * An {@code ExecutorService} can be shut down, which will cause it to reject new tasks. Two different methods are
- * provided for shutting down an {@code ExecutorService}. The {@link #shutdown} method will allow previously submitted
- * tasks to execute before terminating, while the {@link #shutdownNow} method prevents waiting tasks from starting and
- * attempts to stop currently executing tasks. Upon termination, an executor has no tasks actively executing, no tasks
- * awaiting execution, and no new tasks can be submitted. An unused {@code ExecutorService} should be shut down to allow
- * reclamation of its resources.
- *
- * <p>
- * Method {@code submit} extends base method {@link Executor#execute(Runnable)} by creating and returning a
- * {@link Future} that can be used to cancel execution and/or wait for completion. Methods {@code invokeAny} and
- * {@code invokeAll} perform the most commonly useful forms of bulk execution, executing a collection of tasks and then
- * waiting for at least one, or all, to complete. (Class {@link ExecutorCompletionService} can be used to write
- * customized variants of these methods.)
- *
- * <p>
- * The {@link Executors} class provides factory methods for the executor services provided in this package.
- *
- * <h3>Usage Examples</h3>
- *
- * Here is a sketch of a network service in which threads in a thread pool service incoming requests. It uses the
- * preconfigured {@link Executors#newFixedThreadPool} factory method:
- *
- * <pre>
- * {
- *     &#64;code
- *     class NetworkService implements Runnable {
- *         private final ServerSocket serverSocket;
- *         private final ExecutorService pool;
- *
- *         public NetworkService(int port, int poolSize)
- *                 throws IOException {
- *             serverSocket = new ServerSocket(port);
- *             pool = Executors.newFixedThreadPool(poolSize);
- *         }
- *
- *         public void run() { // run the service
- *             try {
- *                 for (;;) {
- *                     pool.execute(new Handler(serverSocket.accept()));
- *                 }
- *             } catch (IOException ex) {
- *                 pool.shutdown();
- *             }
- *         }
- *     }
- *
- *     class Handler implements Runnable {
- *         private final Socket socket;
+ * 分区线程池接口
  * 
- *         Handler(Socket socket) {
- *             this.socket = socket;
- *         }
- * 
- *         public void run() {
- *             // read and service request on socket
- *         }
- *     }
- * }
- * </pre>
- *
- * The following method shuts down an {@code ExecutorService} in two phases, first by calling {@code shutdown} to reject
- * incoming tasks, and then calling {@code shutdownNow}, if necessary, to cancel any lingering tasks:
- *
- * <pre>
- *  {@code
- * void shutdownAndAwaitTermination(ExecutorService pool) {
- *   pool.shutdown(); // Disable new tasks from being submitted
- *   try {
- *     // Wait a while for existing tasks to terminate
- *     if (!pool.awaitTermination(60, TimeUnit.SECONDS)) {
- *       pool.shutdownNow(); // Cancel currently executing tasks
- *       // Wait a while for tasks to respond to being cancelled
- *       if (!pool.awaitTermination(60, TimeUnit.SECONDS))
- *           System.err.println("Pool did not terminate");
- *     }
- *   } catch (InterruptedException ie) {
- *     // (Re-)Cancel if current thread also interrupted
- *     pool.shutdownNow();
- *     // Preserve interrupt status
- *     Thread.currentThread().interrupt();
- *   }
- * }}
- * </pre>
- *
- * <p>
- * Memory consistency effects: Actions in a thread prior to the submission of a {@code Runnable} or {@code Callable}
- * task to an {@code ExecutorService} <a href="package-summary.html#MemoryVisibility"><i>happen-before</i></a> any
- * actions taken by that task, which in turn <i>happen-before</i> the result is retrieved via {@code Future.get()}.
- *
- * @since 1.5
- * @author Doug Lea
  */
-public interface ShardingExecutorService extends Executor {
+public interface ShardingExecutorService {
 
     /**
-     * Initiates an orderly shutdown in which previously submitted tasks are executed, but no new tasks will be
-     * accepted. Invocation has no additional effect if already shut down.
-     *
-     * <p>
-     * This method does not wait for previously submitted tasks to complete execution. Use {@link #awaitTermination
-     * awaitTermination} to do that.
-     *
-     * @throws SecurityException if a security manager exists and shutting down this ExecutorService may manipulate
-     *         threads that the caller is not permitted to modify because it does not hold
-     *         {@link RuntimePermission}{@code ("modifyThread")}, or the security manager's
-     *         {@code checkAccess} method denies access.
+     * 根据分区key添加任务到对应的分区
+     * 
+     * @param runnable
+     * @param key 分区key
+     * @throws InterruptedException
      */
-    void shutdown();
+    void submit(Runnable runnable, String key) throws InterruptedException;
 
     /**
-     * Attempts to stop all actively executing tasks, halts the processing of waiting tasks, and returns a list of the
-     * tasks that were awaiting execution.
+     * 根据分区编号添加任务到对应的分区
      *
-     * <p>
-     * This method does not wait for actively executing tasks to terminate. Use {@link #awaitTermination
-     * awaitTermination} to do that.
-     *
-     * <p>
-     * There are no guarantees beyond best-effort attempts to stop processing actively executing tasks. For example,
-     * typical implementations will cancel via {@link Thread#interrupt}, so any task that fails to respond to interrupts
-     * may never terminate.
-     *
-     * @return list of tasks that never commenced execution
-     * @throws SecurityException if a security manager exists and shutting down this ExecutorService may manipulate
-     *         threads that the caller is not permitted to modify because it does not hold
-     *         {@link RuntimePermission}{@code ("modifyThread")}, or the security manager's
-     *         {@code checkAccess} method denies access.
+     * @param runnable
+     * @param partition 分区
+     * @throws InterruptedException
      */
-    List<Runnable> shutdownNow();
+    void submit(Runnable runnable, Integer partition) throws InterruptedException;
 
     /**
-     * Returns {@code true} if this executor has been shut down.
-     *
-     * @return {@code true} if this executor has been shut down
+     * 线程池是否终止
+     * 
+     * @return
+     * @throws InterruptedException
      */
-    boolean isShutdown();
-
-    /**
-     * Returns {@code true} if all tasks have completed following shut down. Note that {@code isTerminated} is never
-     * {@code true} unless either {@code shutdown} or {@code shutdownNow} was called first.
-     *
-     * @return {@code true} if all tasks have completed following shut down
-     */
-    boolean isTerminated();
-
-    /**
-     * Blocks until all tasks have completed execution after a shutdown request, or the timeout occurs, or the current
-     * thread is interrupted, whichever happens first.
-     *
-     * @param timeout the maximum time to wait
-     * @param unit the time unit of the timeout argument
-     * @return {@code true} if this executor terminated and {@code false} if the timeout elapsed before termination
-     * @throws InterruptedException if interrupted while waiting
-     */
-    boolean awaitTermination(long timeout, TimeUnit unit)
-            throws InterruptedException;
-
-    <T> Future<T> submitByRouterValue(Callable<T> task, String routerValue);
-
-    <T> Future<T> submitByRouterKey(Callable<T> task, String routerKey);
-
-    Future<?> submitByRouterValue(Runnable task, String routerValue);
-
-    Future<?> submitByRouterKey(Runnable task, String routerKey);
-
-    <T> Future<T> submitByRouterValue(Runnable task, T result, String routerValue);
-
-    <T> Future<T> submitByRouterKey(Runnable task, T result, String routerKey);
-
-    /**
-     * Executes the given tasks, returning a list of Futures holding their status and results when all complete.
-     * {@link Future#isDone} is {@code true} for each element of the returned list. Note that a <em>completed</em> task
-     * could have terminated either normally or by throwing an exception. The results of this method are undefined if
-     * the given collection is modified while this operation is in progress.
-     *
-     * @param tasks the collection of tasks
-     * @param <T> the type of the values returned from the tasks
-     * @return a list of Futures representing the tasks, in the same sequential order as produced by the iterator for
-     *         the given task list, each of which has completed
-     * @throws InterruptedException if interrupted while waiting, in which case unfinished tasks are cancelled
-     * @throws NullPointerException if tasks or any of its elements are {@code null}
-     * @throws RejectedExecutionException if any task cannot be scheduled for execution
-     */
-    <T> List<Future<T>> invokeAll(Collection<? extends CallableEntry<T>> tasks)
-            throws InterruptedException;
-
-    /**
-     * Executes the given tasks, returning a list of Futures holding their status and results when all complete or the
-     * timeout expires, whichever happens first. {@link Future#isDone} is {@code true} for each element of the returned
-     * list. Upon return, tasks that have not completed are cancelled. Note that a <em>completed</em> task could have
-     * terminated either normally or by throwing an exception. The results of this method are undefined if the given
-     * collection is modified while this operation is in progress.
-     *
-     * @param tasks the collection of tasks
-     * @param timeout the maximum time to wait
-     * @param unit the time unit of the timeout argument
-     * @param <T> the type of the values returned from the tasks
-     * @return a list of Futures representing the tasks, in the same sequential order as produced by the iterator for
-     *         the given task list. If the operation did not time out, each task will have completed. If it did time
-     *         out, some of these tasks will not have completed.
-     * @throws InterruptedException if interrupted while waiting, in which case unfinished tasks are cancelled
-     * @throws NullPointerException if tasks, any of its elements, or unit are {@code null}
-     * @throws RejectedExecutionException if any task cannot be scheduled for execution
-     */
-    <T> List<Future<T>> invokeAll(Collection<? extends CallableEntry<T>> tasks,
-                                  long timeout, TimeUnit unit)
-            throws InterruptedException;
-
-    /**
-     * Executes the given tasks, returning the result of one that has completed successfully (i.e., without throwing an
-     * exception), if any do. Upon normal or exceptional return, tasks that have not completed are cancelled. The
-     * results of this method are undefined if the given collection is modified while this operation is in progress.
-     *
-     * @param tasks the collection of tasks
-     * @param <T> the type of the values returned from the tasks
-     * @return the result returned by one of the tasks
-     * @throws InterruptedException if interrupted while waiting
-     * @throws NullPointerException if tasks or any element task subject to execution is {@code null}
-     * @throws IllegalArgumentException if tasks is empty
-     * @throws ExecutionException if no task successfully completes
-     * @throws RejectedExecutionException if tasks cannot be scheduled for execution
-     */
-    <T> T invokeAny(Collection<? extends CallableEntry<T>> tasks)
-            throws InterruptedException, ExecutionException;
-
-    /**
-     * Executes the given tasks, returning the result of one that has completed successfully (i.e., without throwing an
-     * exception), if any do before the given timeout elapses. Upon normal or exceptional return, tasks that have not
-     * completed are cancelled. The results of this method are undefined if the given collection is modified while this
-     * operation is in progress.
-     *
-     * @param tasks the collection of tasks
-     * @param timeout the maximum time to wait
-     * @param unit the time unit of the timeout argument
-     * @param <T> the type of the values returned from the tasks
-     * @return the result returned by one of the tasks
-     * @throws InterruptedException if interrupted while waiting
-     * @throws NullPointerException if tasks, or unit, or any element task subject to execution is {@code null}
-     * @throws TimeoutException if the given timeout elapses before any task successfully completes
-     * @throws ExecutionException if no task successfully completes
-     * @throws RejectedExecutionException if tasks cannot be scheduled for execution
-     */
-    <T> T invokeAny(Collection<? extends CallableEntry<T>> tasks,
-                    long timeout, TimeUnit unit)
-            throws InterruptedException, ExecutionException, TimeoutException;
+    boolean isTermination() throws InterruptedException;
 }
