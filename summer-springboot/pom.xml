@@ -24,6 +24,7 @@
 		<module>summer-springboot-groovy</module>
 		<module>summer-springboot-hbase</module>
 		<module>summer-springboot-easyexcel</module>
+		<module>summer-springboot-nacos</module>
 	</modules>
 	<dependencies>
 		<dependency>

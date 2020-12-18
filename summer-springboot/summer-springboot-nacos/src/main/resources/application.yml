@@ -1,0 +1,68 @@
+server:
+  port: 8080
+
+nacos:
+  config:
+    bootstrap:
+      enable: true
+
+spring:
+  application:
+    name: summer-nacos
+  profiles:
+    active: dev
+
+---
+spring:
+  profiles: test
+nacos:
+  #      discovery:
+  #        server-addr: 127.0.0.1:8848
+  #        namespace: edbd013b-b178-44f7-8caa-e73071e49c4d
+  #        group: namespace-one
+  config:
+    server-addr: 127.0.0.1:8848
+    data-id: ${spring.application.name}-${spring.profiles.active}.yaml
+    type: yaml
+    auto-refresh: true
+    prefix: ${spring.application.name}
+    file-extension: yaml
+    namespace: a492331a-00f7-43b9-99bd-dd196145b2ca
+    group: DEFAULT_GROUP
+
+---
+spring:
+  profiles: dev
+
+nacos:
+  #      discovery:
+  #        server-addr: 127.0.0.1:8848
+  #        namespace: edbd013b-b178-44f7-8caa-e73071e49c4d
+  #        group: namespace-one
+  config:
+    server-addr: 127.0.0.1:8848
+    data-id: ${spring.application.name}-${spring.profiles.active}.yaml
+    type: yaml
+    auto-refresh: true
+    prefix: ${spring.application.name}
+    file-extension: yaml
+    namespace: a650b496-2066-4b26-97ca-7589a21289b9
+    group: DEFAULT_GROUP
+
+---
+spring:
+  profiles: online
+  cloud:
+    nacos:
+      #      discovery:
+      #        server-addr: 127.0.0.1:8848
+      #        namespace: edbd013b-b178-44f7-8caa-e73071e49c4d
+      #        group: namespace-one
+      config:
+        data-id: ${spring.application.name}-${spring.profiles.active}.yaml
+        type: yaml
+        auto-refresh: true
+        prefix: ${spring.application.name}
+        file-extension: yaml
+        namespace: 62d9f5c5-3a1a-4ae7-8254-2fb352953606
+        group: DEFAULT_GROUP

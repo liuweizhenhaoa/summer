@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: summer-nacos
+nacos:
+  config:
+    bootstrap:
+      enable: true
+    server-addr: 127.0.0.1:8848
+    file-extension: yaml
