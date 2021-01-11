@@ -7,8 +7,6 @@ import com.hankcs.hanlp.corpus.dependency.CoNll.CoNLLWord;
 import com.hankcs.hanlp.dictionary.CoreDictionary;
 import com.hankcs.hanlp.dictionary.CustomDictionary;
 import com.hankcs.hanlp.dictionary.py.Pinyin;
-import com.hankcs.hanlp.mining.word2vec.DocVectorModel;
-import com.hankcs.hanlp.mining.word2vec.WordVectorModel;
 import com.hankcs.hanlp.model.crf.CRFLexicalAnalyzer;
 import com.hankcs.hanlp.seg.Dijkstra.DijkstraSegment;
 import com.hankcs.hanlp.seg.NShort.NShortSegment;
@@ -517,6 +515,7 @@ public class HanLPDemo {
 //		hanLPDemo.test4();;
 //
 //		hanLPDemo.test5();;
+				hanLPDemo.test17();
 
 
 
@@ -539,7 +538,8 @@ public class HanLPDemo {
 
 
 
-			}
+
+	}
 
 }
 
