@@ -12,7 +12,6 @@ public class Test1 {
     private int number =1;
     private Lock lock = new ReentrantLock();
     private Condition c1 = lock.newCondition();
-    private Condition c2 = lock.newCondition();
 
 
     public void print1(){

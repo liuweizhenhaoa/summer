@@ -6,6 +6,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
+ *@author liuwei
  */
 @SpringBootApplication
 @EnableAsync
