@@ -1,4 +1,4 @@
-package com.summer.mq.kafka.model;
+package com.summer.nlp.hanlp.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

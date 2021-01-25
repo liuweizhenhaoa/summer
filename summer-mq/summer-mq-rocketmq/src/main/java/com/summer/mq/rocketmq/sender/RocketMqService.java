@@ -46,10 +46,7 @@ public class RocketMqService implements MessageSender {
         rocketMQTemplate.convertAndSend("test-topic-2", new OrderPaidEvent("T_001", new BigDecimal("88.00")));
 
 
-        // Build a SpringMessage for sending in transaction
-        Message msg = MessageBuilder.withPayload("hello world!").build();
-        // In sendMessageInTransaction(), the first parameter transaction name ("test")
-        // must be same with the @RocketMQTransactionListener's member field 'transName'
+        Message<String> msg = MessageBuilder.withPayload("hello world!").build();
         rocketMQTemplate.sendMessageInTransaction("test", "test-topic", msg, null);
 
 

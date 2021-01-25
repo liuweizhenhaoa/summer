@@ -25,11 +25,6 @@ public class Controller {
 	public void sendFoo() {
 		this.kafkaTemplate.send("netease-opinion-data-import", "1111");
 	}
-//
-//	@PostMapping(path = "/send/foo/{what}")
-//	public void sendFoo(@PathVariable String what) {
-//		this.template.send("foos", new Foo1(what));
-//	}
 
 	@PostMapping(path = "/send/bar/{what}")
 	public void sendBar(@PathVariable String what) {

@@ -1,4 +1,4 @@
-package com.summer.springboot.influxdb.BeanPostProcessor;
+package com.summer.springboot.influxdb.beanPostProcessor;
 
 import com.summer.springboot.influxdb.annotations.Boy;
 import com.summer.springboot.influxdb.service.HelloBoyService;
@@ -13,7 +13,7 @@ import java.lang.reflect.Field;
 @Slf4j
 public class BoyAnnotationBeanPostProcessor implements BeanPostProcessor {
     @Override
-    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+    public Object postProcessBeforeInitialization(Object bean, String beanName)  {
         /**
          * 利用Java反射机制注入属性
          */
@@ -37,7 +37,7 @@ public class BoyAnnotationBeanPostProcessor implements BeanPostProcessor {
     }
 
     @Override
-    public Object postProcessAfterInitialization(Object o, String s) throws BeansException {
+    public Object postProcessAfterInitialization(Object o, String s) {
 
         if (o instanceof HelloBoyService) {
             log.info("----------postProcessAfterInitialization method-----------");

@@ -1,4 +1,4 @@
-package com.summer.mq.rabbitmq;
+package com.summer.mq.nutch;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

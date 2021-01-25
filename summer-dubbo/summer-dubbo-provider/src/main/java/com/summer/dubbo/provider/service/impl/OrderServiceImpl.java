@@ -3,7 +3,6 @@ package com.summer.dubbo.provider.service.impl;
 import com.summer.common.idgenerate.SnowflakeIdWorker;
 import com.summer.common.utils.GsonUtils;
 import com.summer.dubbo.provider.constant.OrderConstant;
-//import com.summer.dt.mq.dao.OrderMapper;
 import com.summer.dubbo.provider.dao.TransactionLogMapper;
 import com.summer.dubbo.provider.entity.Order;
 import com.summer.dubbo.provider.entity.TransactionLog;

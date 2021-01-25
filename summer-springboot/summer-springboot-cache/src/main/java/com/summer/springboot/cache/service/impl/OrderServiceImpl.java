@@ -1,7 +1,6 @@
 package com.summer.springboot.cache.service.impl;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.page.PageMethod;
 import com.summer.common.idgenerate.SnowflakeIdWorker;
 import com.summer.springboot.cache.dao.OrderMapper;
 import com.summer.springboot.cache.entity.Order;
@@ -58,7 +57,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> queryAll(int pageNum,int pageSize) {
-        Page<Order> page  = PageHelper.startPage(pageNum, pageSize);
+        PageMethod.offsetPage(pageNum, pageSize);
         return orderMapper.queryAll();
     }
 

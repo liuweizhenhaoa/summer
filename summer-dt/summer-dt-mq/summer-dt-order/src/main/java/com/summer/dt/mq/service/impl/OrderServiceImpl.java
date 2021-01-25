@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.summer.common.idgenerate.SnowflakeIdWorker;
 import com.summer.common.utils.GsonUtils;
 import com.summer.dt.mq.common.constant.OrderConstant;
-//import com.summer.dt.mq.dao.OrderMapper;
 import com.summer.dt.mq.dao.OrderMapper;
 import com.summer.dt.mq.dao.TransactionLogMapper;
 import com.summer.dt.mq.entity.Order;

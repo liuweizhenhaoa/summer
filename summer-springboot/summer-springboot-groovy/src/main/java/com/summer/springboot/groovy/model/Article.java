@@ -9,8 +9,6 @@ import java.sql.Timestamp;
 
 /**
  * @Author liuwei
- * @Description //TODO
- * @Date 1$ 1$
  **/
 @Data
 @AllArgsConstructor
@@ -22,14 +20,8 @@ public class Article {
 	private String title;
 	private String author;
 	private String content;
-	private String is_delete;
+	private String isDelete;
 	private Timestamp createTime;
 	private Timestamp updateTime;
 
-
-//	public static void main(String[] args) {
-//		Article article = new Article();
-//		article.getAuthor();
-//
-//	}
 }

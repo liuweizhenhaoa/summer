@@ -1,9 +1,8 @@
-package com.summer.springboot.disruptor.BeanPostProcessor;
+package com.summer.springboot.jaxrs.beanPostProcessor;
 
-import com.summer.springboot.disruptor.annotations.Boy;
-import com.summer.springboot.disruptor.service.HelloBoyService;
+import com.summer.springboot.jaxrs.annotations.Boy;
+import com.summer.springboot.jaxrs.service.HelloBoyService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +12,7 @@ import java.lang.reflect.Field;
 @Slf4j
 public class BoyAnnotationBeanPostProcessor implements BeanPostProcessor {
     @Override
-    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+    public Object postProcessBeforeInitialization(Object bean, String beanName)  {
         /**
          * 利用Java反射机制注入属性
          */
@@ -37,7 +36,7 @@ public class BoyAnnotationBeanPostProcessor implements BeanPostProcessor {
     }
 
     @Override
-    public Object postProcessAfterInitialization(Object o, String s) throws BeansException {
+    public Object postProcessAfterInitialization(Object o, String s) {
 
         if (o instanceof HelloBoyService) {
             log.info("----------postProcessAfterInitialization method-----------");

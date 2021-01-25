@@ -2,6 +2,7 @@ package com.summer.dt.mq.dao;
 
 import com.summer.dt.mq.OrderApplication;
 import com.summer.dt.mq.entity.User;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class UserMapperTest {
         User user = new User().setAge(3).setCreateTime(new Date())
                     .setName("lw").setSex(User.Sex.MAN);
         userMapper.save(user);
-
+        Assert.assertNotNull(user);
     }
 
 }

@@ -18,6 +18,7 @@ import java.util.concurrent.Executors;
 
 /**
  * 整合Spring，对Disruptor进行初始化
+ * @author liuwei
  */
 @Service
 @Slf4j
@@ -26,12 +27,12 @@ public class NotifyServiceImpl implements INotifyService, DisposableBean, Initia
     private static final int RING_BUFFER_SIZE = 1024 * 1024;
 
     @Override
-    public void destroy() throws Exception {
+    public void destroy() {
         disruptor.shutdown();
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         disruptor = new Disruptor<NotifyEvent>(new NotifyEventFactory(), RING_BUFFER_SIZE, Executors.defaultThreadFactory(), ProducerType.SINGLE, new BlockingWaitStrategy());
         disruptor.setDefaultExceptionHandler(new NotifyEventHandlerException());
         disruptor.handleEventsWith(new NotifyEventHandler());
@@ -49,27 +50,25 @@ public class NotifyServiceImpl implements INotifyService, DisposableBean, Initia
 //                event.setMessage(data);
 //            }
 //        }, message);
-        ringBuffer.publishEvent((event, sequence, data) -> event.setMessage(data).setTime(new Date()), message); //lambda式写法，如果是用jdk1.8以下版本使用以上注释的一段
+
+        //lambda式写法，如果是用jdk1.8以下版本使用以上注释的一段
+        ringBuffer.publishEvent((event, sequence, data) -> event.setMessage(data).setTime(new Date()), message);
     }
 
     @Override
     public void consume() {
         log.info("---------------begin consume-------------------");
 
-//        while (true) {
         //可以把ringBuffer看作是一个事件队列，那么next就是得到下一个事件槽
         RingBuffer<NotifyEvent> ringBuffer = disruptor.getRingBuffer();
         long sequence = ringBuffer.next();
         try {
-            NotifyEvent notification = (NotifyEvent) ringBuffer.get(sequence);
+            NotifyEvent notification = ringBuffer.get(sequence);
 
             log.info("------------consume:" + notification.toString());
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-
         }
-//        }
     }
 }

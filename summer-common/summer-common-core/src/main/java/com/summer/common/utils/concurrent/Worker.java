@@ -1,9 +1,9 @@
 
 package com.summer.common.utils.concurrent;
 
-import java.util.concurrent.LinkedBlockingQueue;
-
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.concurrent.LinkedBlockingQueue;
 
 
 @Slf4j
@@ -50,7 +50,7 @@ public class Worker implements Runnable {
     }
 
     public Worker(int size) {
-        this.queue = new LinkedBlockingQueue(size);
+        this.queue = new LinkedBlockingQueue<>(size);
     }
 
     @Override

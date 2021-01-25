@@ -3,6 +3,7 @@ package com.summer.dlock.zk.lock;
 import com.summer.dlock.zk.ZkApplication;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,7 @@ public class ZookeeperDLockTest {
         distributionLocker.unlock(lock);
         System.out.println("-------"+ distributionLocker.tryLock("/my/path", TimeUnit.SECONDS, 5000, lock));
 
-    }
+        Assert.assertNotNull(distributionLocker);
 
-    @Test
-    public void lock1() {
     }
 }

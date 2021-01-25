@@ -3,9 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.summer</groupId>
-	<artifactId>summer-mq-heritrix3</artifactId>
+	<artifactId>summer-crawler-heritrix3</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<description>Demo project for summer-mq-heritrix3</description>
+	<description>Demo project for summer-crawler-heritrix3</description>
 	<parent>
 		<groupId>com.summer</groupId>
 		<artifactId>summer-crawler</artifactId>
