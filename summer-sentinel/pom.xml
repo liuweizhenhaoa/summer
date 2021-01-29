@@ -20,6 +20,7 @@
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
 			<artifactId>sentinel-core</artifactId>
+			<version>1.8.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
@@ -28,7 +29,7 @@
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
 			<artifactId>sentinel-spring-webmvc-adapter</artifactId>
-			<version>${project.version}</version>
+			<version>1.8.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

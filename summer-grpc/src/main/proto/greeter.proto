@@ -1,5 +1,5 @@
 syntax = "proto3";
-package smartboard;
+package grpc;
 
 option java_package = "com.summer.grpc.proto";
 

@@ -1,0 +1,36 @@
+syntax = "proto3";
+package grpc;
+
+option java_package = "com.summer.grpc.proto";
+
+import "google/protobuf/empty.proto";
+
+
+service HelloWorld {
+  rpc helloWorld (HelloWorldRequest) returns (HelloWorldReply) {
+  }
+
+  rpc list (HelloWorldRequest) returns (stream HelloWorldReply) {
+  }
+
+}
+
+/**
+ * hello request
+*/
+message HelloWorldRequest {
+  string id = 1; // the id of this message.
+  string name = 2; // the name of this message.
+}
+
+/**
+ * hello reply
+*/
+message HelloWorldReply {
+  string message = 1;
+}
+
+message Point {
+  int32 latitude = 1;
+  int32 longitude = 2;
+}
