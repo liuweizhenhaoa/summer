@@ -57,6 +57,7 @@
 	<modules>
 		<module>summer-common</module>
 		<module>summer-grpc</module>
+		<module>summer-grpc-k8s</module>
 		<module>summer-dlock</module>
 		<module>summer-dt</module>
 		<module>summer-mq</module>

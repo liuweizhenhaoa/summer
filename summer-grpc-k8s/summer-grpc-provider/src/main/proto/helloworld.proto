@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.summer.grpc.consumer.service";
+option java_outer_classname = "HelloWorldService";
+option objc_class_prefix = "HLW";
+
+package helloworld;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/api/http.proto";
+
+
+service Greeter{
+  rpc SayHello(HelloRequest) returns (HelloReply){}
+  rpc SaySomeThing(google.protobuf.Empty) returns (HelloReply){
+    option (google.api.http) = {
+      get:"/api/hello/say";
+    };
+  }
+
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+}

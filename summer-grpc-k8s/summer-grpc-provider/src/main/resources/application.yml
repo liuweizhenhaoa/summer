@@ -1,0 +1,8 @@
+server:
+  port: 8080
+spring:
+  jmx:
+    enabled: false
+grpc:
+  enable-reflection: true
+  port: 6565

@@ -1,0 +1,16 @@
+server:
+  port: 8082
+grpc:
+  customer:
+    server:
+      name: localhost
+      port: 6565
+  enable-reflection: true
+  port: 6565
+spring:
+  jmx:
+    enabled: false
+  devtools:
+    livereload:
+      enabled: false
+#      port: 35730
