@@ -1,4 +1,4 @@
-package com.summer.mq.nutch;
+package com.summer.stream.spark;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

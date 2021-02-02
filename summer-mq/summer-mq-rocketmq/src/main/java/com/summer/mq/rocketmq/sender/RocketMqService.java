@@ -45,11 +45,8 @@ public class RocketMqService implements MessageSender {
         rocketMQTemplate.send("test-topic-1", MessageBuilder.withPayload("Hello, World! I'm from spring message").build());
         rocketMQTemplate.convertAndSend("test-topic-2", new OrderPaidEvent("T_001", new BigDecimal("88.00")));
 
-
         Message<String> msg = MessageBuilder.withPayload("hello world!").build();
-        rocketMQTemplate.sendMessageInTransaction("test", "test-topic", msg, null);
-
-
+//        rocketMQTemplate.sendMessageInTransaction("test", "test-topic", msg, null);
     }
 
 

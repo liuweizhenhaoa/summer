@@ -1,6 +1,5 @@
 package com.summer.mq.rocketmq;
 
-import com.summer.mq.crawler4j.Crawler4jApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -10,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class RocketmqApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Crawler4jApplication.class, args);
+        SpringApplication.run(RocketmqApplication.class, args);
     }
 
 }
