@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: myapp
+data:
+  key: value
+  name: lw
+  user.properties: |
+    spring.test=lll
+

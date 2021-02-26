@@ -1,0 +1,28 @@
+#本清单描述了一个Pod，它有一个节点亲和性设置 preferredDuringSchedulingIgnoredDuringExecution，disktype: ssd。
+# 这意味着 pod 将首选具有 disktype=ssd 标签的节点。
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - preference:
+            matchExpressions:
+            - key: disktype
+              operator: In
+              values:
+              - ssd
+          weight: 1

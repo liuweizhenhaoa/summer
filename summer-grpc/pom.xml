@@ -14,6 +14,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<netty.version>4.1.36.Final</netty.version>
+		<os.detected.classifier>linux-x86_64</os.detected.classifier>
 	</properties>
 
 	<dependencies>
@@ -31,25 +32,15 @@
 			<groupId>io.netty</groupId>
 			<artifactId>netty-transport-native-epoll</artifactId>
 			<version>${netty.version}</version>
-			<!-- <classifier>${os.detected.classifier}</classifier> -->
+			 <classifier>${os.detected.classifier}</classifier>
 			<!-- epoll 仅存在于linux -->
-			<classifier>linux-x86_64</classifier>
+<!--			<classifier>linux-x86_64</classifier>-->
 		</dependency>
 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

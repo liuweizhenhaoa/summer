@@ -3,7 +3,7 @@ server:
 grpc:
   customer:
     server:
-      name: localhost
+      name: www.aaliuwei.com
       port: 6565
   enable-reflection: true
   port: 6565

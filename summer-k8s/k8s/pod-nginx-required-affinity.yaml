@@ -1,0 +1,28 @@
+#下面清单描述了一个 Pod，它有一个节点亲和性配置 requiredDuringSchedulingIgnoredDuringExecution，disktype=ssd。 
+#这意味着 pod 只会被调度到具有 disktype=ssd 标签的节点上。
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+  #节点亲和性
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+            - key: disktype
+              operator: In
+              values:
+              - ssd

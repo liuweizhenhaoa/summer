@@ -1,0 +1,23 @@
+#在上述配置文件中，你可以看到 postStart 命令在容器的 /usr/share 目录下写入文件 message。 命令 preStop 负责优雅地终止 nginx 服务。
+#当因为失效而导致容器终止时，这一处理方式很有用。
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lifecycle-demo
+spec:
+  containers:
+  - name: lifecycle-demo-container
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+    lifecycle:
+      postStart:
+        exec:
+          command: ["/bin/sh","-c","echo Hello from the postStaart handler > /usr/share/message"]
+      preStop:
+        exec:
+          command: ["/bin/sh","-c", "nginx -s quit; while killall -0 nginx; do sleep 1; done"]

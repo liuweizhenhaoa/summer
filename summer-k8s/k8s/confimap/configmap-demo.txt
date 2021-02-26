@@ -1,0 +1,34 @@
+# 创建本地目录
+mkdir -p configure-pod-container/configmap/
+
+# 将实例文件下载到 `configure-pod-container/configmap/` 目录
+wget https://kubernetes.io/examples/configmap/game.properties -O configure-pod-container/configmap/game.properties
+wget https://kubernetes.io/examples/configmap/ui.properties -O configure-pod-container/configmap/ui.properties
+
+# 创建 configmap
+kubectl create configmap game-config --from-file=configure-pod-container/configmap/
+
+
+kubectl describe configmaps game-config
+
+
+基于文件创建 ConfigMap
+你可以使用 kubectl create configmap 基于单个文件或多个文件创建 ConfigMap。
+
+例如：
+
+kubectl create configmap game-config-2 --from-file=configure-pod-container/configmap/game.properties
+
+
+使用 --from-env-file 选项从环境文件创建 ConfigMap，例如：
+
+Env 文件包含环境变量列表。 其中适用以下语法规则:
+
+Env 文件中的每一行必须为 VAR=VAL 格式。
+以＃开头的行（即注释）将被忽略。
+空行将被忽略。
+引号不会被特殊处理（即它们将成为 ConfigMap 值的一部分）。
+将示例文件下载到 configure-pod-container/configmap/ 目录
+
+
+kubectl create configmap special-config --from-literal=special.how=very

@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    name: myapp
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: myapp
+    image: debian
+    env:
+      - name: MESSAGE
+        value: "hello world"
+    command: ["/bin/echo"]
+    args: ["$(MESSAGE)"]
+    # 多个命令或shell脚本
+    # command: ["/bin/sh"]
+    # args: ["-c", "while true; do echo hello; sleep 10;done"]
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
