@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: process-item-$ITEM
+  labels:
+  jobgroup: jobexample
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      containers:
+      - name: jobexample
+        image: busybox
+        command: ["sh",  "-c", "-echo Processing item $ITEM && sleep 5"]
+      restartPolicy: Never
