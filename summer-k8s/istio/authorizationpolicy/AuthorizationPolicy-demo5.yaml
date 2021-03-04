@@ -1,0 +1,18 @@
+# 以下示例：如果请求路径不是 /healthz，则要求从请求的 JWT 认证中导出的主体是有效的。 因此，该策略从 JWT 身份验证中排除对 /healthz 路径的请求：
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: disable-jwt-for-healthz
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: products
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+        notPaths: ["/healthz"]
+    from:
+    - source:
+        requestPrincipals: ["*"]

@@ -1,0 +1,21 @@
+# 如果要使工作负载可公开访问，则需要将 source 部分留空。这允许来自所有（经过认证和未经认证）的用户和工作负载的源，例如：
+
+
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+ name: httpbin
+ namespace: foo
+spec:
+ selector:
+   matchLabels:
+     app: httpbin
+     version: v1
+ action: ALLOW
+ rules:
+ - to:
+   - operation:
+       methods: ["GET", "POST"]
+
+
+

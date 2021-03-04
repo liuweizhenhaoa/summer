@@ -1,0 +1,8 @@
+# 以下示例显示了一个策略，该策略不允许任何对 admin 命名空间工作负载的访问。
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: deny-all
+  namespace: admin
+spec:
+  {}

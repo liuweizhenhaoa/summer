@@ -1,0 +1,16 @@
+
+# 以下示例策略 allow-read 允许对 default 命名空间中带有标签 app: products 的工作负载的 "GET" 和 "HEAD" 访问。
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-read
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: products
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+         methods: ["GET", "HEAD"]

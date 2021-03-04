@@ -1,0 +1,20 @@
+# 假设您在端口 27017 上有一个 MongoDB 服务，下例配置了一个授权策略，只允许 Istio 网格中的 bookinfo-ratings-v2 服务访问该 MongoDB 工作负载。
+apiVersion: "security.istio.io/v1beta1"
+kind: AuthorizationPolicy
+metadata:
+  name: mongodb-policy
+  namespace: default
+spec:
+ selector:
+   matchLabels:
+     app: mongodb
+ action: ALLOW
+ rules:
+ - from:
+   - source:
+       principals: ["cluster.local/ns/default/sa/bookinfo-ratings-v2"]
+   to:
+   - operation:
+       ports: ["27017"]
+
+

@@ -1,0 +1,10 @@
+# 以下示例显示了一个简单的 allow-all 授权策略，该策略允许完全访问 default 命名空间中的所有工作负载。
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-all
+  namespace: default
+spec:
+  action: ALLOW
+  rules:
+  - {}
